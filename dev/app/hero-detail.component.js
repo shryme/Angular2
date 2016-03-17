@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './hero.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,24 +10,42 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, router_1, hero_service_1;
     var HeroDetailComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (hero_service_1_1) {
+                hero_service_1 = hero_service_1_1;
             }],
         execute: function() {
             HeroDetailComponent = (function () {
-                function HeroDetailComponent() {
+                function HeroDetailComponent(_heroService, _routeParams) {
+                    this._heroService = _heroService;
+                    this._routeParams = _routeParams;
                 }
+                HeroDetailComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    var id = +this._routeParams.get('id');
+                    this._heroService.getHero(id)
+                        .then(function (hero) { return _this.hero = hero; });
+                };
+                HeroDetailComponent.prototype.goBack = function () {
+                    window.history.back();
+                };
                 HeroDetailComponent = __decorate([
                     core_1.Component({
                         selector: 'my-hero-detail',
-                        template: "\n\t<div *ngIf=\"hero\">\n\t\t<h2>{{hero.name}} details!</h2>\n\t\t<div><label>id: </label>{{hero.id}}</div>\n\t\t<div>\n\t\t\t<label>name: </label>\n\t\t\t<div><input [(ngModel)]=\"hero.name\" placeholder=\"name\"></div>\n\t\t</div>\n\t</div>\n\t",
+                        templateUrl: 'app/hero-detail.component.html',
+                        styleUrls: ['app/hero-detail.component.css'],
                         inputs: ['hero']
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [hero_service_1.HeroService, router_1.RouteParams])
                 ], HeroDetailComponent);
                 return HeroDetailComponent;
             }());
