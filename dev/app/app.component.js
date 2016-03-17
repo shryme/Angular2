@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './hero.service', './heroes.component', './dashboard.component', './hero-detail.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,22 +10,62 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, router_1, hero_service_1, heroes_component_1, dashboard_component_1, hero_detail_component_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (hero_service_1_1) {
+                hero_service_1 = hero_service_1_1;
+            },
+            function (heroes_component_1_1) {
+                heroes_component_1 = heroes_component_1_1;
+            },
+            function (dashboard_component_1_1) {
+                dashboard_component_1 = dashboard_component_1_1;
+            },
+            function (hero_detail_component_1_1) {
+                hero_detail_component_1 = hero_detail_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
+                    this.title = 'Tour of Heroes';
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: '<h1>My First Angular 2 App</h1> <h2>test</h2>'
-                    }), 
+                        template: "\n\t\t<h1>{{title}}</h1>\n\t\t<nav>\n\t\t\t<a [routerLink]=\"['Dashboard']\">Dashboard</a>\n\t\t\t<a [routerLink]=\"['Heroes']\">Heroes</a>\n\t\t</nav>\n\t\t<router-outlet></router-outlet>\n\t",
+                        styleUrls: ['app/app.component.css'],
+                        directives: [router_1.ROUTER_DIRECTIVES],
+                        providers: [
+                            router_1.ROUTER_PROVIDERS,
+                            hero_service_1.HeroService
+                        ]
+                    }),
+                    router_1.RouteConfig([
+                        {
+                            path: '/dashboard',
+                            name: 'Dashboard',
+                            component: dashboard_component_1.DashboardComponent,
+                            useAsDefault: true
+                        },
+                        {
+                            path: '/heroes',
+                            name: 'Heroes',
+                            component: heroes_component_1.HeroesComponent
+                        },
+                        {
+                            path: '/detail/:id',
+                            name: 'HeroDetail',
+                            component: hero_detail_component_1.HeroDetailComponent
+                        },
+                    ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;
