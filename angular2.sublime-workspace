@@ -1,0 +1,1243 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"_",
+				"_router	property"
+			],
+			[
+				"g",
+				"getHero	method"
+			],
+			[
+				"get",
+				"getHeroes	method"
+			],
+			[
+				"th",
+				"then	method"
+			],
+			[
+				"const",
+				"constructor	keyword"
+			],
+			[
+				"Her",
+				"HeroService	alias"
+			],
+			[
+				"Re",
+				"resolve	method"
+			],
+			[
+				"li",
+				"listSprite"
+			],
+			[
+				"Grou",
+				"GroupFish"
+			],
+			[
+				"initi",
+				"initializeAudio"
+			],
+			[
+				"un",
+				"unmuteMusic"
+			],
+			[
+				"coll",
+				"collisionGlobal"
+			],
+			[
+				"sp",
+				"sprite"
+			],
+			[
+				"a",
+				"attacked"
+			],
+			[
+				"left",
+				"leftForce"
+			],
+			[
+				"po",
+				"powerupType"
+			],
+			[
+				"grou",
+				"groupPowerups"
+			],
+			[
+				"overl",
+				"overlapLayer"
+			],
+			[
+				"over",
+				"overlapLayer"
+			],
+			[
+				"tar",
+				"targetJump"
+			],
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"the",
+				"theta"
+			],
+			[
+				"listW",
+				"listWpUpdated"
+			],
+			[
+				"lis",
+				"listWaypoints"
+			],
+			[
+				"for",
+				"for	for (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"grp",
+				"graphics"
+			],
+			[
+				"fn",
+				"function"
+			],
+			[
+				"att",
+				"attackDuration"
+			],
+			[
+				"is",
+				"isDangerous"
+			],
+			[
+				"block",
+				"blockLayer"
+			],
+			[
+				"frie",
+				"friendTest"
+			],
+			[
+				"fri",
+				"friendTest"
+			],
+			[
+				"cu",
+				"currentFrame"
+			],
+			[
+				"at",
+				"attackAnimation"
+			],
+			[
+				"dol",
+				"dolphinExp"
+			],
+			[
+				"socket",
+				"socketId"
+			],
+			[
+				"sock",
+				"socketId"
+			],
+			[
+				"so",
+				"socketId"
+			],
+			[
+				"app",
+				"apply"
+			],
+			[
+				"create",
+				"createInfo"
+			],
+			[
+				"sh",
+				"showCreation"
+			],
+			[
+				"border",
+				"border-color: "
+			],
+			[
+				"l",
+				"LogArray"
+			],
+			[
+				"inval",
+				"invalidSquaresWithoutSpace"
+			],
+			[
+				"e",
+				"errors"
+			],
+			[
+				"sq",
+				"squareSize"
+			],
+			[
+				"GetAr",
+				"GetArrayToSolve"
+			],
+			[
+				"cl",
+				"clientWidth"
+			],
+			[
+				"Set",
+				"SetFixedNumbers"
+			],
+			[
+				"GetA",
+				"GetArrayToSolve"
+			],
+			[
+				"lo",
+				"logArray"
+			],
+			[
+				"GetRem",
+				"GetRemovableCase"
+			],
+			[
+				"va",
+				"validNumbers"
+			],
+			[
+				"numberTo",
+				"numberToPlace"
+			],
+			[
+				"num",
+				"numberToPlace"
+			],
+			[
+				"cmb",
+				"cmbOrderDir"
+			],
+			[
+				"cmbOrd",
+				"cmbOrderBy"
+			],
+			[
+				"siz",
+				"font-size"
+			],
+			[
+				"btn",
+				"btnNew"
+			],
+			[
+				"getE",
+				"getElementById"
+			],
+			[
+				"h",
+				"href	Attr"
+			],
+			[
+				"t",
+				"type	Attr"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"st",
+				"strokeStyle"
+			],
+			[
+				"scr",
+				"screenX1"
+			],
+			[
+				"getS",
+				"getSentence"
+			],
+			[
+				"isN",
+				"isNum"
+			],
+			[
+				"isOp",
+				"isValidOperator"
+			],
+			[
+				"sc",
+				"screenX1"
+			],
+			[
+				"delete",
+				"deleteLink"
+			],
+			[
+				"lines",
+				"getLines"
+			],
+			[
+				"inne",
+				"innerText"
+			],
+			[
+				"defa",
+				"defaultNoValueText"
+			],
+			[
+				"val",
+				"value"
+			],
+			[
+				"new",
+				"newString"
+			],
+			[
+				"name",
+				"data-name"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"si",
+				"sizeY"
+			],
+			[
+				"scre",
+				"screenY1"
+			],
+			[
+				"scree",
+				"screenY2"
+			],
+			[
+				"scn",
+				"screenX1"
+			],
+			[
+				"value",
+				"valueToDo"
+			],
+			[
+				"par",
+				"parserTest"
+			],
+			[
+				"ope",
+				"operators"
+			],
+			[
+				"number",
+				"numbersToParse"
+			],
+			[
+				"numb",
+				"numbersToParse"
+			],
+			[
+				"opera",
+				"operators"
+			],
+			[
+				"ret",
+				"retVal"
+			],
+			[
+				"op",
+				"operator"
+			],
+			[
+				"getL",
+				"getLineByIndex"
+			],
+			[
+				"s",
+				"screenY"
+			],
+			[
+				"i",
+				"innerHeight"
+			],
+			[
+				"data",
+				"dataTransfer"
+			],
+			[
+				"key",
+				"keyCode"
+			],
+			[
+				"inn",
+				"innerText"
+			],
+			[
+				"an",
+				"anotherpage"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"addL",
+				"addLine"
+			],
+			[
+				"dele",
+				"deleteLine"
+			],
+			[
+				"prot",
+				"prototype"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "dev/app/hero.ts",
+			"settings":
+			{
+				"buffer_size": 55,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "import {Component} from 'angular2/core';\nimport {NgForm}    from 'angular2/common';\n\nimport { Hero }    from './hero';\n\n@Component({\n	selector: 'hero-form',\n	templateUrl: 'app/hero-form.component.html'\n})\n\nexport class HeroFormComponent {\n	powers = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Changer'];\n	model = new Hero(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');\n	submitted = false;\n	active = true;\n\n	onSubmit() { this.submitted = true; }\n\n	// TODO: Remove this when we're done\n	get diagnostic() { return JSON.stringify(this.model); }\n\n	newHero() {\n		this.model = new Hero(42, '', '');\n		this.active = false;\n		setTimeout(() => this.active = true, 0);\n	}\n\n}\n",
+			"file": "dev/app/hero-form.component.ts",
+			"file_size": 708,
+			"file_write_time": 131027096288356878,
+			"settings":
+			{
+				"buffer_size": 680,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "<div class=\"container\">\n	<div  [hidden]=\"submitted\">\n		<h1>Hero Form</h1>\n		<form *ngIf=\"active\" (ngSubmit)=\"onSubmit()\" #heroForm=\"ngForm\">\n			<div class=\"form-group\">\n				<label for=\"name\">Name</label>\n				<input type=\"text\" class=\"form-control\" required\n					[(ngModel)]=\"model.name\" ngControl=\"name\" #name=\"ngForm\">\n				<div [hidden]=\"name.valid || name.pristine\" class=\"alert alert-danger\">\n	          		Name is required\n	          	</div>\n			</div>\n			<div class=\"form-group\">\n				<label for=\"alterEgo\">Alter Ego</label>\n				<input type=\"text\" class=\"form-control\" [(ngModel)]=\"model.alterEgo\">\n			</div>\n			<div class=\"form-group\">\n				<label for=\"power\">Hero Power</label>\n				<select class=\"form-control\" required [(ngModel)]=\"model.power\">\n					<option *ngFor=\"#p of powers\" [value]=\"p\">{{p}}</option>\n				</select>\n			</div>\n			<button type=\"submit\" class=\"btn btn-default\" [disabled]=\"!heroForm.form.valid\">Submit</button>\n			<button type=\"button\" class=\"btn btn-default\" (click)=\"newHero()\">New Hero</button>\n		</form>\n	</div>\n	<div [hidden]=\"!submitted\">\n		<h2>You submitted the following:</h2>\n		<div class=\"row\">\n			<div class=\"col-xs-3\">Name</div>\n			<div class=\"col-xs-9  pull-left\">{{ model.name }}</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-xs-3\">Alter Ego</div>\n			<div class=\"col-xs-9 pull-left\">{{ model.alterEgo }}</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-xs-3\">Power</div>\n			<div class=\"col-xs-9 pull-left\">{{ model.power }}</div>\n		</div>\n		<br>\n		<button class=\"btn btn-default\" (click)=\"submitted=false\">Edit</button>\n	</div>\n</div>\n",
+			"file": "dev/app/hero-form.component.html",
+			"file_size": 1630,
+			"file_write_time": 131027123107146776,
+			"settings":
+			{
+				"buffer_size": 1586,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "dev/app/hero-detail.component.ts",
+			"settings":
+			{
+				"buffer_size": 662,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "dev/app/app.component.js.map",
+			"settings":
+			{
+				"buffer_size": 734,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "dev/app/app.component.ts",
+			"settings":
+			{
+				"buffer_size": 1045,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "dev/index.html",
+			"settings":
+			{
+				"buffer_size": 1281,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": ".ng-valid[required] {\n  border-left: 5px solid #42A948; /* green */\n}\n\n.ng-invalid {\n  border-left: 5px solid #a94442 !important; /* red */\n}\n",
+			"file": "dev/forms.css",
+			"file_size": 149,
+			"file_write_time": 131027070561367125,
+			"settings":
+			{
+				"buffer_size": 142,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 104.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/spaquet/Documents/GitHub/Angular2",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app"
+	],
+	"file_history":
+	[
+		"/C/Users/spaquet/AppData/Roaming/Sublime Text 3/Packages/User/Distraction Free.sublime-settings",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/app.component.ts",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/styles.css",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/app.component.css",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/dashboard.component.ts",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/dashboard.component.css",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/dashboard.component.html",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/heroes.component.ts",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/heroes.component.css",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/heroes.component.html",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/hero-detail.component.ts",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/hero-detail.component.css",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/hero-detail.component.html",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/hero.service.ts",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/dashboard.component.js.map",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/mock-heroes.js",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/mock-heroes.ts",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/hero.ts",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/main.ts",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/index.html",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/app.component.js",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/app/main.js",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/tsconfig.json",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/typings.json",
+		"/C/Users/spaquet/Documents/GitHub/Angular2/dev/package.json",
+		"/C/Users/spaquet/Documents/GitHub/DolphinCrx/dist/js/game.js",
+		"/C/Users/spaquet/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/spaquet/AppData/Roaming/Sublime Text 3/Installed Packages/Theme - Interstellar.sublime-package",
+		"/C/Users/spaquet/AppData/Roaming/Sublime Text 3/Packages/Material Theme - Appbar/src/Material-Theme-Darker.json",
+		"/C/Users/spaquet/AppData/Roaming/Sublime Text 3/Packages/Material Theme - Appbar/Material-Theme-Darker.sublime-theme",
+		"/C/Users/spaquet/AppData/Roaming/Sublime Text 3/Packages/Material Theme - Appbar/src/components/tabs.js",
+		"/C/Users/spaquet/AppData/Roaming/Sublime Text 3/Packages/Material Theme - Appbar/src/Material-Theme-Seb.json",
+		"/C/Users/spaquet/AppData/Roaming/Sublime Text 3/Packages/Material Theme - Appbar/src/components/sidebar.js",
+		"/C/Users/spaquet/AppData/Roaming/Sublime Text 3/Packages/theme/SolarflareSeb.tmTheme",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/dist/assets/sound/sfx.json",
+		"/C/tomcat/tomcat-5.5_saga2/conf/server.xml",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/dist/index.html",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/game/main.js",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/js/phaser.js",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/dist/js/phaser.js",
+		"/N/Michaël R/Troll Message.xml",
+		"/C/Users/spaquet/Downloads/2016-01-07/base.ged",
+		"/C/workspace/GAM/Servers2/localhost at localhost-config/server.xml",
+		"/C/workspace/GAM/Servers/Tomcat v7.0 Server at localhost.server",
+		"/C/workspace/GAM/Servers2/.settings/org.eclipse.wst.server.core.prefs",
+		"/N/Bahji/Session/sgad/WebRoot/infras/layout/template/top_menu.jsp",
+		"/N/Bahji/Session/sgad/WebRoot/infras/layout/template/content_accueil.jsp",
+		"/N/Bahji/Session/sso/WebRoot/identification.jsp",
+		"/N/Bahji/Session/sso/WebRoot/cookie.jsp",
+		"/N/Bahji/Session/WEB/ca/ledor/struts/actions/ApplicationDispatchAction.java",
+		"/N/Bahji/Session/WEB/ca/ledor/struts/actions/ApplicationDispatchAction.class",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/assets/tilemaps/level0.tmx",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/game/plugins/phaser_pathfinding-0.2.0.js",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/plugin/phaser_pathfinding-0.2.0.js",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/game/objects/entity/astar.js",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/config.json",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/main.js",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/Gruntfile.js",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/README.md",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/game/objects/entity/friend.js",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/game/objects/entity/player.js",
+		"/C/Users/spaquet/Documents/GitHub/Dolphin/game/objects/sprites/dolphin.js",
+		"/C/Users/spaquet/Documents/Chrome_app/github/dolphin/README.md",
+		"/C/Users/spaquet/Documents/Chrome_app/dolphin/README.md",
+		"/C/Users/spaquet/Documents/Chrome_app/dolphin/index.html",
+		"/C/Users/spaquet/Documents/Chrome_app/dolphin/assets/sprites.json",
+		"/C/Users/spaquet/Documents/Chrome_app/desktop draw/javascript/shapes/square.js",
+		"/C/Users/spaquet/Documents/Chrome_app/desktop draw/html/index.html",
+		"/C/Users/spaquet/Documents/Chrome_app/desktop draw/javascript/shapes/circle.js",
+		"/C/Users/spaquet/Documents/Chrome_app/desktop draw/javascript/shapes/paper.js",
+		"/C/Users/spaquet/Documents/Chrome_app/desktop draw/javascript/drawing.js",
+		"/C/Users/spaquet/Documents/Chrome_app/mandala/index.html",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/view/menu.html",
+		"/C/Users/spaquet/Documents/Chrome_app/basic angular boostrap/css/online.css",
+		"/C/Users/spaquet/Documents/Chrome_app/basic angular boostrap/html/index.html",
+		"/C/Users/spaquet/Documents/Chrome_app/basic angular boostrap/javascript/main.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/server/server.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/javascript/controller.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/server/main.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/server/index.html",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/javascript/main.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/dist/es6-shim.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/html/index.html",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/server/server.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/javascript/view.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/server/manifest.json",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/server/tcpserver.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/dist/es6-module-loader.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/dist/traceur.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/app/system.config.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/app/index.html",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/app/app.es6",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/dist/es6-module-loader-sans-promises.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/dist/system-csp-production.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/tcpServer/client/javascript/system@0.16.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/agar/client/game/states/boot.js",
+		"/C/Users/spaquet/Desktop/maze/phaser.min.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/agar/client/game/main.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/agar/client/game/states/play.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/agar/client/Gruntfile.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/agar/client/dist/index.html",
+		"/C/Users/spaquet/Documents/Chrome_app/desktop inspection/javascript/main.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/websocket/server/server.js",
+		"/C/Users/spaquet/Documents/Chrome_app/nodejs/websocket/client/html/index.html",
+		"/C/Users/spaquet/Documents/Chrome_app/minions/www/javascript/directive/sound.js",
+		"/C/Users/spaquet/Documents/Chrome_app/minions/www/scss/main.scss",
+		"/C/Users/spaquet/Documents/Chrome_app/minions/www/html/index.html",
+		"/C/Users/spaquet/Documents/Chrome_app/minions/www/javascript/app.js",
+		"/C/Users/spaquet/Documents/Chrome_app/minions/www/view/app.html",
+		"/C/Users/spaquet/Documents/Chrome_app/minions/www/view/partials/off-sidebar.html",
+		"/C/Users/spaquet/Documents/Chrome_app/minions/www/angular_plugins/angular-ui-switch/angular-ui-switch.js",
+		"/C/Users/spaquet/Documents/Chrome_app/minions/www/css/main.css",
+		"/C/Users/spaquet/Documents/Chrome_app/timesheets/www/javascript/directive/ripple.js",
+		"/C/Users/spaquet/Documents/Chrome_app/timesheets/node_modules/gulp/index.js",
+		"/C/Users/spaquet/Documents/Chrome_app/timesheets/www/javascript/controller.js",
+		"/C/Documents and Settings/spaquet/Mes documents/Chrome app/sudoku desktop/javascript/desktop maze.sublime-project",
+		"/C/Documents and Settings/spaquet/Mes documents/Chrome app/contactDictionnary desktop/javascript/controllerEvent.js",
+		"/C/Documents and Settings/spaquet/Mes documents/Chrome app/contactDictionnary desktop/javascript/formValidation.js",
+		"/C/Documents and Settings/spaquet/Mes documents/Chrome app/contactDictionnary desktop/javascript/contact.js",
+		"/C/Documents and Settings/spaquet/Mes documents/Chrome app/contactDictionnary desktop/javascript/model.js",
+		"/C/Documents and Settings/spaquet/Application Data/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Documents and Settings/spaquet/Application Data/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Documents and Settings/spaquet/Mes documents/Chrome app/contactDictionnary desktop/alertBoxCont.js",
+		"/C/Documents and Settings/spaquet/Application Data/Sublime Text 2/Packages/User/Distraction Free.sublime-settings",
+		"/C/Documents and Settings/spaquet/Mes documents/Chrome app/desktop test 21354432/line.js",
+		"/C/Documents and Settings/spaquet/Application Data/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Documents and Settings/spaquet/Mes documents/Chrome app/desktop test 21354432/index.html"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"<current file>",
+			"C:\\Users\\spaquet\\Documents\\GitHub\\Dolphin\\",
+			"C:\\Users\\spaquet\\Documents\\GitHub\\Dolphin\\game\\objects",
+			"C:\\Users\\spaquet\\Documents\\Chrome_app\\nodejs\\tcpServer\\client\\javascript",
+			"C:\\Users\\spaquet\\Documents\\Chrome_app\\nodejs\\tcpServer\\client",
+			"C:\\Users\\spaquet\\Documents\\Chrome_app\\nodejs\\tcpServer\\client\\javascript",
+			"C:\\Users\\spaquet\\Documents\\Chrome_app\\nodejs\\tcpServer",
+			"C:\\Users\\spaquet\\Documents\\Chrome_app\\minions\\www",
+			"",
+			"selection",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"my-hero-detail",
+			"game",
+			"debug",
+			"debu",
+			"debug",
+			"exclude",
+			"render",
+			"preload",
+			"fish",
+			"debugger",
+			"addGrav",
+			"music",
+			"initializeAudio",
+			"inters",
+			"dark",
+			"music",
+			"play",
+			"part",
+			"partc",
+			"particu",
+			"cameraoff",
+			"cameraOffset",
+			"txtPa",
+			"text",
+			"txt5",
+			"text5",
+			"width",
+			"unmuteMusic",
+			"collide",
+			"groupLevels",
+			"power",
+			"this.isReady",
+			".z",
+			"levelCollision",
+			"---",
+			"sound",
+			"customSounds",
+			"sound",
+			"this.fx",
+			"addMar",
+			"splash",
+			"parti",
+			"groupOrcas",
+			"dolphinProcessCallback",
+			"waterCurrent",
+			"watercurrent",
+			"waterCurrentDownMedium",
+			"waterCurrentDown",
+			"leftF",
+			"downForce",
+			"leftForce",
+			"downForce",
+			"blockCallback",
+			"addGravity",
+			"addGrav",
+			"invisibleGravity",
+			"waterwave",
+			"water",
+			"particle",
+			"particl",
+			"splash",
+			"particles",
+			"splash",
+			"player",
+			"splash",
+			"particles",
+			"particl",
+			"particles",
+			"this.game.custom",
+			"particle",
+			"splash",
+			"sprites",
+			"Powerup",
+			"groupPowerups",
+			"groupPowerup",
+			"attac",
+			"console.log(blockLayer);",
+			"resetGame",
+			".q",
+			"executeGravity",
+			"entity",
+			"enti",
+			"entity",
+			"target",
+			"addGravity",
+			"ARCADE",
+			"addGravity",
+			"open",
+			"9000",
+			"{",
+			"orca",
+			"oca",
+			"orca",
+			"Phaser.Sprite",
+			"sprite",
+			"prototype.sprite",
+			"prototype.sp",
+			"sprite",
+			"function sprite",
+			"sprite",
+			"olivier",
+			"olivier ca",
+			"addGravity",
+			"cooki",
+			".Sprite",
+			".sprite",
+			"this.sprite",
+			"this.spr",
+			"export",
+			"astar",
+			"distanceBetween",
+			"update",
+			"browserify",
+			"loadNpmTasks",
+			"groupFriends",
+			"fixedRotation",
+			"rotation",
+			"fixedRotation",
+			"if (!this.fixedRotation)",
+			"fixedRotation",
+			"p2js",
+			"playerCollisionGroup",
+			"dolphinsCollisionGroup",
+			"setB",
+			"groupFriends",
+			"enable",
+			"arcad",
+			"this.game.input.activePointer"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"\\n",
+			"sprite",
+			"arr[1][",
+			"function2"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "dev/app/hero.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 55,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								55,
+								55
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": false,
+								"indentSize": 4,
+								"tabSize": 4
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "dev/app/hero-form.component.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 680,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								673,
+								673
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "dev/app/hero-form.component.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1586,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1232,
+								1232
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": false,
+								"indentSize": 4,
+								"tabSize": 4
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 132.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "dev/app/hero-detail.component.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 662,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "dev/app/app.component.js.map",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 734,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "dev/app/app.component.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1045,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								174,
+								174
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "dev/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1281,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								973,
+								973
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "dev/forms.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 142,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								128,
+								128
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 32.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "angular2.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"mainc",
+				"www\\javascript\\controller\\mainCtrl.js"
+			],
+			[
+				"top-na",
+				"www\\view\\partials\\top-navbar.html"
+			],
+			[
+				"tile",
+				"www\\javascript\\directive\\tile-sound.js"
+			],
+			[
+				"mainctr",
+				"www\\javascript\\controller\\mainCtrl.js"
+			],
+			[
+				"main.scss",
+				"www\\scss\\main.scss"
+			],
+			[
+				"index",
+				"www\\html\\index.html"
+			],
+			[
+				"index.html",
+				"www\\html\\index.html"
+			],
+			[
+				"off-s",
+				"www\\view\\partials\\off-sidebar.html"
+			],
+			[
+				"tile-",
+				"www\\javascript\\directive\\tile-sound.js"
+			],
+			[
+				"main",
+				"www\\scss\\main.scss"
+			],
+			[
+				"main.css",
+				"www\\css\\main.css"
+			],
+			[
+				"index.",
+				"www\\html\\index.html"
+			],
+			[
+				"ripple",
+				"www\\javascript\\directive\\ripple.js"
+			],
+			[
+				"index.ht",
+				"www\\html\\index.html"
+			],
+			[
+				"previewc",
+				"www\\javascript\\controller\\previewCtrl.js"
+			],
+			[
+				"pre",
+				"www\\view\\preview.html"
+			],
+			[
+				"date.",
+				"www\\javascript\\service\\date.js"
+			],
+			[
+				"dash",
+				"www\\javascript\\controller\\dashboardCtrl.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 267.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
