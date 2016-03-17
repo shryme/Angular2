@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../../services/hero/hero.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../services/hero.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,7 +11,7 @@ System.register(['angular2/core', 'angular2/router', '../../services/hero/hero.s
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, router_1, hero_service_1;
-    var HeroDetailComponent;
+    var DashboardComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -24,33 +24,34 @@ System.register(['angular2/core', 'angular2/router', '../../services/hero/hero.s
                 hero_service_1 = hero_service_1_1;
             }],
         execute: function() {
-            HeroDetailComponent = (function () {
-                function HeroDetailComponent(_heroService, _routeParams) {
+            DashboardComponent = (function () {
+                function DashboardComponent(_router, _heroService) {
+                    this._router = _router;
                     this._heroService = _heroService;
-                    this._routeParams = _routeParams;
+                    this.heroes = [];
                 }
-                HeroDetailComponent.prototype.ngOnInit = function () {
+                ;
+                DashboardComponent.prototype.ngOnInit = function () {
                     var _this = this;
-                    var id = +this._routeParams.get('id');
-                    this._heroService.getHero(id)
-                        .then(function (hero) { return _this.hero = hero; });
+                    this._heroService.getHeroes()
+                        .then(function (heroes) { return _this.heroes = heroes.slice(1, 5); });
                 };
-                HeroDetailComponent.prototype.goBack = function () {
-                    window.history.back();
+                DashboardComponent.prototype.gotoDetail = function (hero) {
+                    var link = ['HeroDetail', { id: hero.id }];
+                    this._router.navigate(link);
                 };
-                HeroDetailComponent = __decorate([
+                DashboardComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-hero-detail',
-                        templateUrl: 'app/components/hero-detail/hero-detail.component.html',
-                        styleUrls: ['app/components/hero-detail/hero-detail.component.css'],
-                        inputs: ['hero']
+                        selector: 'my-dashboard',
+                        templateUrl: 'app/components/dashboard.component.html',
+                        styleUrls: ['app/components/dashboard.component.css']
                     }), 
-                    __metadata('design:paramtypes', [hero_service_1.HeroService, router_1.RouteParams])
-                ], HeroDetailComponent);
-                return HeroDetailComponent;
+                    __metadata('design:paramtypes', [router_1.Router, hero_service_1.HeroService])
+                ], DashboardComponent);
+                return DashboardComponent;
             }());
-            exports_1("HeroDetailComponent", HeroDetailComponent);
+            exports_1("DashboardComponent", DashboardComponent);
         }
     }
 });
-//# sourceMappingURL=hero-detail.component.js.map
+//# sourceMappingURL=dashboard.component.js.map

@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../hero-detail/hero-detail.component', '../../services/hero/hero.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './hero-detail.component', '../services/hero.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -48,8 +48,8 @@ System.register(['angular2/core', 'angular2/router', '../hero-detail/hero-detail
                 HeroesComponent = __decorate([
                     core_1.Component({
                         selector: 'my-heroes',
-                        templateUrl: 'app/components/heroes/heroes.component.html',
-                        styleUrls: ['app/components/heroes/heroes.component.css'],
+                        templateUrl: 'app/components/heroes.component.html',
+                        styleUrls: ['app/components/heroes.component.css'],
                         directives: [hero_detail_component_1.HeroDetailComponent]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, hero_service_1.HeroService])

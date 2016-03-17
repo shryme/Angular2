@@ -1,4 +1,4 @@
-import {Hero} from '../../objects/hero/hero';
+import {Hero} from '../objects/hero';
 
 export var HEROES: Hero[] = [
     { "id": 11, "name": "Mr. Nice" },
