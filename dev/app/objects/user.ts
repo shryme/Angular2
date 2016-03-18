@@ -1,16 +1,16 @@
 
-let nextId = 30;
+let nextId = 0;
 
 export class User {
     constructor(
-        public id: number,
         public username: string,
         public email: string,
-        public password: string
+        public password: string,
+        public id?: number
     ) {
         this.id = id || nextId++;
     }
     clone() { return User.clone(this); }
-    static clone = (u: any) => new User(u.id, u.username, u.email, u.password);
+    static clone = (u: any) => new User(u.username, u.email, u.password, u.id);
     static setNextId(next: number) { nextId = next; }
 }
