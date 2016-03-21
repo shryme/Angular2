@@ -29,4 +29,12 @@ describe('User', () => {
 		expect(user.id).toEqual(3);
 	});
 
+	it('has a copy of itself when clone is called', () => {
+		let user1 = new User('Super Cat', 'email', 'pass');
+		let user2 = User.clone(user1);
+		delete user1.id;
+		delete user2.id;
+		expect(user1).toEqual(user2);
+	});
+
 });

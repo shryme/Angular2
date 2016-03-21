@@ -34,6 +34,13 @@ System.register(['./user'], function(exports_1, context_1) {
                     var user = new user_1.User('Super Cat', 'email', 'pass');
                     expect(user.id).toEqual(3);
                 });
+                it('has a copy of itself when clone is called', function () {
+                    var user1 = new user_1.User('Super Cat', 'email', 'pass');
+                    var user2 = user_1.User.clone(user1);
+                    delete user1.id;
+                    delete user2.id;
+                    expect(user1).toEqual(user2);
+                });
             });
         }
     }
