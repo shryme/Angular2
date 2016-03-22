@@ -1,26 +1,22 @@
 import { Component }       from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 
+import { UserService } from '../services/user.service';
 import { HeroService }     from '../services/hero.service';
 import { HeroesComponent } from './heroes.component';
 import { DashboardComponent } from './dashboard.component';
 import { HeroDetailComponent } from './hero-detail.component';
+import { LoginComponent } from './login.component';
 
 @Component({
 	selector: 'my-app',
-	template: `
-		<h1>{{title}}</h1>
-		<nav>
-			<a [routerLink]="['Dashboard']">Dashboard</a>
-			<a [routerLink]="['Heroes']">Heroes</a>
-		</nav>
-		<router-outlet></router-outlet>
-	`,
+	templateUrl: 'app/components/app.component.html',
 	styleUrls: ['app/components/app.component.css'],
 	directives: [ROUTER_DIRECTIVES],
 	providers: [
 		ROUTER_PROVIDERS,
-		HeroService
+		HeroService,
+		UserService
 	]
 })
 
@@ -41,6 +37,11 @@ import { HeroDetailComponent } from './hero-detail.component';
 		name: 'HeroDetail',
 		component: HeroDetailComponent
 	},
+	{
+		path: '/login',
+		name: 'Login',
+		component: LoginComponent
+	}
 ])
 
 export class AppComponent {
