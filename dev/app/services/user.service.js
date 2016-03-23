@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', '../objects/user'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,20 +10,40 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, http_1, user_1;
     var UserService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (user_1_1) {
+                user_1 = user_1_1;
             }],
         execute: function() {
             UserService = (function () {
-                function UserService() {
+                function UserService(http) {
+                    this.http = http;
+                    console.log('Task Service created.', http);
                 }
+                UserService.prototype.connect = function (user) {
+                    return this.http.get('http://localhost:3333/connect')
+                        .map(function (responseData) { return responseData.json(); })
+                        .map(function (obj) {
+                        var result;
+                        if (obj) {
+                            result = new user_1.User(obj.username, obj.email, obj.password);
+                        }
+                        console.log(obj, result);
+                        return result;
+                    });
+                };
                 UserService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [http_1.Http])
                 ], UserService);
                 return UserService;
             }());

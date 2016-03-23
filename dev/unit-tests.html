@@ -16,6 +16,9 @@
 	<script src="app/objects/user.js"></script>
 	<script src="app/objects/user.spec.js"></script>
 
+	<script src="app/services/user.service.js"></script>
+	<script src="app/services/user.spec.js"></script>
+
 	<!-- #1. add the system.js and angular libraries -->
 	<script src="node_modules/es6-shim/es6-shim.min.js"></script>
 	<script src="node_modules/systemjs/dist/system-polyfills.js"></script>
@@ -37,7 +40,8 @@
 		// #3. Import the spec file explicitly
 		Promise.all([
 			System.import('app/objects/user.spec'),
-			System.import('app/pipes/init-caps-pipe.spec')
+			System.import('app/pipes/init-caps-pipe.spec'),
+			System.import('app/services/user.spec')
 		])
 
 			// #4. wait for all imports to load ...

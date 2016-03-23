@@ -3,7 +3,7 @@ import {RouteParams} from 'angular2/router';
 import {NgForm} from 'angular2/common';
 
 import {User} from '../objects/user';
-import { UserService } from '../services/user.service';
+import {UserService} from '../services/user.service';
 
 @Component({
 	selector: 'my-hero-detail',
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
 	model = new User('', '', '');
 	submitted = false;
+	test = "none";
 
 	constructor(
 		private _userService: UserService,
@@ -31,7 +32,10 @@ export class LoginComponent implements OnInit {
 		// window.history.back();
 	}
 
-	onSubmit() { this.submitted = true; }
+	onSubmit() {
+		this.submitted = true;
+		this._userService.connect(this.model).subscribe(res => this.model = res);
+	}
 
 }
 

@@ -33,6 +33,7 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                     this._routeParams = _routeParams;
                     this.model = new user_1.User('', '', '');
                     this.submitted = false;
+                    this.test = "none";
                 }
                 LoginComponent.prototype.ngOnInit = function () {
                     // let id = +this._routeParams.get('id');
@@ -42,7 +43,11 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                 LoginComponent.prototype.goBack = function () {
                     // window.history.back();
                 };
-                LoginComponent.prototype.onSubmit = function () { this.submitted = true; };
+                LoginComponent.prototype.onSubmit = function () {
+                    var _this = this;
+                    this.submitted = true;
+                    this._userService.connect(this.model).subscribe(function (res) { return _this.model = res; });
+                };
                 LoginComponent = __decorate([
                     core_1.Component({
                         selector: 'my-hero-detail',
