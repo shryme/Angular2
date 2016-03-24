@@ -1,6 +1,6 @@
 import {Injectable, Component} from 'angular2/core';
 
-import {Http} from 'angular2/http';
+import {Http, Headers} from 'angular2/http';
 
 import {User} from '../objects/user';
 
@@ -15,12 +15,23 @@ export class UserService {
 
 	connect(user: User) {
 
-		return this.http.get('http://localhost:3333/connect')
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+		let body = "email=" + user.email + "&password=" + user.password;
+
+		return this.http.post('http://localhost:3333/connect', body, {headers: headers})
 			.map((responseData) => { return responseData.json() })
 			.map((obj: any) => {
 				let result: User;
 				if (obj) {
-					result = new User(obj.username, obj.email, obj.password);
+
+					if (obj.error) {
+						result = new User('', '', '');
+					}
+					else {
+						result = new User(obj.username, obj.email, obj.password);
+					}
 				}
 				console.log(obj, result);
 				return result;

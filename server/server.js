@@ -43,10 +43,20 @@ app.use(function(req, res, next){
 	next();
 })
 
-app.get('/connect', function(req, res) {
+app.post('/connect', function(req, res) {
+
+	console.log('/connect', req.body);
+
+	var email = req.body.email;
+	var password = req.body.password;
+
+
+	var resp = {error: '404'};
+	if (email === 'a@a.com' && password === 'a@a.com')
+		resp = {id: 1, username: 'server', email: email, password: password};
 
 	res.setHeader('Content-Type', 'application/json');
-	res.json({id: 1, username: 'server', email: 'server@test.com', password: 'password'});
+	res.json(resp);
 
 });
 
