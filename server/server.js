@@ -48,18 +48,19 @@ app.use(function(req, res, next){
 app.post('/connect', function(req, res) {
 
 	logDel();
-	logInfo('/connect', req);
-	console.log('/connect'.cyan, req.body);
+	logInfo(req);
 
-	var email = req.body.email;
-	var password = req.body.password;
+	var json = JSON.parse(req.body.json);
+	console.log('SEB', json);
+	var email = json.email;
+	var password = json.password;
 
 
 	var resp = {error: '404'};
 	if (email === 'a@a.com' && password === 'a@a.com')
 		resp = {id: 1, username: 'server', email: email, password: password};
 
-	logRes('/connect', resp);
+	logRes(req, resp);
 
 	res.setHeader('Content-Type', 'application/json');
 	res.json(resp);
@@ -74,15 +75,15 @@ function logDel() {
 	console.log('////////////////////////////////////////////////////'.bgYellow.yellow);
 }
 
-function logInfo(url, req) {
-	console.log(url.cyan, req.body);
+function logInfo(req) {
+	console.log(req.url.cyan, req.body);
 }
 
-function logRes(url, resp) {
+function logRes(req, resp) {
 	if (resp.error)
-		console.log(url.bgRed.white, resp);
+		console.log(req.url.bgRed.white, resp);
 	else
-		console.log(url.green, resp);
+		console.log(req.url.green, resp);
 }
 
 
@@ -90,7 +91,7 @@ function logRes(url, resp) {
 
 
 app.use(function(req, res, next){
-	console.log(req.url);
+	console.log('app.use - ' + req.url);
 	res.redirect('/connect');
 });
 

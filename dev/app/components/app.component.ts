@@ -10,6 +10,7 @@ import { HeroDetailComponent } from './hero-detail.component';
 import { LoginComponent } from './login.component';
 
 import 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 @Component({
 	selector: 'my-app',
