@@ -29,20 +29,20 @@ System.register(['angular2/core', 'angular2/http', '../objects/user'], function(
                     this.http = http;
                     console.log('Task Service created.', http);
                 }
-                UserService.prototype.connect = function (user) {
+                UserService.prototype.connect = function (email, password) {
                     var headers = new http_1.Headers();
                     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-                    var body = "email=" + user.email + "&password=" + user.password;
+                    var body = "email=" + email + "&password=" + password;
                     return this.http.post('http://localhost:3333/connect', body, { headers: headers })
                         .map(function (responseData) { return responseData.json(); })
                         .map(function (obj) {
                         var result;
                         if (obj) {
-                            if (obj.error) {
-                                result = new user_1.User('', '', '');
+                            if (!obj.error) {
+                                result = new user_1.User(obj.username, obj.email, obj.password, obj.id);
                             }
                             else {
-                                result = new user_1.User(obj.username, obj.email, obj.password);
+                                result = new user_1.User('', '', '');
                             }
                         }
                         console.log(obj, result);

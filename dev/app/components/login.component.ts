@@ -13,9 +13,13 @@ import {UserService} from '../services/user.service';
 
 export class LoginComponent implements OnInit {
 
-	model = new User('', '', '');
+	currentUser;
 	submitted = false;
 	test = "none";
+
+	email = "";
+	password = "";
+	id;
 
 	constructor(
 		private _userService: UserService,
@@ -34,7 +38,12 @@ export class LoginComponent implements OnInit {
 
 	onSubmit() {
 		this.submitted = true;
-		this._userService.connect(this.model).subscribe(res => this.model = res);
+		this._userService.connect(this.email, this.password).subscribe(res => {
+			this.currentUser = res;
+			this.email = this.currentUser.email;
+			this.password = this.currentUser.password;
+			this.id = this.currentUser.id;
+		});
 	}
 
 }

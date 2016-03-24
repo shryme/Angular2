@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../objects/user', '../services/user.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../services/user.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, user_1, user_service_1;
+    var core_1, router_1, user_service_1;
     var LoginComponent;
     return {
         setters:[
@@ -20,9 +20,6 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
             function (router_1_1) {
                 router_1 = router_1_1;
             },
-            function (user_1_1) {
-                user_1 = user_1_1;
-            },
             function (user_service_1_1) {
                 user_service_1 = user_service_1_1;
             }],
@@ -31,9 +28,10 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                 function LoginComponent(_userService, _routeParams) {
                     this._userService = _userService;
                     this._routeParams = _routeParams;
-                    this.model = new user_1.User('', '', '');
                     this.submitted = false;
                     this.test = "none";
+                    this.email = "";
+                    this.password = "";
                 }
                 LoginComponent.prototype.ngOnInit = function () {
                     // let id = +this._routeParams.get('id');
@@ -46,7 +44,12 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                 LoginComponent.prototype.onSubmit = function () {
                     var _this = this;
                     this.submitted = true;
-                    this._userService.connect(this.model).subscribe(function (res) { return _this.model = res; });
+                    this._userService.connect(this.email, this.password).subscribe(function (res) {
+                        _this.currentUser = res;
+                        _this.email = _this.currentUser.email;
+                        _this.password = _this.currentUser.password;
+                        _this.id = _this.currentUser.id;
+                    });
                 };
                 LoginComponent = __decorate([
                     core_1.Component({
