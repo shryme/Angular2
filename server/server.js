@@ -5,7 +5,9 @@ var connect = require('connect');
 
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session')
+var session = require('express-session');
+
+var colors = require('colors');
 
 var app = express();
 
@@ -45,7 +47,9 @@ app.use(function(req, res, next){
 
 app.post('/connect', function(req, res) {
 
-	console.log('/connect', req.body);
+	logDel();
+	logInfo('/connect', req);
+	console.log('/connect'.cyan, req.body);
 
 	var email = req.body.email;
 	var password = req.body.password;
@@ -55,18 +59,31 @@ app.post('/connect', function(req, res) {
 	if (email === 'a@a.com' && password === 'a@a.com')
 		resp = {id: 1, username: 'server', email: email, password: password};
 
+	logRes('/connect', resp);
+
 	res.setHeader('Content-Type', 'application/json');
 	res.json(resp);
+
+	logDel();
 
 });
 
 
 
+function logDel() {
+	console.log('////////////////////////////////////////////////////'.bgYellow.yellow);
+}
 
+function logInfo(url, req) {
+	console.log(url.cyan, req.body);
+}
 
-
-
-
+function logRes(url, resp) {
+	if (resp.error)
+		console.log(url.bgRed.white, resp);
+	else
+		console.log(url.green, resp);
+}
 
 
 
