@@ -27,17 +27,34 @@ describe('UserService', () => {
 	]);
 
 	beforeEach(inject([MockBackend], (backend: MockBackend) => {
-		const baseResponse = new Response(new ResponseOptions({ body: { id: 1, email: 'a@a.com', username: 'a@a.com', password: 'a@a.com' } }));
-		backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
+		// const baseResponse = new Response(new ResponseOptions({ body: { id: 1, email: 'a@a.com', username: 'a@a.com', password: 'a@a.com' } }));
+		// backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
 	}));
 
 	it('should return user when connect worked',
-		inject([UserService], (userService: UserService) => {
+		inject([UserService, MockBackend], (userService: UserService, backend: MockBackend) => {
+			let baseResponse = new Response(new ResponseOptions({ body: { id: 1, email: 'a@a.com', username: 'a@a.com', password: 'a@a.com' } }));
+			backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
+
 			userService.connect('a@a.com', 'a@a.com').subscribe((res: User) => {
 				expect(res.id).toBe(1);
 				expect(res.email).toBe('a@a.com');
 				expect(res.password).toBe('a@a.com');
 				expect(res.username).toBe('a@a.com');
+			});
+		})
+	);
+
+	it('should return an empty user when connect did not worked',
+		inject([UserService, MockBackend], (userService: UserService, backend: MockBackend) => {
+			let baseResponse = new Response(new ResponseOptions({ body: { error: '404' } }));
+			backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
+			User.setNextId(0);
+			userService.connect('a@a.com', 'a@a.com').subscribe((res: User) => {
+				expect(res.id).toBe(0);
+				expect(res.email).toBe('');
+				expect(res.password).toBe('');
+				expect(res.username).toBe('');
 			});
 		})
 	);
