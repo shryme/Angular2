@@ -33,19 +33,20 @@ System.register(['angular2/core', 'angular2/http', '../objects/user'], function(
                 }
                 UserService.prototype.connect = function (email, password) {
                     var json = JSON.stringify({ email: email, password: password });
-                    return this.http.post('http://localhost:3333/connect', 'json=' + json, { headers: this.headers })
+                    return this.http.post('http://localhost:3333/authenticate', 'json=' + json, { headers: this.headers })
                         .map(function (responseData) { return responseData.json(); })
                         .map(function (obj) {
                         var result;
-                        if (obj) {
-                            if (!obj.error) {
-                                result = new user_1.User(obj.username, obj.email, obj.password, obj.id);
-                            }
-                            else {
-                                result = new user_1.User('', '', '');
-                            }
+                        var token;
+                        if (obj.success) {
+                            token = obj.token;
+                            result = new user_1.User('test', token, 'obj.password');
+                        }
+                        else {
+                            result = new user_1.User('', '', '');
                         }
                         console.log(obj, result);
+                        console.log('TOKEN', token);
                         return result;
                     });
                 };

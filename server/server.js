@@ -47,6 +47,53 @@ app.use(function(req, res, next){
 	next();
 })
 
+app.get('/', function(req, res) {
+	res.json({ message: 'default' });
+});
+
+app.post('/authenticate', function(req, res) {
+
+	logDel();
+	logInfo(req);
+
+	var json = JSON.parse(req.body.json);
+	console.log('SEB', json);
+	var email = json.email;
+	var password = json.password;
+	var resp;
+
+
+	if (email === 'a@a.com' && password === 'a@a.com') {
+
+		var user = {id: 1, username: 'server', email: email, password: password};
+		var token = jwt.sign(user, 'secret', {
+			expiresInMinutes: 1440 // expires in 24 hours
+		});
+
+		resp = {
+			success: true,
+			message: 'Enjoy your token!',
+			token: token
+		};
+	}
+	else {
+
+		resp = {
+			success: false,
+			message: 'Authentication failed. Wrong password.'
+		};
+
+	}
+
+	res.json(resp);
+
+	logRes(req, resp);
+
+	logDel();
+
+
+});
+
 app.post('/connect', function(req, res) {
 
 	logDel();

@@ -20,20 +20,23 @@ export class UserService {
 
 		let json = JSON.stringify({ email: email, password: password });
 
-		return this.http.post('http://localhost:3333/connect', 'json=' + json, { headers: this.headers })
+		return this.http.post('http://localhost:3333/authenticate', 'json=' + json, { headers: this.headers })
 			.map((responseData) => { return responseData.json() })
 			.map((obj: any) => {
 				let result: User;
-				if (obj) {
+				let token: string;
 
-					if (!obj.error) {
-						result = new User(obj.username, obj.email, obj.password, obj.id);
-					}
-					else {
-						result = new User('', '', '');
-					}
+				if (obj.success) {
+					token = obj.token;
+					result = new User('test', token, 'obj.password');
 				}
+				else {
+					result = new User('', '', '');
+				}
+
+
 				console.log(obj, result);
+				console.log('TOKEN', token);
 				return result;
 			});
 
