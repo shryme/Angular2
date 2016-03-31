@@ -11,6 +11,8 @@ var colors = require('colors');
 
 var app = express();
 
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+
 app.use(cookieParser());
 app.use(session({secret: 'keyboard cat'}));
 app.use(bodyParser.urlencoded());
