@@ -44,7 +44,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service']
                 LoginComponent.prototype.onSubmit = function () {
                     var _this = this;
                     this.submitted = true;
-                    this._userService.connect(this.email, this.password).subscribe(function (res) {
+                    this._userService.authenticate(this.email, this.password).subscribe(function (res) {
                         _this.currentUser = res;
                         _this.email = _this.currentUser.email;
                         _this.password = _this.currentUser.password;

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
 	onSubmit() {
 		this.submitted = true;
-		this._userService.connect(this.email, this.password).subscribe(res => {
+		this._userService.authenticate(this.email, this.password).subscribe(res => {
 			this.currentUser = res;
 			this.email = this.currentUser.email;
 			this.password = this.currentUser.password;

@@ -16,7 +16,7 @@ export class UserService {
 		this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
 	}
 
-	connect(email, password) {
+	authenticate(email, password) {
 
 		let json = JSON.stringify({ email: email, password: password });
 

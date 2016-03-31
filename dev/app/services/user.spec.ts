@@ -31,26 +31,27 @@ describe('UserService', () => {
 		// backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
 	}));
 
-	it('should return user when connect worked',
+	it('should return user when authenticate worked',
 		inject([UserService, MockBackend], (userService: UserService, backend: MockBackend) => {
-			let baseResponse = new Response(new ResponseOptions({ body: { id: 1, email: 'a@a.com', username: 'a@a.com', password: 'a@a.com' } }));
+			let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZXJ2ZXIiLCJlbWFpbCI6ImFAYS5jb20iLCJwYXNzd29yZCI6ImFAYS5jb20iLCJpYXQiOjE0NTk0NDc4ODAsImV4cCI6MTQ1OTUzNDI4MH0.b260_KHB1FBBNlu2avblbi9VzqSER9hnzzCzdf6cGA4';
+			let baseResponse = new Response(new ResponseOptions({ body: { success: true, message: 'Enjoy your token!', token: token } }));
 			backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
-
-			userService.connect('a@a.com', 'a@a.com').subscribe((res: User) => {
-				expect(res.id).toBe(1);
-				expect(res.email).toBe('a@a.com');
-				expect(res.password).toBe('a@a.com');
-				expect(res.username).toBe('a@a.com');
+			User.setNextId(0);
+			userService.authenticate('a@a.com', 'a@a.com').subscribe((res: User) => {
+				expect(res.id).toBe(0);
+				expect(res.username).toBe('test');
+				expect(res.email).toBe(token);
+				expect(res.password).toBe('obj.password');
 			});
 		})
 	);
 
-	it('should return an empty user when connect did not worked',
+	it('should return an empty user when authenticate did not worked',
 		inject([UserService, MockBackend], (userService: UserService, backend: MockBackend) => {
 			let baseResponse = new Response(new ResponseOptions({ body: { error: '404' } }));
 			backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
 			User.setNextId(0);
-			userService.connect('a@a.com', 'a@a.com').subscribe((res: User) => {
+			userService.authenticate('a@a.com', 'a@a.com').subscribe((res: User) => {
 				expect(res.id).toBe(0);
 				expect(res.email).toBe('');
 				expect(res.password).toBe('');

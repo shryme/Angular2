@@ -85,6 +85,7 @@ app.post('/authenticate', function(req, res) {
 
 	}
 
+	res.setHeader('Content-Type', 'application/json');
 	res.json(resp);
 
 	logRes(req, resp);
