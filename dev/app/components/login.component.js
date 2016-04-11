@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../services/user.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../objects/user', '../services/user.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service']
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, user_service_1;
+    var core_1, router_1, user_1, user_service_1;
     var LoginComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service']
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (user_1_1) {
+                user_1 = user_1_1;
             },
             function (user_service_1_1) {
                 user_service_1 = user_service_1_1;
@@ -45,7 +48,14 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service']
                     var _this = this;
                     this.submitted = true;
                     this._userService.authenticate(this.email, this.password).subscribe(function (res) {
-                        _this.currentUser = res;
+                        if (res !== undefined) {
+                            _this.currentUser = new user_1.User(_this.email, res, _this.password);
+                        }
+                        else {
+                            _this.currentUser = new user_1.User('', '', '');
+                        }
+                        // Cookie.setCookie('token', res, 1 /*days from now*/);
+                        // this.currentUser = res;
                         _this.email = _this.currentUser.email;
                         _this.password = _this.currentUser.password;
                         _this.id = _this.currentUser.id;

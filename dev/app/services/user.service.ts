@@ -3,6 +3,7 @@ import {Injectable, Component} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 
 import {User} from '../objects/user';
+import {contentHeaders} from '../objects/headers';
 
 
 @Injectable()
@@ -18,26 +19,27 @@ export class UserService {
 
 	authenticate(email, password) {
 
-		let json = JSON.stringify({ email: email, password: password });
+		let json = JSON.stringify({ "email": email, "password": password });
 
-		return this.http.post('http://localhost:3333/authenticate', 'json=' + json, { headers: this.headers })
+		return this.http.post('http://localhost:3333/authenticate', json, { headers: contentHeaders })
 			.map((responseData) => { return responseData.json() })
 			.map((obj: any) => {
-				let result: User;
+				// let result: User;
 				let token: string;
 
 				if (obj.success) {
 					token = obj.token;
-					result = new User('test', token, 'obj.password');
+					// result = new User('test', token, 'obj.password');
 				}
 				else {
-					result = new User('', '', '');
+					token = undefined;
+					// result = new User('', '', '');
 				}
 
 
-				console.log(obj, result);
-				console.log('TOKEN', token);
-				return result;
+				// console.log(obj, result);
+				// console.log('TOKEN', token);
+				return token;
 			});
 
 	}

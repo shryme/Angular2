@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', '../objects/user'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', '../objects/headers'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/user'], function(
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, user_1;
+    var core_1, http_1, headers_1;
     var UserService;
     return {
         setters:[
@@ -20,8 +20,8 @@ System.register(['angular2/core', 'angular2/http', '../objects/user'], function(
             function (http_1_1) {
                 http_1 = http_1_1;
             },
-            function (user_1_1) {
-                user_1 = user_1_1;
+            function (headers_1_1) {
+                headers_1 = headers_1_1;
             }],
         execute: function() {
             UserService = (function () {
@@ -32,22 +32,21 @@ System.register(['angular2/core', 'angular2/http', '../objects/user'], function(
                     this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
                 }
                 UserService.prototype.authenticate = function (email, password) {
-                    var json = JSON.stringify({ email: email, password: password });
-                    return this.http.post('http://localhost:3333/authenticate', 'json=' + json, { headers: this.headers })
+                    var json = JSON.stringify({ "email": email, "password": password });
+                    return this.http.post('http://localhost:3333/authenticate', json, { headers: headers_1.contentHeaders })
                         .map(function (responseData) { return responseData.json(); })
                         .map(function (obj) {
-                        var result;
+                        // let result: User;
                         var token;
                         if (obj.success) {
                             token = obj.token;
-                            result = new user_1.User('test', token, 'obj.password');
                         }
                         else {
-                            result = new user_1.User('', '', '');
+                            token = undefined;
                         }
-                        console.log(obj, result);
-                        console.log('TOKEN', token);
-                        return result;
+                        // console.log(obj, result);
+                        // console.log('TOKEN', token);
+                        return token;
                     });
                 };
                 UserService = __decorate([

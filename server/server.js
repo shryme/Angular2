@@ -1,6 +1,7 @@
 var http = require('http');
 var url = require("url");
 var express = require('express');
+var cors = require('cors');
 var connect = require('connect');
 
 var cookieParser = require('cookie-parser');
@@ -15,8 +16,13 @@ var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 app.use(cookieParser());
 app.use(session({secret: 'keyboard cat'}));
-app.use(bodyParser.urlencoded());
+// app.use(bodyParser.urlencoded());
 
+//https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
 
 app.use(function(req, res, next){
 
@@ -56,10 +62,10 @@ app.post('/authenticate', function(req, res) {
 	logDel();
 	logInfo(req);
 
-	var json = JSON.parse(req.body.json);
-	console.log('SEB', json);
-	var email = json.email;
-	var password = json.password;
+	// var json = JSON.parse(req.body.json);
+	// console.log('SEB', json);
+	var email = req.body.email;
+	var password = req.body.password;
 	var resp;
 
 
@@ -95,6 +101,54 @@ app.post('/authenticate', function(req, res) {
 
 });
 
+
+
+app.use(function(req, res, next) {
+
+	// check header or url parameters or post parameters for token
+	var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+	// decode token
+	if (token) {
+
+		// verifies secret and checks exp
+		jwt.verify(token, 'secret', function(err, decoded) {
+			if (err) {
+				return res.json({ success: false, message: 'Failed to authenticate token.' });
+			} else {
+				// if everything is good, save to request for use in other routes
+				req.decoded = decoded;
+				next();
+			}
+		});
+
+	} else {
+
+		// if there is no token
+		// return an error
+		return res.status(403).send({
+			success: false,
+			message: 'No token provided.'
+		});
+
+	}
+});
+
+app.get('/test', function(req, res) {
+	res.json({ message: 'Welcome to the coolest API on earth!' });
+});
+
+
+
+
+
+
+
+
+
+
+
+
 app.post('/connect', function(req, res) {
 
 	logDel();
@@ -118,6 +172,18 @@ app.post('/connect', function(req, res) {
 	logDel();
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

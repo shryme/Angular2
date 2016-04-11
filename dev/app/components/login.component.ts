@@ -2,6 +2,8 @@ import {Component, OnInit} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
 import {NgForm} from 'angular2/common';
 
+// import {Cookie} from 'ng2-cookies/ng2-cookies';
+
 import {User} from '../objects/user';
 import {UserService} from '../services/user.service';
 
@@ -39,7 +41,16 @@ export class LoginComponent implements OnInit {
 	onSubmit() {
 		this.submitted = true;
 		this._userService.authenticate(this.email, this.password).subscribe(res => {
-			this.currentUser = res;
+			if (res !== undefined) {
+				this.currentUser = new User(this.email, res, this.password);
+			}
+			else {
+				this.currentUser = new User('', '', '');
+			}
+
+			// Cookie.setCookie('token', res, 1 /*days from now*/);
+
+			// this.currentUser = res;
 			this.email = this.currentUser.email;
 			this.password = this.currentUser.password;
 			this.id = this.currentUser.id;

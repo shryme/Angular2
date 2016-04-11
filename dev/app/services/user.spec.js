@@ -41,27 +41,21 @@ System.register(['angular2/core', 'angular2/http', 'angular2/testing', 'angular2
                     // const baseResponse = new Response(new ResponseOptions({ body: { id: 1, email: 'a@a.com', username: 'a@a.com', password: 'a@a.com' } }));
                     // backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
                 }));
-                testing_1.it('should return user when authenticate worked', testing_1.inject([user_service_1.UserService, testing_2.MockBackend], function (userService, backend) {
+                testing_1.it('should return token when authenticate worked', testing_1.inject([user_service_1.UserService, testing_2.MockBackend], function (userService, backend) {
                     var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZXJ2ZXIiLCJlbWFpbCI6ImFAYS5jb20iLCJwYXNzd29yZCI6ImFAYS5jb20iLCJpYXQiOjE0NTk0NDc4ODAsImV4cCI6MTQ1OTUzNDI4MH0.b260_KHB1FBBNlu2avblbi9VzqSER9hnzzCzdf6cGA4';
                     var baseResponse = new http_1.Response(new http_1.ResponseOptions({ body: { success: true, message: 'Enjoy your token!', token: token } }));
                     backend.connections.subscribe(function (c) { return c.mockRespond(baseResponse); });
                     user_1.User.setNextId(0);
                     userService.authenticate('a@a.com', 'a@a.com').subscribe(function (res) {
-                        testing_1.expect(res.id).toBe(0);
-                        testing_1.expect(res.username).toBe('test');
-                        testing_1.expect(res.email).toBe(token);
-                        testing_1.expect(res.password).toBe('obj.password');
+                        testing_1.expect(res).toBe('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZXJ2ZXIiLCJlbWFpbCI6ImFAYS5jb20iLCJwYXNzd29yZCI6ImFAYS5jb20iLCJpYXQiOjE0NTk0NDc4ODAsImV4cCI6MTQ1OTUzNDI4MH0.b260_KHB1FBBNlu2avblbi9VzqSER9hnzzCzdf6cGA4');
                     });
                 }));
-                testing_1.it('should return an empty user when authenticate did not worked', testing_1.inject([user_service_1.UserService, testing_2.MockBackend], function (userService, backend) {
+                testing_1.it('should return an undefined token when authenticate did not worked', testing_1.inject([user_service_1.UserService, testing_2.MockBackend], function (userService, backend) {
                     var baseResponse = new http_1.Response(new http_1.ResponseOptions({ body: { error: '404' } }));
                     backend.connections.subscribe(function (c) { return c.mockRespond(baseResponse); });
                     user_1.User.setNextId(0);
                     userService.authenticate('a@a.com', 'a@a.com').subscribe(function (res) {
-                        testing_1.expect(res.id).toBe(0);
-                        testing_1.expect(res.email).toBe('');
-                        testing_1.expect(res.password).toBe('');
-                        testing_1.expect(res.username).toBe('');
+                        testing_1.expect(res).toBe(undefined);
                     });
                 }));
             });
