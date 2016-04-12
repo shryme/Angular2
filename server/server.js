@@ -69,6 +69,9 @@ app.post('/authenticate', function(req, res) {
 	var password = req.body.password;
 	var resp;
 
+	console.log('email ', email);
+	console.log('password', password);
+
 
 	if (email === 'a@a.com' && password === 'a@a.com') {
 
@@ -104,75 +107,41 @@ app.post('/authenticate', function(req, res) {
 
 
 
-app.use(function(req, res, next) {
 
-	// check header or url parameters or post parameters for token
-	var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
-	// decode token
-	if (token) {
 
-		// verifies secret and checks exp
-		jwt.verify(token, 'secret', function(err, decoded) {
-			if (err) {
-				return res.json({ success: false, message: 'Failed to authenticate token.' });
-			} else {
-				// if everything is good, save to request for use in other routes
-				req.decoded = decoded;
-				next();
-			}
-		});
 
-	} else {
 
-		// if there is no token
-		// return an error
-		return res.status(403).send({
-			success: false,
-			message: 'No token provided.'
-		});
-
-	}
-});
-
-app.get('/test', function(req, res) {
-	res.json({ message: 'Welcome to the coolest API on earth!' });
-});
+app.use(require('./user-routes'));
 
 
 
 
 
 
+// app.post('/connect', function(req, res) {
+
+// 	logDel();
+// 	logInfo(req);
+
+// 	var json = JSON.parse(req.body.json);
+// 	console.log('SEB', json);
+// 	var email = json.email;
+// 	var password = json.password;
 
 
+// 	var resp = {error: '404'};
+// 	if (email === 'a@a.com' && password === 'a@a.com')
+// 		resp = {id: 1, username: 'server', email: email, password: password};
 
+// 	logRes(req, resp);
 
+// 	res.setHeader('Content-Type', 'application/json');
+// 	res.json(resp);
 
+// 	logDel();
 
-app.post('/connect', function(req, res) {
-
-	logDel();
-	logInfo(req);
-
-	var json = JSON.parse(req.body.json);
-	console.log('SEB', json);
-	var email = json.email;
-	var password = json.password;
-
-
-	var resp = {error: '404'};
-	if (email === 'a@a.com' && password === 'a@a.com')
-		resp = {id: 1, username: 'server', email: email, password: password};
-
-	logRes(req, resp);
-
-	res.setHeader('Content-Type', 'application/json');
-	res.json(resp);
-
-	logDel();
-
-});
+// });
 
 
 
