@@ -7,16 +7,15 @@ System.register([], function(exports_1, context_1) {
         execute: function() {
             nextId = 0;
             User = (function () {
-                function User(username, email, password, id) {
+                function User(username, email, id) {
                     this.username = username;
                     this.email = email;
-                    this.password = password;
                     this.id = id;
                     this.id = id || nextId++;
                 }
                 User.prototype.clone = function () { return User.clone(this); };
                 User.setNextId = function (next) { nextId = next; };
-                User.clone = function (u) { return new User(u.username, u.email, u.password, u.id); };
+                User.clone = function (u) { return new User(u.username, u.email, u.id); };
                 return User;
             }());
             exports_1("User", User);
