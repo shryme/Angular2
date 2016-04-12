@@ -10,13 +10,14 @@ var session = require('express-session');
 
 var colors = require('colors');
 
+var config = require('./config');
+
 var app = express();
 
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 app.use(cookieParser());
-app.use(session({secret: 'keyboard cat'}));
-// app.use(bodyParser.urlencoded());
+// app.use(session({secret: 'keyboard cat'}));
 
 //https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens
 
@@ -46,10 +47,10 @@ app.use(function(req, res, next){
 
 
 
-	if (typeof(req.session.todolist) == 'undefined') {
-		req.session.todolist = [];
-		req.session.nextId = 1;
-	}
+	// if (typeof(req.session.todolist) == 'undefined') {
+	// 	req.session.todolist = [];
+	// 	req.session.nextId = 1;
+	// }
 	next();
 })
 
@@ -72,8 +73,8 @@ app.post('/authenticate', function(req, res) {
 	if (email === 'a@a.com' && password === 'a@a.com') {
 
 		var user = {id: 1, username: 'server', email: email, password: password};
-		var token = jwt.sign(user, 'secret', {
-			expiresInMinutes: 1440 // expires in 24 hours
+		var token = jwt.sign(user, config.secret, {
+			expiresIn: 3600*24 // expires in 24 hours
 		});
 
 		resp = {
