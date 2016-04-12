@@ -112,6 +112,7 @@ app.post('/authenticate', function(req, res) {
 
 
 
+app.use(require('./anonymous-routes'));
 app.use(require('./user-routes'));
 
 
