@@ -7,6 +7,8 @@ import {NgForm} from 'angular2/common';
 import {User} from '../objects/user';
 import {UserService} from '../services/user.service';
 
+import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
+
 @Component({
 	selector: 'my-hero-detail',
 	templateUrl: 'app/components/login.component.html',
@@ -21,7 +23,10 @@ export class LoginComponent implements OnInit {
 
 	email = "";
 	password = "";
+	username = "";
 	id;
+
+	jwtHelper: JwtHelper = new JwtHelper();
 
 	constructor(
 		private _userService: UserService,
@@ -40,19 +45,20 @@ export class LoginComponent implements OnInit {
 
 	onSubmit() {
 		this.submitted = true;
-		this._userService.authenticate(this.email, this.password).subscribe(res => {
-			if (res !== undefined) {
-				this.currentUser = new User(this.email, res, this.password);
+		this._userService.authenticate(this.email, this.password).subscribe(token => {
+			if (token !== undefined) {
+				let obj = this.jwtHelper.decodeToken(token);
+				this.currentUser = new User(obj.username, obj.email, obj.id);
+				console.log('WORKED', obj);
+
 			}
 			else {
-				this.currentUser = new User('', '', '');
+				this.currentUser = new User('', '');
 			}
 
-			// Cookie.setCookie('token', res, 1 /*days from now*/);
-
-			// this.currentUser = res;
 			this.email = this.currentUser.email;
-			this.password = this.currentUser.password;
+			this.password = "";
+			this.username = this.currentUser.username;
 			this.id = this.currentUser.id;
 		});
 	}

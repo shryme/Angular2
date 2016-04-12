@@ -19,6 +19,7 @@
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="node_modules/angular2/bundles/router.dev.js"></script>
     <script src="node_modules/angular2/bundles/http.dev.js"></script>
+    <!-- <script src="node_modules/angular2-jwt/angular2-jwt.js"></script> -->
 
     <!-- 2. Configure SystemJS -->
     <script>
@@ -27,7 +28,13 @@
           app: {
             format: 'register',
             defaultExtension: 'js'
+          },
+          "angular2-jwt": {
+            "defaultExtension": "js"
           }
+        },
+        map: {
+          "angular2-jwt": "node_modules/angular2-jwt"
         }
       });
       System.import('app/main')

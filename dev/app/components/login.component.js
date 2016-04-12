@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../objects/user', '../services/user.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../objects/user', '../services/user.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, user_1, user_service_1;
+    var core_1, router_1, user_1, user_service_1, angular2_jwt_1;
     var LoginComponent;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
             },
             function (user_service_1_1) {
                 user_service_1 = user_service_1_1;
+            },
+            function (angular2_jwt_1_1) {
+                angular2_jwt_1 = angular2_jwt_1_1;
             }],
         execute: function() {
             LoginComponent = (function () {
@@ -35,6 +38,8 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                     this.test = "none";
                     this.email = "";
                     this.password = "";
+                    this.username = "";
+                    this.jwtHelper = new angular2_jwt_1.JwtHelper();
                 }
                 LoginComponent.prototype.ngOnInit = function () {
                     // let id = +this._routeParams.get('id');
@@ -47,17 +52,18 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                 LoginComponent.prototype.onSubmit = function () {
                     var _this = this;
                     this.submitted = true;
-                    this._userService.authenticate(this.email, this.password).subscribe(function (res) {
-                        if (res !== undefined) {
-                            _this.currentUser = new user_1.User(_this.email, res, _this.password);
+                    this._userService.authenticate(this.email, this.password).subscribe(function (token) {
+                        if (token !== undefined) {
+                            var obj = _this.jwtHelper.decodeToken(token);
+                            _this.currentUser = new user_1.User(obj.username, obj.email, obj.id);
+                            console.log('WORKED', obj);
                         }
                         else {
-                            _this.currentUser = new user_1.User('', '', '');
+                            _this.currentUser = new user_1.User('', '');
                         }
-                        // Cookie.setCookie('token', res, 1 /*days from now*/);
-                        // this.currentUser = res;
                         _this.email = _this.currentUser.email;
-                        _this.password = _this.currentUser.password;
+                        _this.password = "";
+                        _this.username = _this.currentUser.username;
                         _this.id = _this.currentUser.id;
                     });
                 };
