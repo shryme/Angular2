@@ -58,57 +58,6 @@ app.get('/', function(req, res) {
 	res.json({ message: 'default' });
 });
 
-app.post('/authenticate', function(req, res) {
-
-	logDel();
-	logInfo(req);
-
-	// var json = JSON.parse(req.body.json);
-	// console.log('SEB', json);
-	var email = req.body.email;
-	var password = req.body.password;
-	var resp;
-
-	console.log('email ', email);
-	console.log('password', password);
-
-
-	if (email === 'a@a.com' && password === 'a@a.com') {
-
-		var user = {id: 1, username: 'server', email: email, password: password};
-		var token = jwt.sign(user, config.secret, {
-			expiresIn: 3600*24 // expires in 24 hours
-		});
-
-		resp = {
-			success: true,
-			message: 'Enjoy your token!',
-			token: token
-		};
-	}
-	else {
-
-		resp = {
-			success: false,
-			message: 'Authentication failed. Wrong password.'
-		};
-
-	}
-
-	res.setHeader('Content-Type', 'application/json');
-	res.json(resp);
-
-	logRes(req, resp);
-
-	logDel();
-
-
-});
-
-
-
-
-
 
 
 
@@ -152,26 +101,6 @@ app.use(require('./user-routes'));
 
 
 
-
-
-
-
-
-
-function logDel() {
-	console.log('////////////////////////////////////////////////////'.bgYellow.yellow);
-}
-
-function logInfo(req) {
-	console.log(req.url.cyan, req.body);
-}
-
-function logRes(req, resp) {
-	if (resp.error)
-		console.log(req.url.bgRed.white, resp);
-	else
-		console.log(req.url.green, resp);
-}
 
 
 
