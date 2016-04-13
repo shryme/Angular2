@@ -65,7 +65,8 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../servic
                             http_1.HTTP_PROVIDERS,
                             hero_service_1.HeroService,
                             user_service_1.UserService,
-                            storage_service_1.StorageService
+                            storage_service_1.StorageService,
+                            storage_service_1.PermanentStorageService
                         ]
                     }),
                     router_1.RouteConfig([

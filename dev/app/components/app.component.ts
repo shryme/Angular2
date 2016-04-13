@@ -3,7 +3,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 import {HTTP_PROVIDERS} from 'angular2/http';
 
 import { UserService } from '../services/user.service';
-import { StorageService } from '../services/storage.service';
+import { StorageService, PermanentStorageService } from '../services/storage.service';
 import { HeroService }     from '../services/hero.service';
 import { HeroesComponent } from './heroes.component';
 import { DashboardComponent } from './dashboard.component';
@@ -24,7 +24,8 @@ import 'rxjs/add/operator/map';
 		HTTP_PROVIDERS,
 		HeroService,
 		UserService,
-		StorageService
+		StorageService,
+		PermanentStorageService
 	]
 })
 
