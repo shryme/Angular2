@@ -50,10 +50,9 @@ export class LoginComponent implements OnInit {
 		this._userService.authenticate(this.email, this.password).subscribe(token => {
 			if (token !== undefined) {
 				//https://github.com/auth0/angular2-jwt
-				let obj = this.jwtHelper.decodeToken(token);
-				this.currentUser = new User(obj.username, obj.email, obj.id);
+				this.currentUser = this._userService.getUser();
 				this.token = token;
-				console.log('WORKED', obj);
+				console.log('WORKED', this.currentUser);
 				this._router.navigate(['Settings']);
 			}
 			else {

@@ -56,10 +56,9 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                     this._userService.authenticate(this.email, this.password).subscribe(function (token) {
                         if (token !== undefined) {
                             //https://github.com/auth0/angular2-jwt
-                            var obj = _this.jwtHelper.decodeToken(token);
-                            _this.currentUser = new user_1.User(obj.username, obj.email, obj.id);
+                            _this.currentUser = _this._userService.getUser();
                             _this.token = token;
-                            console.log('WORKED', obj);
+                            console.log('WORKED', _this.currentUser);
                             _this._router.navigate(['Settings']);
                         }
                         else {
