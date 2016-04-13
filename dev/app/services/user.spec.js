@@ -32,6 +32,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/testing', 'angular2
                 testing_1.beforeEachProviders(function () { return [
                     user_service_1.UserService,
                     storage_service_1.StorageService,
+                    storage_service_1.PermanentStorageService,
                     http_1.BaseRequestOptions,
                     testing_2.MockBackend,
                     core_1.provide(http_1.Http, {
