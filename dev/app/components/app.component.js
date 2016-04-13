@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/http', '../services/user.service', '../services/hero.service', './heroes.component', './dashboard.component', './hero-detail.component', './login.component', 'rxjs/Rx', 'rxjs/add/operator/map'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/http', '../services/user.service', '../services/hero.service', './heroes.component', './dashboard.component', './hero-detail.component', './login.component', './settings.component', 'rxjs/Rx', 'rxjs/add/operator/map'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../servic
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, http_1, user_service_1, hero_service_1, heroes_component_1, dashboard_component_1, hero_detail_component_1, login_component_1;
+    var core_1, router_1, http_1, user_service_1, hero_service_1, heroes_component_1, dashboard_component_1, hero_detail_component_1, login_component_1, settings_component_1;
     var AppComponent;
     return {
         setters:[
@@ -40,6 +40,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../servic
             },
             function (login_component_1_1) {
                 login_component_1 = login_component_1_1;
+            },
+            function (settings_component_1_1) {
+                settings_component_1 = settings_component_1_1;
             },
             function (_1) {},
             function (_2) {}],
@@ -82,6 +85,11 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../servic
                             path: '/login',
                             name: 'Login',
                             component: login_component_1.LoginComponent
+                        },
+                        {
+                            path: '/profile/settings',
+                            name: 'Settings',
+                            component: settings_component_1.SettingsComponent
                         }
                     ]), 
                     __metadata('design:paramtypes', [])

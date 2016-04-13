@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {RouteParams} from 'angular2/router';
+import {Router, RouteParams} from 'angular2/router';
 import {NgForm} from 'angular2/common';
 
 // import {Cookie} from 'ng2-cookies/ng2-cookies';
@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
 
 	constructor(
 		private _userService: UserService,
-		private _routeParams: RouteParams) {
+		private _routeParams: RouteParams,
+		private _router: Router) {
 	}
 
 	ngOnInit() {
@@ -53,7 +54,7 @@ export class LoginComponent implements OnInit {
 				this.currentUser = new User(obj.username, obj.email, obj.id);
 				this.token = token;
 				console.log('WORKED', obj);
-
+				this._router.navigate(['Settings']);
 			}
 			else {
 				this.currentUser = new User('', '');

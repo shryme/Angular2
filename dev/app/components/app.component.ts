@@ -8,6 +8,7 @@ import { HeroesComponent } from './heroes.component';
 import { DashboardComponent } from './dashboard.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { LoginComponent } from './login.component';
+import { SettingsComponent } from './settings.component';
 
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -46,6 +47,11 @@ import 'rxjs/add/operator/map';
 		path: '/login',
 		name: 'Login',
 		component: LoginComponent
+	},
+	{
+		path: '/profile/settings',
+		name: 'Settings',
+		component: SettingsComponent
 	}
 ])
 

@@ -31,9 +31,10 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
             }],
         execute: function() {
             LoginComponent = (function () {
-                function LoginComponent(_userService, _routeParams) {
+                function LoginComponent(_userService, _routeParams, _router) {
                     this._userService = _userService;
                     this._routeParams = _routeParams;
+                    this._router = _router;
                     this.submitted = false;
                     this.test = "none";
                     this.email = "";
@@ -59,6 +60,7 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                             _this.currentUser = new user_1.User(obj.username, obj.email, obj.id);
                             _this.token = token;
                             console.log('WORKED', obj);
+                            _this._router.navigate(['Settings']);
                         }
                         else {
                             _this.currentUser = new user_1.User('', '');
@@ -75,7 +77,7 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                         templateUrl: 'app/components/login.component.html',
                         inputs: ['hero']
                     }), 
-                    __metadata('design:paramtypes', [user_service_1.UserService, router_1.RouteParams])
+                    __metadata('design:paramtypes', [user_service_1.UserService, router_1.RouteParams, router_1.Router])
                 ], LoginComponent);
                 return LoginComponent;
             }());
