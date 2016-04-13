@@ -36,10 +36,25 @@
 	<script>
 		// #2. Configure systemjs to use the .js extension
 		//     for imports from the app folder
+		// System.config({
+		//   packages: {
+		//     'app': {defaultExtension: 'js'}
+		// }});
+
 		System.config({
 		  packages: {
-		    'app': {defaultExtension: 'js'}
-		}});
+		    app: {
+		      format: 'register',
+		      defaultExtension: 'js'
+		    },
+		    "angular2-jwt": {
+		      "defaultExtension": "js"
+		    }
+		  },
+		  map: {
+		    "angular2-jwt": "node_modules/angular2-jwt"
+		  }
+		});
 
 		// #3. Import the spec file explicitly
 		Promise.all([
