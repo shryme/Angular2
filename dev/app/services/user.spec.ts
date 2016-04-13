@@ -7,6 +7,7 @@ import {MockBackend, MockConnection} from 'angular2/http/testing';
 import {Injectable, Component} from 'angular2/core';
 
 import {UserService} from './user.service';
+import {StorageService} from './storage.service';
 import {User} from '../objects/user';
 
 import 'rxjs/Rx';
@@ -16,6 +17,7 @@ describe('UserService', () => {
 
 	beforeEachProviders(() => [
 		UserService,
+		StorageService,
 		BaseRequestOptions,
 		MockBackend,
 		provide(Http, {
