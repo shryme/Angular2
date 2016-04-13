@@ -38,14 +38,14 @@ export class UserService {
 					let objUser = this.jwtHelper.decodeToken(token);
 					this.user = new User(objUser.username, objUser.email, objUser.id);
 					this._storage.set('user', this.user);
-				}
-				else {
-					token = undefined;
-					this.user = undefined;
-					//TODO - remove from session
+					this._storage.set('token', token);
+					return true;
 				}
 
-				return token;
+				this.user = undefined;
+				//TODO - remove from session
+				return false;
+
 			});
 
 	}
