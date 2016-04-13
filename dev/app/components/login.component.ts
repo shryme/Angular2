@@ -17,14 +17,15 @@ import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 
 export class LoginComponent implements OnInit {
 
-	currentUser;
-	submitted = false;
-	test = "none";
+	currentUser: User;
+	submitted: Boolean = false;
+	test: String = "none";
 
-	email = "";
-	password = "";
-	username = "";
-	id;
+	email: String = "";
+	password: String = "";
+	username: String = "";
+	id: Number;
+	token: String;
 
 	jwtHelper: JwtHelper = new JwtHelper();
 
@@ -47,8 +48,10 @@ export class LoginComponent implements OnInit {
 		this.submitted = true;
 		this._userService.authenticate(this.email, this.password).subscribe(token => {
 			if (token !== undefined) {
+				//https://github.com/auth0/angular2-jwt
 				let obj = this.jwtHelper.decodeToken(token);
 				this.currentUser = new User(obj.username, obj.email, obj.id);
+				this.token = token;
 				console.log('WORKED', obj);
 
 			}
