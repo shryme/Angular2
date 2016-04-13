@@ -51,7 +51,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/testing', 'angular2
                     backend.connections.subscribe(function (c) { return c.mockRespond(baseResponse); });
                     user_1.User.setNextId(0);
                     userService.authenticate('a@a.com', 'a@a.com').subscribe(function (res) {
-                        testing_1.expect(res).toBe('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZXJ2ZXIiLCJlbWFpbCI6ImFAYS5jb20iLCJwYXNzd29yZCI6ImFAYS5jb20iLCJpYXQiOjE0NTk0NDc4ODAsImV4cCI6MTQ1OTUzNDI4MH0.b260_KHB1FBBNlu2avblbi9VzqSER9hnzzCzdf6cGA4');
+                        testing_1.expect(res).toBe(true);
                     });
                 }));
                 testing_1.it('should return an undefined token when authenticate did not worked', testing_1.inject([user_service_1.UserService, testing_2.MockBackend], function (userService, backend) {
@@ -59,7 +59,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/testing', 'angular2
                     backend.connections.subscribe(function (c) { return c.mockRespond(baseResponse); });
                     user_1.User.setNextId(0);
                     userService.authenticate('a@a.com', 'a@a.com').subscribe(function (res) {
-                        testing_1.expect(res).toBe(undefined);
+                        testing_1.expect(res).toBe(false);
                     });
                 }));
             });

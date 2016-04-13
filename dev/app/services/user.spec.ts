@@ -39,8 +39,8 @@ describe('UserService', () => {
 			let baseResponse = new Response(new ResponseOptions({ body: { success: true, message: 'Enjoy your token!', token: token } }));
 			backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
 			User.setNextId(0);
-			userService.authenticate('a@a.com', 'a@a.com').subscribe((res: String) => {
-				expect(res).toBe('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZXJ2ZXIiLCJlbWFpbCI6ImFAYS5jb20iLCJwYXNzd29yZCI6ImFAYS5jb20iLCJpYXQiOjE0NTk0NDc4ODAsImV4cCI6MTQ1OTUzNDI4MH0.b260_KHB1FBBNlu2avblbi9VzqSER9hnzzCzdf6cGA4');
+			userService.authenticate('a@a.com', 'a@a.com').subscribe((res: boolean) => {
+				expect(res).toBe(true);
 			});
 		})
 	);
@@ -50,8 +50,8 @@ describe('UserService', () => {
 			let baseResponse = new Response(new ResponseOptions({ body: { error: '404' } }));
 			backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
 			User.setNextId(0);
-			userService.authenticate('a@a.com', 'a@a.com').subscribe((res: String) => {
-				expect(res).toBe(undefined);
+			userService.authenticate('a@a.com', 'a@a.com').subscribe((res: boolean) => {
+				expect(res).toBe(false);
 			});
 		})
 	);
