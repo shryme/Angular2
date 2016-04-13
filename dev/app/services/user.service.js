@@ -44,19 +44,17 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', '../object
                     return this.http.post('http://localhost:3333/authenticate', json, { headers: headers_1.contentHeaders })
                         .map(function (responseData) { return responseData.json(); })
                         .map(function (obj) {
-                        // let result: User;
                         var token;
                         if (obj.success) {
                             token = obj.token;
                             var objUser = _this.jwtHelper.decodeToken(token);
                             _this.user = new user_1.User(objUser.username, objUser.email, objUser.id);
+                            sessionStorage.setItem('user', JSON.stringify(_this.user));
                         }
                         else {
                             token = undefined;
                             _this.user = undefined;
                         }
-                        // console.log(obj, result);
-                        // console.log('TOKEN', token);
                         return token;
                     });
                 };
@@ -64,7 +62,16 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', '../object
                     if (this.user !== undefined)
                         return this.user;
                     else {
-                        return new user_1.User('def', 'def');
+                        console.log('getUser - Used session');
+                        var sessionUserStr = sessionStorage.getItem('user');
+                        var sessionUser = JSON.parse(sessionUserStr);
+                        if (sessionUser !== null) {
+                            return new user_1.User(sessionUser.username, sessionUser.email, sessionUser.id);
+                        }
+                        else {
+                            //TODO - redirect to login
+                            return new user_1.User('def', 'def');
+                        }
                     }
                 };
                 UserService = __decorate([
