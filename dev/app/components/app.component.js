@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/http', '../services/user.service', '../services/hero.service', './heroes.component', './dashboard.component', './hero-detail.component', './login.component', './settings.component', 'rxjs/Rx', 'rxjs/add/operator/map'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/http', '../services/user.service', '../services/storage.service', '../services/hero.service', './heroes.component', './dashboard.component', './hero-detail.component', './login.component', './settings.component', 'rxjs/Rx', 'rxjs/add/operator/map'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../servic
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, http_1, user_service_1, hero_service_1, heroes_component_1, dashboard_component_1, hero_detail_component_1, login_component_1, settings_component_1;
+    var core_1, router_1, http_1, user_service_1, storage_service_1, hero_service_1, heroes_component_1, dashboard_component_1, hero_detail_component_1, login_component_1, settings_component_1;
     var AppComponent;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../servic
             },
             function (user_service_1_1) {
                 user_service_1 = user_service_1_1;
+            },
+            function (storage_service_1_1) {
+                storage_service_1 = storage_service_1_1;
             },
             function (hero_service_1_1) {
                 hero_service_1 = hero_service_1_1;
@@ -61,7 +64,8 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../servic
                             router_1.ROUTER_PROVIDERS,
                             http_1.HTTP_PROVIDERS,
                             hero_service_1.HeroService,
-                            user_service_1.UserService
+                            user_service_1.UserService,
+                            storage_service_1.StorageService
                         ]
                     }),
                     router_1.RouteConfig([

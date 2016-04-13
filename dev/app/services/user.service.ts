@@ -7,6 +7,7 @@ import {contentHeaders} from '../objects/headers';
 
 import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 
+import {StorageService} from './storage.service';
 
 @Injectable()
 
@@ -16,7 +17,8 @@ export class UserService {
 	jwtHelper: JwtHelper = new JwtHelper();
 	user: User;
 
-	constructor(public http: Http) {
+	constructor(public http: Http,
+			private _storage: StorageService) {
 		console.log('Task Service created.', http);
 		this.headers = new Headers();
 		this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -35,7 +37,7 @@ export class UserService {
 					token = obj.token;
 					let objUser = this.jwtHelper.decodeToken(token);
 					this.user = new User(objUser.username, objUser.email, objUser.id);
-					sessionStorage.setItem('user', JSON.stringify(this.user));
+					this._storage.set('user', this.user);
 				}
 				else {
 					token = undefined;
@@ -52,15 +54,15 @@ export class UserService {
 			return this.user;
 		else {
 			console.log('getUser - Used session');
-			let sessionUserStr: string = sessionStorage.getItem('user');
-			let sessionUser: any = JSON.parse(sessionUserStr);
-			if (sessionUser !== null) {
+			let sessionUser = this._storage.get('user');
+
+			if (sessionUser)
 				return new User(sessionUser.username, sessionUser.email, sessionUser.id);
-			}
 			else {
 				//TODO - redirect to login
 				return new User('def', 'def');
 			}
+
 		}
 
 	}

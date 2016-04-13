@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', '../objects/user', '../objects/headers', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', '../objects/user', '../objects/headers', 'angular2-jwt/angular2-jwt', './storage.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', '../object
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, user_1, headers_1, angular2_jwt_1;
+    var core_1, http_1, user_1, headers_1, angular2_jwt_1, storage_service_1;
     var UserService;
     return {
         setters:[
@@ -28,11 +28,15 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', '../object
             },
             function (angular2_jwt_1_1) {
                 angular2_jwt_1 = angular2_jwt_1_1;
+            },
+            function (storage_service_1_1) {
+                storage_service_1 = storage_service_1_1;
             }],
         execute: function() {
             UserService = (function () {
-                function UserService(http) {
+                function UserService(http, _storage) {
                     this.http = http;
+                    this._storage = _storage;
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
                     console.log('Task Service created.', http);
                     this.headers = new http_1.Headers();
@@ -49,7 +53,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', '../object
                             token = obj.token;
                             var objUser = _this.jwtHelper.decodeToken(token);
                             _this.user = new user_1.User(objUser.username, objUser.email, objUser.id);
-                            sessionStorage.setItem('user', JSON.stringify(_this.user));
+                            _this._storage.set('user', _this.user);
                         }
                         else {
                             token = undefined;
@@ -63,11 +67,9 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', '../object
                         return this.user;
                     else {
                         console.log('getUser - Used session');
-                        var sessionUserStr = sessionStorage.getItem('user');
-                        var sessionUser = JSON.parse(sessionUserStr);
-                        if (sessionUser !== null) {
+                        var sessionUser = this._storage.get('user');
+                        if (sessionUser)
                             return new user_1.User(sessionUser.username, sessionUser.email, sessionUser.id);
-                        }
                         else {
                             //TODO - redirect to login
                             return new user_1.User('def', 'def');
@@ -76,7 +78,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', '../object
                 };
                 UserService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_1.Http])
+                    __metadata('design:paramtypes', [http_1.Http, storage_service_1.StorageService])
                 ], UserService);
                 return UserService;
             }());
