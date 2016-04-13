@@ -15,14 +15,7 @@ import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 
 export class SettingsComponent implements OnInit {
 
-	currentUser: User;
-	submitted = false;
-	test = "none";
-
-	email = "";
-	password = "";
-	username = "";
-	id;
+	user: User;
 
 	jwtHelper: JwtHelper = new JwtHelper();
 
@@ -32,7 +25,7 @@ export class SettingsComponent implements OnInit {
 	}
 
 	ngOnInit() {
-
+		this.user = this._userService.getUser();
 	}
 
 	goBack() {

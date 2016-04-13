@@ -31,14 +31,10 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                 function SettingsComponent(_userService, _routeParams) {
                     this._userService = _userService;
                     this._routeParams = _routeParams;
-                    this.submitted = false;
-                    this.test = "none";
-                    this.email = "";
-                    this.password = "";
-                    this.username = "";
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
                 }
                 SettingsComponent.prototype.ngOnInit = function () {
+                    this.user = this._userService.getUser();
                 };
                 SettingsComponent.prototype.goBack = function () {
                     // window.history.back();
