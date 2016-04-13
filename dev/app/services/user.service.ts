@@ -42,6 +42,7 @@ export class UserService {
 				else {
 					token = undefined;
 					this.user = undefined;
+					//TODO - remove from session
 				}
 
 				return token;
