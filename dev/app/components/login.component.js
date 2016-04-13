@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../objects/user', '../services/user.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../services/user.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, user_1, user_service_1, angular2_jwt_1;
+    var core_1, router_1, user_service_1, angular2_jwt_1;
     var LoginComponent;
     return {
         setters:[
@@ -19,9 +19,6 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
             },
             function (router_1_1) {
                 router_1 = router_1_1;
-            },
-            function (user_1_1) {
-                user_1 = user_1_1;
             },
             function (user_service_1_1) {
                 user_service_1 = user_service_1_1;
@@ -43,9 +40,6 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
                 }
                 LoginComponent.prototype.ngOnInit = function () {
-                    // let id = +this._routeParams.get('id');
-                    // this._heroService.getHero(id)
-                    // 	.then(hero => this.hero = hero);
                 };
                 LoginComponent.prototype.goBack = function () {
                     // window.history.back();
@@ -53,21 +47,14 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                 LoginComponent.prototype.onSubmit = function () {
                     var _this = this;
                     this.submitted = true;
-                    this._userService.authenticate(this.email, this.password).subscribe(function (token) {
-                        if (token !== undefined) {
-                            //https://github.com/auth0/angular2-jwt
-                            _this.currentUser = _this._userService.getUser();
-                            _this.token = token;
-                            console.log('WORKED', _this.currentUser);
+                    this._userService.authenticate(this.email, this.password).subscribe(function (res) {
+                        //If the auth was a success, we navigate elsewhere
+                        if (res)
                             _this._router.navigate(['Settings']);
-                        }
-                        else {
-                            _this.currentUser = new user_1.User('', '');
-                        }
-                        _this.email = _this.currentUser.email;
+                        _this.email = "";
                         _this.password = "";
-                        _this.username = _this.currentUser.username;
-                        _this.id = _this.currentUser.id;
+                        _this.username = 'Wrong email or password';
+                        _this.id = -1;
                     });
                 };
                 LoginComponent = __decorate([

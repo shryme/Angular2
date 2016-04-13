@@ -36,9 +36,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		// let id = +this._routeParams.get('id');
-		// this._heroService.getHero(id)
-		// 	.then(hero => this.hero = hero);
+
 	}
 
 	goBack() {
@@ -47,22 +45,16 @@ export class LoginComponent implements OnInit {
 
 	onSubmit() {
 		this.submitted = true;
-		this._userService.authenticate(this.email, this.password).subscribe(token => {
-			if (token !== undefined) {
-				//https://github.com/auth0/angular2-jwt
-				this.currentUser = this._userService.getUser();
-				this.token = token;
-				console.log('WORKED', this.currentUser);
-				this._router.navigate(['Settings']);
-			}
-			else {
-				this.currentUser = new User('', '');
-			}
+		this._userService.authenticate(this.email, this.password).subscribe(res => {
 
-			this.email = this.currentUser.email;
+			//If the auth was a success, we navigate elsewhere
+			if (res)
+				this._router.navigate(['Settings']);
+
+			this.email = "";
 			this.password = "";
-			this.username = this.currentUser.username;
-			this.id = this.currentUser.id;
+			this.username = 'Wrong email or password';
+			this.id = -1;
 		});
 	}
 
