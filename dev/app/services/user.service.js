@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', '../objects/headers'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', '../objects/user', '../objects/headers', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/headers'], functi
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, headers_1;
+    var core_1, http_1, user_1, headers_1, angular2_jwt_1;
     var UserService;
     return {
         setters:[
@@ -20,18 +20,26 @@ System.register(['angular2/core', 'angular2/http', '../objects/headers'], functi
             function (http_1_1) {
                 http_1 = http_1_1;
             },
+            function (user_1_1) {
+                user_1 = user_1_1;
+            },
             function (headers_1_1) {
                 headers_1 = headers_1_1;
+            },
+            function (angular2_jwt_1_1) {
+                angular2_jwt_1 = angular2_jwt_1_1;
             }],
         execute: function() {
             UserService = (function () {
                 function UserService(http) {
                     this.http = http;
+                    this.jwtHelper = new angular2_jwt_1.JwtHelper();
                     console.log('Task Service created.', http);
                     this.headers = new http_1.Headers();
                     this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
                 }
                 UserService.prototype.authenticate = function (email, password) {
+                    var _this = this;
                     var json = JSON.stringify({ "email": email, "password": password });
                     return this.http.post('http://localhost:3333/authenticate', json, { headers: headers_1.contentHeaders })
                         .map(function (responseData) { return responseData.json(); })
@@ -40,14 +48,24 @@ System.register(['angular2/core', 'angular2/http', '../objects/headers'], functi
                         var token;
                         if (obj.success) {
                             token = obj.token;
+                            var objUser = _this.jwtHelper.decodeToken(token);
+                            _this.user = new user_1.User(objUser.username, objUser.email, objUser.id);
                         }
                         else {
                             token = undefined;
+                            _this.user = undefined;
                         }
                         // console.log(obj, result);
                         // console.log('TOKEN', token);
                         return token;
                     });
+                };
+                UserService.prototype.getUser = function () {
+                    if (this.user !== undefined)
+                        return this.user;
+                    else {
+                        return new user_1.User('def', 'def');
+                    }
                 };
                 UserService = __decorate([
                     core_1.Injectable(), 
