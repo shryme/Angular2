@@ -44,7 +44,8 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                         selector: 'my-hero-detail',
                         templateUrl: 'app/components/settings.component.html',
                         inputs: ['hero']
-                    }), 
+                    }),
+                    router_1.CanActivate(function () { return angular2_jwt_1.tokenNotExpired(); }), 
                     __metadata('design:paramtypes', [user_service_1.UserService, router_1.RouteParams])
                 ], SettingsComponent);
                 return SettingsComponent;
