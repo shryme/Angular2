@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../services/user.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/http', '../objects/headers', '../services/user.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, user_service_1, angular2_jwt_1;
+    var core_1, router_1, http_1, headers_1, user_service_1, angular2_jwt_1;
     var SettingsComponent;
     return {
         setters:[
@@ -20,6 +20,12 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
             function (router_1_1) {
                 router_1 = router_1_1;
             },
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (headers_1_1) {
+                headers_1 = headers_1_1;
+            },
             function (user_service_1_1) {
                 user_service_1 = user_service_1_1;
             },
@@ -27,14 +33,30 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                 angular2_jwt_1 = angular2_jwt_1_1;
             }],
         execute: function() {
+            // import {AuthConfig} from 'angular2-jwt';
             SettingsComponent = (function () {
-                function SettingsComponent(_userService, _routeParams) {
+                function SettingsComponent(http, 
+                    // public authHttp: AuthHttp,
+                    _userService, _routeParams) {
+                    this.http = http;
                     this._userService = _userService;
                     this._routeParams = _routeParams;
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
+                    console.log('constructor');
+                    this.http.get('http://localhost:3333/test', { headers: headers_1.contentHeaders })
+                        .map(function (responseData) { console.log('responseData', responseData); return responseData.json(); })
+                        .subscribe(function (res) {
+                        console.log('ALLO', res);
+                    });
                 }
                 SettingsComponent.prototype.ngOnInit = function () {
                     this.user = this._userService.getUser();
+                    console.log('test');
+                    // this.http.get('http://localhost:3333/test', { headers: contentHeaders })
+                    // 	.map((responseData) => { console.log('responseData', responseData); return responseData.json() })
+                    // 	.map((obj: any) => {
+                    // 		console.log('TEST', obj);
+                    // 	});
                 };
                 SettingsComponent.prototype.goBack = function () {
                     // window.history.back();
@@ -46,7 +68,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                         inputs: ['hero']
                     }),
                     router_1.CanActivate(function () { return angular2_jwt_1.tokenNotExpired(); }), 
-                    __metadata('design:paramtypes', [user_service_1.UserService, router_1.RouteParams])
+                    __metadata('design:paramtypes', [http_1.Http, user_service_1.UserService, router_1.RouteParams])
                 ], SettingsComponent);
                 return SettingsComponent;
             }());
