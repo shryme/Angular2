@@ -8,6 +8,7 @@ import {Injectable, Component} from 'angular2/core';
 
 import {UserService} from './user.service';
 import {StorageService, PermanentStorageService} from './storage.service';
+import {HttpService} from './http.service';
 import {User} from '../objects/user';
 
 import 'rxjs/Rx';
@@ -18,6 +19,7 @@ describe('UserService', () => {
 	beforeEachProviders(() => [
 		UserService,
 		StorageService,
+		HttpService,
 		PermanentStorageService,
 		BaseRequestOptions,
 		MockBackend,

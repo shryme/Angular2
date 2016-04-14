@@ -1,7 +1,7 @@
-System.register(['angular2/core', 'angular2/http', 'angular2/testing', 'angular2/http/testing', './user.service', './storage.service', '../objects/user', 'rxjs/Rx', 'rxjs/add/operator/map'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', 'angular2/testing', 'angular2/http/testing', './user.service', './storage.service', './http.service', '../objects/user', 'rxjs/Rx', 'rxjs/add/operator/map'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var core_1, http_1, testing_1, testing_2, user_service_1, storage_service_1, user_1;
+    var core_1, http_1, testing_1, testing_2, user_service_1, storage_service_1, http_service_1, user_1;
     return {
         setters:[
             function (core_1_1) {
@@ -22,6 +22,9 @@ System.register(['angular2/core', 'angular2/http', 'angular2/testing', 'angular2
             function (storage_service_1_1) {
                 storage_service_1 = storage_service_1_1;
             },
+            function (http_service_1_1) {
+                http_service_1 = http_service_1_1;
+            },
             function (user_1_1) {
                 user_1 = user_1_1;
             },
@@ -32,6 +35,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/testing', 'angular2
                 testing_1.beforeEachProviders(function () { return [
                     user_service_1.UserService,
                     storage_service_1.StorageService,
+                    http_service_1.HttpService,
                     storage_service_1.PermanentStorageService,
                     http_1.BaseRequestOptions,
                     testing_2.MockBackend,
