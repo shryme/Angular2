@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', '../objects/user', '../objects/headers', 'angular2-jwt/angular2-jwt', './storage.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', '../objects/user', 'angular2-jwt/angular2-jwt', './storage.service', './http.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', '../object
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, user_1, headers_1, angular2_jwt_1, storage_service_1;
+    var core_1, http_1, user_1, angular2_jwt_1, storage_service_1, http_service_1;
     var UserService;
     return {
         setters:[
@@ -23,14 +23,14 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', '../object
             function (user_1_1) {
                 user_1 = user_1_1;
             },
-            function (headers_1_1) {
-                headers_1 = headers_1_1;
-            },
             function (angular2_jwt_1_1) {
                 angular2_jwt_1 = angular2_jwt_1_1;
             },
             function (storage_service_1_1) {
                 storage_service_1 = storage_service_1_1;
+            },
+            function (http_service_1_1) {
+                http_service_1 = http_service_1_1;
             }],
         execute: function() {
             UserService = (function () {
@@ -46,8 +46,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', '../object
                 UserService.prototype.authenticate = function (email, password) {
                     var _this = this;
                     var json = JSON.stringify({ "email": email, "password": password });
-                    return this.http.post('http://localhost:3333/authenticate', json, { headers: headers_1.contentHeaders })
-                        .map(function (responseData) { return responseData.json(); })
+                    return this.http.post('http://localhost:3333/authenticate', json)
                         .map(function (obj) {
                         var token;
                         if (obj.success) {
@@ -79,7 +78,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', '../object
                 };
                 UserService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_1.Http, storage_service_1.StorageService, storage_service_1.PermanentStorageService])
+                    __metadata('design:paramtypes', [http_service_1.HttpService, storage_service_1.StorageService, storage_service_1.PermanentStorageService])
                 ], UserService);
                 return UserService;
             }());

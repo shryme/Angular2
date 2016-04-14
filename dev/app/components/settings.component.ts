@@ -8,6 +8,7 @@ import {contentHeaders} from '../objects/headers';
 
 import {User} from '../objects/user';
 import {UserService} from '../services/user.service';
+import {HttpService} from '../services/http.service';
 
 import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 // import {AuthConfig} from 'angular2-jwt';
@@ -27,26 +28,22 @@ export class SettingsComponent implements OnInit {
 	jwtHelper: JwtHelper = new JwtHelper();
 
 	constructor(
-		public http: Http,
+		public http: HttpService,
 		// public authHttp: AuthHttp,
 		private _userService: UserService,
 		private _routeParams: RouteParams) {
 		console.log('constructor');
-		this.http.get('http://localhost:3333/test', { headers: contentHeaders })
-			.map((responseData) => { console.log('responseData', responseData); return responseData.json() })
-			.subscribe(res => {
-				console.log('ALLO', res);
-			});
+
+		this.http.get('http://localhost:3333/test').subscribe(res => {
+			console.log('ALLO', res);
+		});
+
 	}
 
 	ngOnInit() {
 		this.user = this._userService.getUser();
 		console.log('test');
-		// this.http.get('http://localhost:3333/test', { headers: contentHeaders })
-		// 	.map((responseData) => { console.log('responseData', responseData); return responseData.json() })
-		// 	.map((obj: any) => {
-		// 		console.log('TEST', obj);
-		// 	});
+
 	}
 
 	goBack() {

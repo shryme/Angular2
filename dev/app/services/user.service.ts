@@ -8,6 +8,7 @@ import {contentHeaders} from '../objects/headers';
 import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 
 import {StorageService, PermanentStorageService} from './storage.service';
+import {HttpService} from './http.service';
 
 @Injectable()
 
@@ -17,7 +18,7 @@ export class UserService {
 	jwtHelper: JwtHelper = new JwtHelper();
 	user: User;
 
-	constructor(public http: Http,
+	constructor(public http: HttpService,
 			private _storage: StorageService,
 			private _local: PermanentStorageService) {
 		console.log('Task Service created.', http);
@@ -29,8 +30,7 @@ export class UserService {
 
 		let json = JSON.stringify({ "email": email, "password": password });
 
-		return this.http.post('http://localhost:3333/authenticate', json, { headers: contentHeaders })
-			.map((responseData) => { return responseData.json() })
+		return this.http.post('http://localhost:3333/authenticate', json)
 			.map((obj: any) => {
 				let token: string;
 
