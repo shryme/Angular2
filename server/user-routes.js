@@ -59,8 +59,6 @@ app.post('/authenticate', function(req, res) {
 
 
 
-
-
 app.use(function(req, res, next) {
 
 	// check header or url parameters or post parameters for token
@@ -92,6 +90,10 @@ app.use(function(req, res, next) {
 	}
 });
 
+
+
 app.get('/test', function(req, res) {
+	log.result(req, { message: 'Welcome to the coolest API on earth!' });
 	res.json({ message: 'Welcome to the coolest API on earth!' });
 });
+
