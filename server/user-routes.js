@@ -6,7 +6,16 @@ var _ = require('lodash');
 var Log = require('./log');
 var log = new Log();
 
+var mysql = require('mysql');
+
 var app = module.exports = express.Router();
+
+var connection = mysql.createConnection({
+	host     : 'localhost',
+	user     : 'sss',
+	password : 'sss',
+	database : 'angular2'
+});
 
 
 function createToken(user) {
@@ -19,8 +28,7 @@ app.post('/authenticate', function(req, res) {
 
 	log.info(req);
 
-	// var json = JSON.parse(req.body.json);
-	// console.log('SEB', json);
+
 	var email = req.body.email;
 	var password = req.body.password;
 	var resp;
@@ -28,31 +36,37 @@ app.post('/authenticate', function(req, res) {
 	console.log('email ', email);
 	console.log('password', password);
 
+	connection.query('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password], function(err, rows, fields) {
+		if (err)
+			throw err;
 
-	if (email === 'a@a.com' && password === 'a@a.com') {
+		console.log('LOGGED: ', rows[0]);
 
-		var user = {id: 1, username: 'server', email: email, password: password};
-		var token = createToken(user);
+		if (rows[0] === undefined) {
+			resp = {
+				success: false,
+				message: 'Authentication failed. Wrong password.'
+			};
+		}
+		else {
+			var user = {id: rows[0].id, username: rows[0].username, email: rows[0].email};
+			var token = createToken(user);
 
-		resp = {
-			success: true,
-			message: 'Enjoy your token!',
-			token: token
-		};
-	}
-	else {
+			resp = {
+				success: true,
+				message: 'Enjoy your token!',
+				token: token
+			};
+		}
 
-		resp = {
-			success: false,
-			message: 'Authentication failed. Wrong password.'
-		};
+		res.setHeader('Content-Type', 'application/json');
+		res.json(resp);
 
-	}
+		log.result(req, resp);
 
-	res.setHeader('Content-Type', 'application/json');
-	res.json(resp);
 
-	log.result(req, resp);
+	});
+
 
 
 });
@@ -93,9 +107,10 @@ app.use(function(req, res, next) {
 
 
 app.get('/test', function(req, res) {
-	var json = { message: 'Welcome to you, ' + req.decoded.email + " - " + req.decoded.id}
-	log.result(req, json);
-	// log.result(req, req.decoded);
+
+	var json = { message: 'Welcome to you, ' + req.decoded.email + " - " + req.decoded.id + " --- "}
+	log.result(req, resp);
 	res.json(json);
+
 });
 
