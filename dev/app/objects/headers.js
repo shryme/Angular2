@@ -15,4 +15,5 @@ System.register(['angular2/http'], function(exports_1, context_1) {
         }
     }
 });
+// x-access-token
 //# sourceMappingURL=headers.js.map
