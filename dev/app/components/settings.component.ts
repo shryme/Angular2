@@ -24,6 +24,7 @@ import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 export class SettingsComponent implements OnInit {
 
 	user: User;
+	message: string;
 
 	jwtHelper: JwtHelper = new JwtHelper();
 
@@ -35,7 +36,7 @@ export class SettingsComponent implements OnInit {
 		console.log('constructor');
 
 		this.http.get('http://localhost:3333/test').subscribe(res => {
-			console.log('ALLO', res);
+			this.message = res.message;
 		});
 
 	}

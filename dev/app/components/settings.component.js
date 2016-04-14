@@ -35,13 +35,14 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                 function SettingsComponent(http, 
                     // public authHttp: AuthHttp,
                     _userService, _routeParams) {
+                    var _this = this;
                     this.http = http;
                     this._userService = _userService;
                     this._routeParams = _routeParams;
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
                     console.log('constructor');
                     this.http.get('http://localhost:3333/test').subscribe(function (res) {
-                        console.log('ALLO', res);
+                        _this.message = res.message;
                     });
                 }
                 SettingsComponent.prototype.ngOnInit = function () {

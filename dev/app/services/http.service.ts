@@ -20,7 +20,6 @@ export class HttpService {
 
 		return this.http.get(address, { headers: this.generateHeaders() })
 			.map((responseData) => {
-				console.log('responseData', responseData);
 				return responseData.json()
 			});
 	}
@@ -28,7 +27,9 @@ export class HttpService {
 	post(address: string, json: string) {
 
 		return this.http.post(address, json, { headers: this.generateHeaders() })
-			.map((responseData) => { return responseData.json() })
+			.map((responseData) => {
+				return responseData.json()
+			})
 	}
 
 	generateHeaders(): Headers {

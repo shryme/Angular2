@@ -33,13 +33,14 @@ System.register(['angular2/core', 'angular2/http', './storage.service'], functio
                 HttpService.prototype.get = function (address) {
                     return this.http.get(address, { headers: this.generateHeaders() })
                         .map(function (responseData) {
-                        console.log('responseData', responseData);
                         return responseData.json();
                     });
                 };
                 HttpService.prototype.post = function (address, json) {
                     return this.http.post(address, json, { headers: this.generateHeaders() })
-                        .map(function (responseData) { return responseData.json(); });
+                        .map(function (responseData) {
+                        return responseData.json();
+                    });
                 };
                 HttpService.prototype.generateHeaders = function () {
                     var headers = new http_1.Headers();

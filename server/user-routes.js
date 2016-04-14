@@ -93,7 +93,9 @@ app.use(function(req, res, next) {
 
 
 app.get('/test', function(req, res) {
-	log.result(req, { message: 'Welcome to the coolest API on earth!' });
-	res.json({ message: 'Welcome to the coolest API on earth!' });
+	var json = { message: 'Welcome to you, ' + req.decoded.email + " - " + req.decoded.id}
+	log.result(req, json);
+	// log.result(req, req.decoded);
+	res.json(json);
 });
 
