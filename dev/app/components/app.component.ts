@@ -1,6 +1,7 @@
-import { Component }       from 'angular2/core';
+import { Component, provide, Injectable }       from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
-import {HTTP_PROVIDERS} from 'angular2/http';
+import {Http, HTTP_PROVIDERS} from 'angular2/http';
+// import {AuthHttp, AuthConfig} from 'angular2-jwt/angular2-jwt';
 
 import { UserService } from '../services/user.service';
 import { StorageService, PermanentStorageService } from '../services/storage.service';
@@ -22,6 +23,13 @@ import 'rxjs/add/operator/map';
 	providers: [
 		ROUTER_PROVIDERS,
 		HTTP_PROVIDERS,
+		// provide(AuthHttp, {
+		// 	useFactory: (http) => {
+		// 		return new AuthHttp(new AuthConfig(), http);
+		// 	},
+		// 	deps: [Http]
+		// }),
+		// AuthConfig,
 		HeroService,
 		UserService,
 		StorageService,

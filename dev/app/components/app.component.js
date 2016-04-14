@@ -63,6 +63,13 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../servic
                         providers: [
                             router_1.ROUTER_PROVIDERS,
                             http_1.HTTP_PROVIDERS,
+                            // provide(AuthHttp, {
+                            // 	useFactory: (http) => {
+                            // 		return new AuthHttp(new AuthConfig(), http);
+                            // 	},
+                            // 	deps: [Http]
+                            // }),
+                            // AuthConfig,
                             hero_service_1.HeroService,
                             user_service_1.UserService,
                             storage_service_1.StorageService,
