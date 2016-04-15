@@ -5,16 +5,9 @@ var _ = require('lodash');
 
 var Log = require('./log');
 
-var mysql = require('mysql');
+var database = require('./database');
 
 var app = module.exports = express.Router();
-
-var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'sss',
-	password : 'sss',
-	database : 'angular2'
-});
 
 
 function createToken(user) {
@@ -35,7 +28,7 @@ app.post('/authenticate', function(req, res) {
 	console.log('email ', email);
 	console.log('password', password);
 
-	connection.query('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password], function(err, rows, fields) {
+	database.transaction('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password], function(err, rows, fields) {
 		if (err)
 			throw err;
 
