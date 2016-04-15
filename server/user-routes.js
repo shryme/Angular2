@@ -29,8 +29,6 @@ app.post('/authenticate', function(req, res) {
 	console.log('password', password);
 
 	database.transaction('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password], function(err, rows, fields) {
-		if (err)
-			throw err;
 
 		console.log('LOGGED: ', rows[0]);
 
@@ -41,8 +39,7 @@ app.post('/authenticate', function(req, res) {
 			};
 		}
 		else {
-			var user = {id: rows[0].id, username: rows[0].username, email: rows[0].email};
-			var token = createToken(user);
+			var token = createToken(rows[0]);
 
 			resp = {
 				success: true,
