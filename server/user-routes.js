@@ -4,7 +4,6 @@ var jwt = require('jsonwebtoken');
 var _ = require('lodash');
 
 var Log = require('./log');
-var log = new Log();
 
 var mysql = require('mysql');
 
@@ -26,7 +25,7 @@ function createToken(user) {
 
 app.post('/authenticate', function(req, res) {
 
-	log.info(req);
+	Log.info(req);
 
 
 	var email = req.body.email;
@@ -62,7 +61,7 @@ app.post('/authenticate', function(req, res) {
 		res.setHeader('Content-Type', 'application/json');
 		res.json(resp);
 
-		log.result(req, resp);
+		Log.result(req, resp);
 
 
 	});
@@ -109,7 +108,7 @@ app.use(function(req, res, next) {
 app.get('/test', function(req, res) {
 
 	var json = { message: 'Welcome to you, ' + req.decoded.email + " - " + req.decoded.id + " --- "}
-	log.result(req, resp);
+	Log.result(req, json);
 	res.json(json);
 
 });

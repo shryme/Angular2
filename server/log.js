@@ -1,35 +1,24 @@
 var colors = require('colors');
 
-function Log() {
 
+var fct = {
+	delimiter: function() {
+		console.log('////////////////////////////////////////////////////'.bgYellow.yellow);
+	},
+
+	result: function(req, resp) {
+		if (resp.error)
+			console.log(req.url.bgRed.white, resp);
+		else
+			console.log(req.url.green, resp);
+		fct.delimiter();
+	},
+
+	info: function(req, resp) {
+		fct.delimiter();
+		console.log(req.url.cyan, req.body);
+	}
 }
 
-Log.prototype.constructor = Log;
 
-Log.prototype.delimiter = function() {
-	console.log('////////////////////////////////////////////////////'.bgYellow.yellow);
-}
-
-Log.prototype.result = function(req, resp) {
-	if (resp.error)
-		console.log(req.url.bgRed.white, resp);
-	else
-		console.log(req.url.green, resp);
-	this.delimiter();
-}
-
-Log.prototype.info = function(req) {
-	this.delimiter();
-	console.log(req.url.cyan, req.body);
-}
-
-module.exports = Log;
-
-
-
-
-
-
-
-
-
+module.exports = fct;
