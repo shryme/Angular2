@@ -18,14 +18,17 @@ import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 export class LoginComponent implements OnInit {
 
 	currentUser: User;
-	submitted: Boolean = false;
-	test: String = "none";
+	submitted: boolean = false;
+	test: string = "none";
 
-	email: String = "";
-	password: String = "";
-	username: String = "";
-	id: Number;
-	token: String;
+	email: string = "";
+	password: string = "";
+	password2: string = "";
+	username: string = "";
+	id: number;
+	token: string;
+
+	newAccount: boolean = false;
 
 	jwtHelper: JwtHelper = new JwtHelper();
 
@@ -43,9 +46,21 @@ export class LoginComponent implements OnInit {
 		// window.history.back();
 	}
 
+	switchNew() {
+		this.newAccount = !this.newAccount;
+	}
+
 	onSubmit() {
+
+
+		if (this.newAccount) {
+			if (this.password !== this.password2)
+				return;
+		}
+
 		this.submitted = true;
-		this._userService.authenticate(this.email, this.password).subscribe(res => {
+
+		this._userService.authenticate(this.email, this.password, this.newAccount).subscribe(res => {
 
 			//If the auth was a success, we navigate elsewhere
 			if (res)

@@ -26,9 +26,9 @@ export class UserService {
 		this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
 	}
 
-	authenticate(email, password) {
+	authenticate(email: string, password: string, newAccount: boolean) {
 
-		let json = JSON.stringify({ "email": email, "password": password });
+		let json = JSON.stringify({ "email": email, "password": password, "newAccount": newAccount });
 
 		return this.http.post('http://localhost:3333/authenticate', json)
 			.map((obj: any) => {

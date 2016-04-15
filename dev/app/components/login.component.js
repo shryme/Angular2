@@ -36,7 +36,9 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                     this.test = "none";
                     this.email = "";
                     this.password = "";
+                    this.password2 = "";
                     this.username = "";
+                    this.newAccount = false;
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
                 }
                 LoginComponent.prototype.ngOnInit = function () {
@@ -44,10 +46,17 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                 LoginComponent.prototype.goBack = function () {
                     // window.history.back();
                 };
+                LoginComponent.prototype.switchNew = function () {
+                    this.newAccount = !this.newAccount;
+                };
                 LoginComponent.prototype.onSubmit = function () {
                     var _this = this;
+                    if (this.newAccount) {
+                        if (this.password !== this.password2)
+                            return;
+                    }
                     this.submitted = true;
-                    this._userService.authenticate(this.email, this.password).subscribe(function (res) {
+                    this._userService.authenticate(this.email, this.password, this.newAccount).subscribe(function (res) {
                         //If the auth was a success, we navigate elsewhere
                         if (res)
                             _this._router.navigate(['Settings']);

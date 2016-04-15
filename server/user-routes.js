@@ -23,38 +23,108 @@ app.post('/authenticate', function(req, res) {
 
 	var email = req.body.email;
 	var password = req.body.password;
+	var newAccount = req.body.newAccount;
 	var resp;
 
 	console.log('email ', email);
 	console.log('password', password);
 
-	database.transaction('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password], function(err, rows, fields) {
+	if (newAccount) {
 
-		console.log('LOGGED: ', rows[0]);
+		database.transaction('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password], function(err, rows, fields) {
 
-		if (rows[0] === undefined) {
-			resp = {
-				success: false,
-				message: 'Authentication failed. Wrong password.'
-			};
-		}
-		else {
-			var token = createToken(rows[0]);
+			console.log('LOGGED: ', rows[0]);
 
-			resp = {
-				success: true,
-				message: 'Enjoy your token!',
-				token: token
-			};
-		}
-
-		res.setHeader('Content-Type', 'application/json');
-		res.json(resp);
-
-		Log.result(req, resp);
+			if (rows[0] === undefined) {
 
 
-	});
+
+
+				database.transaction('insert  into `user`(`username`,`email`,`password`) values (?, ?, ?)', [email, email, password], function(err, rows, fields) {
+
+					console.log('LOGGED: ', rows);
+
+					if (rows.insertId === undefined) {
+						resp = {
+							success: false,
+							message: 'There was an error.'
+						};
+					}
+					else {
+						var token = createToken({id: rows.insertId, username: email, email: email});
+						console.log('TOKEN', token);
+						resp = {
+							success: true,
+							message: 'Enjoy your token!',
+							token: token
+						};
+					}
+
+					res.setHeader('Content-Type', 'application/json');
+					res.json(resp);
+
+					Log.result(req, resp);
+
+
+				});
+
+
+
+
+
+			}
+			else {
+				var token = createToken(rows[0]);
+
+				resp = {
+					success: false,
+					message: 'Email already in use.'
+				};
+
+				res.setHeader('Content-Type', 'application/json');
+				res.json(resp);
+
+				Log.result(req, resp);
+			}
+
+
+
+
+		});
+
+
+
+	}
+	else {
+		database.transaction('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password], function(err, rows, fields) {
+
+			console.log('LOGGED: ', rows[0]);
+
+			if (rows[0] === undefined) {
+				resp = {
+					success: false,
+					message: 'Authentication failed. Wrong password.'
+				};
+			}
+			else {
+				var token = createToken(rows[0]);
+
+				resp = {
+					success: true,
+					message: 'Enjoy your token!',
+					token: token
+				};
+			}
+
+			res.setHeader('Content-Type', 'application/json');
+			res.json(resp);
+
+			Log.result(req, resp);
+
+
+		});
+	}
+
 
 
 

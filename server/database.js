@@ -21,30 +21,24 @@ var fct = {
 		connection.beginTransaction(function(err) {
 			if (err)
 				throw err;
+
 			connection.query(a, b, function(err, result, fields) {
+				var log = 'Post ' + result.insertId + ' added';
+				console.log(log);
+
 				if (err) {
 					return connection.rollback(function() {
 						throw err;
 					});
 				}
-
-				var log = 'Post ' + result.insertId + ' added';
-
-				connection.query(a, b, function(err, result) {
+				connection.commit(function(err) {
 					if (err) {
 						return connection.rollback(function() {
 							throw err;
 						});
 					}
-					connection.commit(function(err) {
-						if (err) {
-							return connection.rollback(function() {
-								throw err;
-							});
-						}
-						c(err, result, fields);
-						console.log('success!');
-					});
+					c(err, result, fields);
+					console.log('success!');
 				});
 			});
 		});

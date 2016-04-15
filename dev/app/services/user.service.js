@@ -43,9 +43,9 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', 'angular2-
                     this.headers = new http_1.Headers();
                     this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
                 }
-                UserService.prototype.authenticate = function (email, password) {
+                UserService.prototype.authenticate = function (email, password, newAccount) {
                     var _this = this;
-                    var json = JSON.stringify({ "email": email, "password": password });
+                    var json = JSON.stringify({ "email": email, "password": password, "newAccount": newAccount });
                     return this.http.post('http://localhost:3333/authenticate', json)
                         .map(function (obj) {
                         var token;
