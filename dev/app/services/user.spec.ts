@@ -42,22 +42,53 @@ describe('UserService', () => {
 			let baseResponse = new Response(new ResponseOptions({ body: { success: true, message: 'Enjoy your token!', token: token } }));
 			backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
 			User.setNextId(0);
-			userService.authenticate('a@a.com', 'a@a.com', false).subscribe((res: string) => {
-				expect(res).toBe(undefined);
+			userService.authenticate('a@a.com', 'a@a.com', false).subscribe((res: any) => {
+				expect(res.token).toBe(token);
 			});
 		})
 	);
 
-	it('should return an undefined token when authenticate did not worked',
+	it('should return user when authenticate worked',
 		inject([UserService, MockBackend], (userService: UserService, backend: MockBackend) => {
-			let baseResponse = new Response(new ResponseOptions({ body: new Error('this is an error') }));
+			let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZXJ2ZXIiLCJlbWFpbCI6ImFAYS5jb20iLCJwYXNzd29yZCI6ImFAYS5jb20iLCJpYXQiOjE0NTk0NDc4ODAsImV4cCI6MTQ1OTUzNDI4MH0.b260_KHB1FBBNlu2avblbi9VzqSER9hnzzCzdf6cGA4';
+			let baseResponse = new Response(new ResponseOptions({ body: { success: true, message: 'Enjoy your token!', token: token } }));
 			backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
 			User.setNextId(0);
-			userService.authenticate('a@a.com', 'a@a.com', false).subscribe((res: string) => {
-				expect(res).toBe('this is an error');
+			userService.authenticate('a@a.com', 'a@a.com', false).subscribe((res: any) => {
+				expect(res.user.id).toBe(1);
+				expect(res.user.username).toBe('server');
+				expect(res.user.email).toBe('a@a.com');
 			});
 		})
 	);
+
+	it('should return a user without password when authenticate worked',
+		inject([UserService, MockBackend], (userService: UserService, backend: MockBackend) => {
+			let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZXJ2ZXIiLCJlbWFpbCI6ImFAYS5jb20iLCJwYXNzd29yZCI6ImFAYS5jb20iLCJpYXQiOjE0NTk0NDc4ODAsImV4cCI6MTQ1OTUzNDI4MH0.b260_KHB1FBBNlu2avblbi9VzqSER9hnzzCzdf6cGA4';
+			let baseResponse = new Response(new ResponseOptions({ body: { success: true, message: 'Enjoy your token!', token: token } }));
+			backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
+			User.setNextId(0);
+			userService.authenticate('a@a.com', 'a@a.com', false).subscribe((res: any) => {
+				console.log('HERE', res);
+				expect(res.user.password).toBe(undefined);
+			});
+		})
+	);
+
+	// it('should return an undefined token when authenticate did not worked',
+	// 	inject([UserService, MockBackend], (userService: UserService, backend: MockBackend) => {
+	// 		let baseResponse = new Response(new ResponseOptions({ body: new Error('this is an error') }));
+	// 		backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
+	// 		User.setNextId(0);
+	// 		userService.authenticate('a@a.com', 'a@a.com', false).subscribe((res: any) => {
+
+	// 		},
+	// 		err => {
+	// 			console.log(err);
+	// 			expect(false).toBe(true);
+	// 		});
+	// 	})
+	// );
 
 
 

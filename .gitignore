@@ -51,3 +51,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 dev/app/services/user.service.js.map
+dev/app/services/user.spec.js
+dev/app/services/user.spec.js.map
