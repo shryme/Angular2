@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../services/user.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../services/user.service', '../services/storage.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, user_service_1, angular2_jwt_1;
+    var core_1, router_1, user_service_1, storage_service_1, angular2_jwt_1;
     var LoginComponent;
     return {
         setters:[
@@ -23,15 +23,20 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
             function (user_service_1_1) {
                 user_service_1 = user_service_1_1;
             },
+            function (storage_service_1_1) {
+                storage_service_1 = storage_service_1_1;
+            },
             function (angular2_jwt_1_1) {
                 angular2_jwt_1 = angular2_jwt_1_1;
             }],
         execute: function() {
             LoginComponent = (function () {
-                function LoginComponent(_userService, _routeParams, _router) {
+                function LoginComponent(_userService, _routeParams, _router, _storage, _local) {
                     this._userService = _userService;
                     this._routeParams = _routeParams;
                     this._router = _router;
+                    this._storage = _storage;
+                    this._local = _local;
                     this.submitted = false;
                     this.test = "none";
                     this.email = "";
@@ -55,15 +60,17 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                         if (this.password !== this.password2)
                             return;
                     }
-                    this.submitted = true;
                     this._userService.authenticate(this.email, this.password, this.newAccount).subscribe(function (res) {
-                        //If the auth was a success, we navigate elsewhere
-                        if (res === undefined)
-                            _this._router.navigate(['Settings']);
-                        _this.email = "";
+                        _this._storage.set('user', res.user);
+                        _this._local.set('id_token', res.token);
+                        _this._router.navigate(['Settings']);
+                    }, function (err) {
+                        console.log('SUBSCRIBE ERROR', err);
+                        _this.username = err.json().message;
+                        _this.email = err.status;
                         _this.password = "";
-                        _this.username = res;
-                        _this.id = -1;
+                        _this.id = undefined;
+                        _this.submitted = true;
                     });
                 };
                 LoginComponent = __decorate([
@@ -72,7 +79,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                         templateUrl: 'app/components/login.component.html',
                         inputs: ['hero']
                     }), 
-                    __metadata('design:paramtypes', [user_service_1.UserService, router_1.RouteParams, router_1.Router])
+                    __metadata('design:paramtypes', [user_service_1.UserService, router_1.RouteParams, router_1.Router, storage_service_1.StorageService, storage_service_1.PermanentStorageService])
                 ], LoginComponent);
                 return LoginComponent;
             }());

@@ -48,26 +48,9 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', 'angular2-
                     var json = JSON.stringify({ "email": email, "password": password, "newAccount": newAccount });
                     return this.http.post('http://localhost:3333/authenticate', json)
                         .map(function (obj) {
-                        var token;
-                        if (obj instanceof Error || !obj.success) {
-                            console.log('ERROR', obj);
-                            _this.user = undefined;
-                            return obj.message;
-                        }
-                        else {
-                            token = obj.token;
-                            var objUser = _this.jwtHelper.decodeToken(token);
-                            _this.user = new user_1.User(objUser.username, objUser.email, objUser.id);
-                            _this._storage.set('user', _this.user);
-                            _this._local.set('id_token', token);
-                            return;
-                        }
-                        // var err = obj.message;
-                        // if (err === undefined)
-                        // 	err = 'Error with server';
-                        // this.user = undefined;
-                        // //TODO - remove from session
-                        // return err;
+                        var objUser = _this.jwtHelper.decodeToken(obj.token);
+                        obj.user = new user_1.User(objUser.username, objUser.email, objUser.id);
+                        return obj;
                     });
                 };
                 UserService.prototype.getUser = function () {
