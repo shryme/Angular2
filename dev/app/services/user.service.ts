@@ -32,30 +32,11 @@ export class UserService {
 
 		return this.http.post('http://localhost:3333/authenticate', json)
 			.map((obj: any) => {
-				let token: string;
 
-				if (obj instanceof Error || !obj.success) {
-					console.log('ERROR', obj);
-					this.user = undefined;
-					return obj.message;
-				}
-				else {
-					token = obj.token;
-					let objUser = this.jwtHelper.decodeToken(token);
-					this.user = new User(objUser.username, objUser.email, objUser.id);
-					this._storage.set('user', this.user);
-					this._local.set('id_token', token);
-					return;
-				}
+				let objUser = this.jwtHelper.decodeToken(obj.token);
+				obj.user = new User(objUser.username, objUser.email, objUser.id);
 
-				// var err = obj.message;
-				// if (err === undefined)
-				// 	err = 'Error with server';
-
-
-				// this.user = undefined;
-				// //TODO - remove from session
-				// return err;
+				return obj;
 
 			});
 

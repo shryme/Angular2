@@ -7,6 +7,8 @@ import {NgForm} from 'angular2/common';
 import {User} from '../objects/user';
 import {UserService} from '../services/user.service';
 
+import {StorageService, PermanentStorageService} from '../services/storage.service';
+
 import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 
 @Component({
@@ -35,7 +37,9 @@ export class LoginComponent implements OnInit {
 	constructor(
 		private _userService: UserService,
 		private _routeParams: RouteParams,
-		private _router: Router) {
+		private _router: Router,
+		private _storage: StorageService,
+		private _local: PermanentStorageService) {
 	}
 
 	ngOnInit() {
@@ -58,18 +62,21 @@ export class LoginComponent implements OnInit {
 				return;
 		}
 
-		this.submitted = true;
-
 		this._userService.authenticate(this.email, this.password, this.newAccount).subscribe(res => {
 
-			//If the auth was a success, we navigate elsewhere
-			if (res === undefined)
-				this._router.navigate(['Settings']);
+			this._storage.set('user', res.user);
+			this._local.set('id_token', res.token);
 
-			this.email = "";
+			this._router.navigate(['Settings']);
+
+		},
+		err => {
+			console.log('SUBSCRIBE ERROR', err);
+			this.username = err.json().message;
+			this.email = err.status;
 			this.password = "";
-			this.username = res;
-			this.id = -1;
+			this.id = undefined;
+			this.submitted = true;
 		});
 	}
 

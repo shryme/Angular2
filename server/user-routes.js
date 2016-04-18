@@ -47,6 +47,10 @@ app.post('/authenticate', function(req, res) {
 							success: false,
 							message: 'Error with database.'
 						};
+
+						res.setHeader('Content-Type', 'application/json');
+						res.status(500).json(resp);
+						return;
 					}
 					else {
 						var token = createToken({id: row.insertId, username: email, email: email});
@@ -70,7 +74,7 @@ app.post('/authenticate', function(req, res) {
 						code: err.code
 					};
 					res.setHeader('Content-Type', 'application/json');
-					res.json(resp);
+					res.status(500).json(resp);
 					console.log(req.url.bgRed.white, err);
 				});
 
@@ -86,7 +90,7 @@ app.post('/authenticate', function(req, res) {
 				};
 
 				res.setHeader('Content-Type', 'application/json');
-				res.json(resp);
+				res.status(500).json(resp);
 
 				Log.result(req, resp);
 
@@ -99,7 +103,7 @@ app.post('/authenticate', function(req, res) {
 				code: err.code
 			};
 			res.setHeader('Content-Type', 'application/json');
-			res.json(resp);
+			res.status(500).json(resp);
 			console.log(req.url.bgRed.white, err);
 		});
 
@@ -117,6 +121,10 @@ app.post('/authenticate', function(req, res) {
 					success: false,
 					message: 'Authentication failed.'
 				};
+
+				res.setHeader('Content-Type', 'application/json');
+				res.status(500).json(resp);
+				return;
 			}
 			else {
 				var token = createToken(rows[0]);
@@ -139,7 +147,7 @@ app.post('/authenticate', function(req, res) {
 				code: err.code
 			};
 			res.setHeader('Content-Type', 'application/json');
-			res.json(resp);
+			res.status(500).json(resp);
 			console.log(req.url.bgRed.white, err);
 		})
 
