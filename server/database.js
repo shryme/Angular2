@@ -17,31 +17,48 @@ var connection = mysql.createConnection({
 var fct = {
 	transaction: function(a, b, c) {
 
+		var promise = new Promise(function(resolve, reject) {
 
-		connection.beginTransaction(function(err) {
-			if (err)
-				throw err;
 
-			connection.query(a, b, function(err, result, fields) {
-				var log = 'Post ' + result.insertId + ' added';
-				console.log(log);
-
+			connection.beginTransaction(function(err) {
 				if (err) {
-					return connection.rollback(function() {
-						throw err;
-					});
+					reject(err);
+					return;
+					// throw err;
 				}
-				connection.commit(function(err) {
+
+				connection.query(a, b, function(err, result, fields) {
+					var log = 'Post ' + result.insertId + ' added';
+					console.log(log);
+
 					if (err) {
 						return connection.rollback(function() {
-							throw err;
+							reject(err);
+							return;
+							// throw err;
 						});
 					}
-					c(err, result, fields);
-					console.log('success!');
+					connection.commit(function(err) {
+						if (err) {
+							return connection.rollback(function() {
+								reject(err);
+								return;
+								// throw err;
+							});
+						}
+						else {
+							resolve(result);
+							// c(err, result, fields);
+						}
+					});
 				});
 			});
+
+
+
 		});
+
+		return promise;
 
 
 

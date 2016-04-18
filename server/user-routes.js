@@ -31,27 +31,25 @@ app.post('/authenticate', function(req, res) {
 
 	if (newAccount) {
 
-		database.transaction('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password], function(err, rows, fields) {
+		var promise = database.transaction('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password]);
 
+		promise.then(function(rows) {
 			console.log('LOGGED: ', rows[0]);
 
 			if (rows[0] === undefined) {
+				var promiseInsert = database.transaction('insert  into `user`(`username`,`email`,`password`) values (?, ?, ?)', [email, email, password]);
 
+				promiseInsert.then(function(row) {
+					console.log('LOGGED: ', row);
 
-
-
-				database.transaction('insert  into `user`(`username`,`email`,`password`) values (?, ?, ?)', [email, email, password], function(err, rows, fields) {
-
-					console.log('LOGGED: ', rows);
-
-					if (rows.insertId === undefined) {
+					if (row.insertId === undefined) {
 						resp = {
 							success: false,
 							message: 'Error with database.'
 						};
 					}
 					else {
-						var token = createToken({id: rows.insertId, username: email, email: email});
+						var token = createToken({id: row.insertId, username: email, email: email});
 						console.log('TOKEN', token);
 						resp = {
 							success: true,
@@ -65,15 +63,21 @@ app.post('/authenticate', function(req, res) {
 
 					Log.result(req, resp);
 
-
+				}, function (err) {
+					resp = {
+						success: false,
+						message: err.message,
+						code: err.code
+					};
+					res.setHeader('Content-Type', 'application/json');
+					res.json(resp);
+					console.log(req.url.bgRed.white, err);
 				});
-
-
-
 
 
 			}
 			else {
+
 				var token = createToken(rows[0]);
 
 				resp = {
@@ -85,19 +89,27 @@ app.post('/authenticate', function(req, res) {
 				res.json(resp);
 
 				Log.result(req, resp);
+
 			}
 
-
-
-
+		}, function(err) {
+			resp = {
+				success: false,
+				message: err.message,
+				code: err.code
+			};
+			res.setHeader('Content-Type', 'application/json');
+			res.json(resp);
+			console.log(req.url.bgRed.white, err);
 		});
 
 
 
 	}
 	else {
-		database.transaction('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password], function(err, rows, fields) {
+		var promise = database.transaction('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password]);
 
+		promise.then(function(rows) {
 			console.log('LOGGED: ', rows[0]);
 
 			if (rows[0] === undefined) {
@@ -120,9 +132,18 @@ app.post('/authenticate', function(req, res) {
 			res.json(resp);
 
 			Log.result(req, resp);
+		}, function(err) {
+			resp = {
+				success: false,
+				message: err.message,
+				code: err.code
+			};
+			res.setHeader('Content-Type', 'application/json');
+			res.json(resp);
+			console.log(req.url.bgRed.white, err);
+		})
 
 
-		});
 	}
 
 
