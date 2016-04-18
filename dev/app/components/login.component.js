@@ -58,11 +58,11 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                     this.submitted = true;
                     this._userService.authenticate(this.email, this.password, this.newAccount).subscribe(function (res) {
                         //If the auth was a success, we navigate elsewhere
-                        if (res)
+                        if (res === undefined)
                             _this._router.navigate(['Settings']);
                         _this.email = "";
                         _this.password = "";
-                        _this.username = 'Wrong email or password';
+                        _this.username = res;
                         _this.id = -1;
                     });
                 };

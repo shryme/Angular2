@@ -63,12 +63,12 @@ export class LoginComponent implements OnInit {
 		this._userService.authenticate(this.email, this.password, this.newAccount).subscribe(res => {
 
 			//If the auth was a success, we navigate elsewhere
-			if (res)
+			if (res === undefined)
 				this._router.navigate(['Settings']);
 
 			this.email = "";
 			this.password = "";
-			this.username = 'Wrong email or password';
+			this.username = res;
 			this.id = -1;
 		});
 	}
