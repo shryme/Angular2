@@ -47,7 +47,7 @@ app.post('/authenticate', function(req, res) {
 					if (rows.insertId === undefined) {
 						resp = {
 							success: false,
-							message: 'There was an error.'
+							message: 'Error with database.'
 						};
 					}
 					else {
@@ -55,7 +55,7 @@ app.post('/authenticate', function(req, res) {
 						console.log('TOKEN', token);
 						resp = {
 							success: true,
-							message: 'Enjoy your token!',
+							message: 'Success!',
 							token: token
 						};
 					}
@@ -103,7 +103,7 @@ app.post('/authenticate', function(req, res) {
 			if (rows[0] === undefined) {
 				resp = {
 					success: false,
-					message: 'Authentication failed. Wrong password.'
+					message: 'Authentication failed.'
 				};
 			}
 			else {
@@ -111,7 +111,7 @@ app.post('/authenticate', function(req, res) {
 
 				resp = {
 					success: true,
-					message: 'Enjoy your token!',
+					message: 'Success!',
 					token: token
 				};
 			}
