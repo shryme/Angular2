@@ -42,19 +42,19 @@ describe('UserService', () => {
 			let baseResponse = new Response(new ResponseOptions({ body: { success: true, message: 'Enjoy your token!', token: token } }));
 			backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
 			User.setNextId(0);
-			userService.authenticate('a@a.com', 'a@a.com').subscribe((res: boolean) => {
-				expect(res).toBe(true);
+			userService.authenticate('a@a.com', 'a@a.com', false).subscribe((res: string) => {
+				expect(res).toBe(undefined);
 			});
 		})
 	);
 
 	it('should return an undefined token when authenticate did not worked',
 		inject([UserService, MockBackend], (userService: UserService, backend: MockBackend) => {
-			let baseResponse = new Response(new ResponseOptions({ body: { error: '404' } }));
+			let baseResponse = new Response(new ResponseOptions({ body: new Error('this is an error') }));
 			backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
 			User.setNextId(0);
-			userService.authenticate('a@a.com', 'a@a.com').subscribe((res: boolean) => {
-				expect(res).toBe(false);
+			userService.authenticate('a@a.com', 'a@a.com', false).subscribe((res: string) => {
+				expect(res).toBe('this is an error');
 			});
 		})
 	);
