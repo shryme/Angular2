@@ -19,6 +19,8 @@ function createToken(user) {
 
 app.post('/authenticate', function(req, res) {
 
+	res.setHeader('Content-Type', 'application/json');
+
 	Log.info(req);
 
 
@@ -44,13 +46,10 @@ app.post('/authenticate', function(req, res) {
 				promiseInsert.then(function(insertId) {
 					console.log(insertId);
 					if (insertId === undefined) {
-						resp = {
+						res.status(500).json({
 							success: false,
 							message: 'Error with database.'
-						};
-
-						res.setHeader('Content-Type', 'application/json');
-						res.status(500).json(resp);
+						});
 						return;
 					}
 					else {
@@ -62,7 +61,6 @@ app.post('/authenticate', function(req, res) {
 							token: token
 						};
 
-						res.setHeader('Content-Type', 'application/json');
 						res.json(resp);
 
 						Log.result(req, resp);
@@ -73,7 +71,6 @@ app.post('/authenticate', function(req, res) {
 						message: err.message,
 						code: err.code
 					};
-					res.setHeader('Content-Type', 'application/json');
 					res.status(500).json(resp);
 					console.log(req.url.bgRed.white, err);
 				});
@@ -86,7 +83,6 @@ app.post('/authenticate', function(req, res) {
 					message: 'Email already in use.'
 				};
 
-				res.setHeader('Content-Type', 'application/json');
 				res.status(500).json(resp);
 
 				Log.result(req, resp);
@@ -98,7 +94,6 @@ app.post('/authenticate', function(req, res) {
 				message: err.message,
 				code: err.code
 			};
-			res.setHeader('Content-Type', 'application/json');
 			res.status(500).json(resp);
 			console.log(req.url.bgRed.white, err);
 		});
@@ -117,7 +112,6 @@ app.post('/authenticate', function(req, res) {
 					message: 'Authentication failed.'
 				};
 
-				res.setHeader('Content-Type', 'application/json');
 				res.status(500).json(resp);
 				return;
 			}
@@ -129,7 +123,6 @@ app.post('/authenticate', function(req, res) {
 					message: 'Success!',
 					token: token
 				};
-				res.setHeader('Content-Type', 'application/json');
 				res.json(resp);
 
 			}
@@ -140,7 +133,6 @@ app.post('/authenticate', function(req, res) {
 				message: err.message,
 				code: err.code
 			};
-			res.setHeader('Content-Type', 'application/json');
 			res.status(500).json(resp);
 			console.log(req.url.bgRed.white, err);
 		})
