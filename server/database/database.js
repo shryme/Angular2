@@ -1,10 +1,10 @@
 var mysql = require('mysql');
 
-var config = require('./config');
+var config = require('../config');
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
 
-var Log = require('./log');
+var Log = require('../log');
 
 var connection = mysql.createConnection({
 	host     : 'localhost',

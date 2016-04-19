@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 var Log = require('./log');
 
-var database = require('./database');
+var database = require('./database/database');
 
 var app = module.exports = express.Router();
 
