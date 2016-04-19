@@ -6,6 +6,7 @@ var _ = require('lodash');
 var Log = require('./log');
 
 var database = require('./database/database');
+var userDao = require('./database/user');
 
 var app = module.exports = express.Router();
 
@@ -31,18 +32,18 @@ app.post('/authenticate', function(req, res) {
 
 	if (newAccount) {
 
-		var promise = database.transaction('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password]);
 
-		promise.then(function(rows) {
-			console.log('LOGGED: ', rows[0]);
+		var promiseGetByEmail = userDao.getByEmail(email);
 
-			if (rows[0] === undefined) {
-				var promiseInsert = database.transaction('insert  into `user`(`username`,`email`,`password`) values (?, ?, ?)', [email, email, password]);
+		promiseGetByEmail.then(function(user) {
+			console.log('LOGGED: ', user);
 
-				promiseInsert.then(function(row) {
-					console.log('LOGGED: ', row);
+			if (user === undefined) {
+				var promiseInsert = userDao.insert(email, email, password);
 
-					if (row.insertId === undefined) {
+				promiseInsert.then(function(insertId) {
+					console.log(insertId);
+					if (insertId === undefined) {
 						resp = {
 							success: false,
 							message: 'Error with database.'
@@ -53,21 +54,20 @@ app.post('/authenticate', function(req, res) {
 						return;
 					}
 					else {
-						var token = createToken({id: row.insertId, username: email, email: email});
+						var token = createToken({id: insertId, username: email, email: email});
 						console.log('TOKEN', token);
 						resp = {
 							success: true,
 							message: 'Success!',
 							token: token
 						};
+
+						res.setHeader('Content-Type', 'application/json');
+						res.json(resp);
+
+						Log.result(req, resp);
 					}
-
-					res.setHeader('Content-Type', 'application/json');
-					res.json(resp);
-
-					Log.result(req, resp);
-
-				}, function (err) {
+				}, function(err) {
 					resp = {
 						success: false,
 						message: err.message,
@@ -78,11 +78,8 @@ app.post('/authenticate', function(req, res) {
 					console.log(req.url.bgRed.white, err);
 				});
 
-
 			}
 			else {
-
-				var token = createToken(rows[0]);
 
 				resp = {
 					success: false,
@@ -95,7 +92,6 @@ app.post('/authenticate', function(req, res) {
 				Log.result(req, resp);
 
 			}
-
 		}, function(err) {
 			resp = {
 				success: false,
@@ -111,12 +107,11 @@ app.post('/authenticate', function(req, res) {
 
 	}
 	else {
-		var promise = database.transaction('SELECT * FROM `user` WHERE `email` = ? AND `password` = ?', [email, password]);
 
-		promise.then(function(rows) {
-			console.log('LOGGED: ', rows[0]);
+		var promiseLogin = userDao.login(email, password);
 
-			if (rows[0] === undefined) {
+		promiseLogin.then(function(row) {
+			if (row === undefined) {
 				resp = {
 					success: false,
 					message: 'Authentication failed.'
@@ -127,18 +122,17 @@ app.post('/authenticate', function(req, res) {
 				return;
 			}
 			else {
-				var token = createToken(rows[0]);
+				var token = createToken(row);
 
 				resp = {
 					success: true,
 					message: 'Success!',
 					token: token
 				};
+				res.setHeader('Content-Type', 'application/json');
+				res.json(resp);
+
 			}
-
-			res.setHeader('Content-Type', 'application/json');
-			res.json(resp);
-
 			Log.result(req, resp);
 		}, function(err) {
 			resp = {
@@ -151,13 +145,13 @@ app.post('/authenticate', function(req, res) {
 			console.log(req.url.bgRed.white, err);
 		})
 
-
 	}
 
 
 
 
 });
+
 
 
 
