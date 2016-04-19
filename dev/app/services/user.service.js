@@ -63,7 +63,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', 'angular2-
                             return new user_1.User(sessionUser.username, sessionUser.email, sessionUser.id);
                         else {
                             //TODO - redirect to login
-                            return new user_1.User('def', 'def');
+                            return undefined;
                         }
                     }
                 };

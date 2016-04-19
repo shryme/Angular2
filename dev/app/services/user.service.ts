@@ -53,7 +53,7 @@ export class UserService {
 				return new User(sessionUser.username, sessionUser.email, sessionUser.id);
 			else {
 				//TODO - redirect to login
-				return new User('def', 'def');
+				return undefined;
 			}
 
 		}
