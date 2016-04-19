@@ -44,15 +44,28 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                     this.password2 = "";
                     this.username = "";
                     this.newAccount = false;
+                    this.isLogged = false;
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
                 }
                 LoginComponent.prototype.ngOnInit = function () {
+                    if (this._userService.getUser() !== undefined)
+                        this.isLogged = true;
                 };
                 LoginComponent.prototype.goBack = function () {
                     // window.history.back();
                 };
                 LoginComponent.prototype.switchNew = function () {
                     this.newAccount = !this.newAccount;
+                };
+                LoginComponent.prototype.signOut = function () {
+                    this.isLogged = false;
+                    this._storage.del('user');
+                    this._local.del('id_token');
+                    this.username = "";
+                    this.email = "";
+                    this.password = "";
+                    this.id = undefined;
+                    this.submitted = false;
                 };
                 LoginComponent.prototype.onSubmit = function () {
                     var _this = this;
@@ -65,13 +78,10 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                         _this._local.set('id_token', res.token);
                         _this._router.navigate(['Settings']);
                     }, function (err) {
-                        _this._storage.del('user');
-                        _this._local.del('id_token');
                         console.log('SUBSCRIBE ERROR', err);
+                        _this.signOut();
                         _this.username = err.json().message;
                         _this.email = err.status;
-                        _this.password = "";
-                        _this.id = undefined;
                         _this.submitted = true;
                     });
                 };

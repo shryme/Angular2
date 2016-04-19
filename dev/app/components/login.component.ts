@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
 	token: string;
 
 	newAccount: boolean = false;
+	isLogged: boolean = false;
 
 	jwtHelper: JwtHelper = new JwtHelper();
 
@@ -43,7 +44,8 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {
-
+		if (this._userService.getUser() !== undefined)
+			this.isLogged = true;
 	}
 
 	goBack() {
@@ -52,6 +54,17 @@ export class LoginComponent implements OnInit {
 
 	switchNew() {
 		this.newAccount = !this.newAccount;
+	}
+
+	signOut() {
+		this.isLogged = false;
+		this._storage.del('user');
+		this._local.del('id_token');
+		this.username = "";
+		this.email = "";
+		this.password = "";
+		this.id = undefined;
+		this.submitted = false;
 	}
 
 	onSubmit() {
@@ -71,13 +84,10 @@ export class LoginComponent implements OnInit {
 
 		},
 		err => {
-			this._storage.del('user');
-			this._local.del('id_token');
 			console.log('SUBSCRIBE ERROR', err);
+			this.signOut();
 			this.username = err.json().message;
 			this.email = err.status;
-			this.password = "";
-			this.id = undefined;
 			this.submitted = true;
 		});
 	}

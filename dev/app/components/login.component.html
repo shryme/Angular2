@@ -1,10 +1,15 @@
 
+<div [hidden]="!isLogged">
+	<h1>Bonjour!</h1>
+	<button type="button" class="btn btn-default" (click)="signOut()">Sign out?</button>
+</div>
 
+<div [hidden]="isLogged">
 
 <div [hidden]="submitted">
 	<form (ngSubmit)="onSubmit()" #loginForm="ngForm" [hidden]="newAccount">
 		<button type="button" class="btn btn-default" (click)="switchNew()">New?</button>
-		<h1>Login</h1>
+		<h1>Login - {{isLogged}}</h1>
 		<div class="form-group">
 			<label for="name">Courriel</label>
 			<input type="email" class="form-control" required
@@ -78,3 +83,4 @@
 	<button class="btn btn-default" (click)="submitted=false">Edit</button>
 </div>
 
+</div>
