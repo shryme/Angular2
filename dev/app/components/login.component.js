@@ -65,6 +65,8 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                         _this._local.set('id_token', res.token);
                         _this._router.navigate(['Settings']);
                     }, function (err) {
+                        _this._storage.del('user');
+                        _this._local.del('id_token');
                         console.log('SUBSCRIBE ERROR', err);
                         _this.username = err.json().message;
                         _this.email = err.status;

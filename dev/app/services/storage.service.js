@@ -35,6 +35,9 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                         return sessionStr;
                     }
                 };
+                StorageService.prototype.del = function (key) {
+                    sessionStorage.removeItem(key);
+                };
                 StorageService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])
@@ -58,6 +61,9 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     catch (e) {
                         return localStr;
                     }
+                };
+                PermanentStorageService.prototype.del = function (key) {
+                    localStorage.removeItem(key);
                 };
                 return PermanentStorageService;
             }());

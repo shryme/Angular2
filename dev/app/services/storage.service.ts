@@ -23,6 +23,10 @@ export class StorageService {
 
 	}
 
+	del(key: string) {
+		sessionStorage.removeItem(key);
+	}
+
 
 }
 
@@ -42,5 +46,9 @@ export class PermanentStorageService {
 			return localStr;
 		}
 
+	}
+
+	del(key: string) {
+		localStorage.removeItem(key);
 	}
 }

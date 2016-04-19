@@ -71,6 +71,8 @@ export class LoginComponent implements OnInit {
 
 		},
 		err => {
+			this._storage.del('user');
+			this._local.del('id_token');
 			console.log('SUBSCRIBE ERROR', err);
 			this.username = err.json().message;
 			this.email = err.status;
