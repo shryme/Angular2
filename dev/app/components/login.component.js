@@ -43,11 +43,12 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                     this.password2 = "";
                     this.username = "";
                     this.newAccount = false;
-                    this.isLogged = false;
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
                 }
                 LoginComponent.prototype.ngOnInit = function () {
-                    this.isLogged = this._userService.loggedIn();
+                };
+                LoginComponent.prototype.loggedIn = function () {
+                    return this._userService.loggedIn();
                 };
                 LoginComponent.prototype.goBack = function () {
                     // window.history.back();

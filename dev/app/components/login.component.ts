@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
 	token: string;
 
 	newAccount: boolean = false;
-	isLogged: boolean = false;
 
 	jwtHelper: JwtHelper = new JwtHelper();
 
@@ -43,7 +42,11 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.isLogged = this._userService.loggedIn();
+
+	}
+
+	loggedIn() {
+		return this._userService.loggedIn();
 	}
 
 	goBack() {
