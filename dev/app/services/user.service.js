@@ -74,6 +74,9 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', 'angular2-
                     else
                         return undefined;
                 };
+                UserService.prototype.loggedIn = function () {
+                    return angular2_jwt_1.tokenNotExpired();
+                };
                 UserService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_service_1.HttpService, storage_service_1.StorageService])

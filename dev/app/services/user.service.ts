@@ -71,4 +71,8 @@ export class UserService {
 			return undefined;
 	}
 
+	loggedIn() {
+		return tokenNotExpired();
+	}
+
 }

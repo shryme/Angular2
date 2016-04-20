@@ -47,8 +47,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
                 }
                 LoginComponent.prototype.ngOnInit = function () {
-                    if (this._userService.getUser() !== undefined)
-                        this.isLogged = true;
+                    this.isLogged = this._userService.loggedIn();
                 };
                 LoginComponent.prototype.goBack = function () {
                     // window.history.back();
