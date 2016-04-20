@@ -43,8 +43,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		if (this._userService.getUser() !== undefined)
-			this.isLogged = true;
+		this.isLogged = this._userService.loggedIn();
 	}
 
 	goBack() {
