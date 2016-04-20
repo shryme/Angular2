@@ -57,8 +57,7 @@ export class LoginComponent implements OnInit {
 
 	signOut() {
 		this.isLogged = false;
-		this._storage.del('user');
-		this._storage.del('id_token');
+		this._userService.delToken();
 		this.username = "";
 		this.email = "";
 		this.password = "";
@@ -76,8 +75,7 @@ export class LoginComponent implements OnInit {
 
 		this._userService.authenticate(this.email, this.password, this.newAccount).subscribe(res => {
 
-			this._storage.set('user', res.user);
-			this._storage.set('id_token', res.token);
+			this._userService.setToken(res.token);
 
 			this._router.navigate(['Settings']);
 

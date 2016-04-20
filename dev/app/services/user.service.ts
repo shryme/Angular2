@@ -42,25 +42,33 @@ export class UserService {
 	}
 
 	getUser() {
-		if (this.user !== undefined)
-			return this.user;
-		else {
-			console.log('getUser - Used session');
-			let sessionUser = this._storage.get('user');
 
-			if (sessionUser)
-				return new User(sessionUser.username, sessionUser.email, sessionUser.id);
-			else {
-				//TODO - redirect to login
-				return undefined;
-			}
-
-		}
+		return this.decodeUser();
 
 	}
 
-	// isLogIn() {
-	// 	let sessionUser: string = this._storage.get('id_token');
-	// }
+	setToken(token: string) {
+		this._storage.set('id_token', token);
+	}
+
+	getToken(): string {
+		return this._storage.get('id_token');
+	}
+
+	delToken() {
+		this._storage.del('id_token');
+	}
+
+	decodeUser(): User {
+		let token: string = this.getToken();
+		if (token === null || token === undefined)
+			return undefined;
+
+		let objUser = this.jwtHelper.decodeToken(token);
+		if (objUser !== undefined)
+			return new User(objUser.username, objUser.email, objUser.id);
+		else
+			return undefined;
+	}
 
 }

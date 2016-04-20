@@ -53,18 +53,26 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', 'angular2-
                     });
                 };
                 UserService.prototype.getUser = function () {
-                    if (this.user !== undefined)
-                        return this.user;
-                    else {
-                        console.log('getUser - Used session');
-                        var sessionUser = this._storage.get('user');
-                        if (sessionUser)
-                            return new user_1.User(sessionUser.username, sessionUser.email, sessionUser.id);
-                        else {
-                            //TODO - redirect to login
-                            return undefined;
-                        }
-                    }
+                    return this.decodeUser();
+                };
+                UserService.prototype.setToken = function (token) {
+                    this._storage.set('id_token', token);
+                };
+                UserService.prototype.getToken = function () {
+                    return this._storage.get('id_token');
+                };
+                UserService.prototype.delToken = function () {
+                    this._storage.del('id_token');
+                };
+                UserService.prototype.decodeUser = function () {
+                    var token = this.getToken();
+                    if (token === null || token === undefined)
+                        return undefined;
+                    var objUser = this.jwtHelper.decodeToken(token);
+                    if (objUser !== undefined)
+                        return new user_1.User(objUser.username, objUser.email, objUser.id);
+                    else
+                        return undefined;
                 };
                 UserService = __decorate([
                     core_1.Injectable(), 

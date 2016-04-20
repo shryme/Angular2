@@ -58,8 +58,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                 };
                 LoginComponent.prototype.signOut = function () {
                     this.isLogged = false;
-                    this._storage.del('user');
-                    this._storage.del('id_token');
+                    this._userService.delToken();
                     this.username = "";
                     this.email = "";
                     this.password = "";
@@ -73,8 +72,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                             return;
                     }
                     this._userService.authenticate(this.email, this.password, this.newAccount).subscribe(function (res) {
-                        _this._storage.set('user', res.user);
-                        _this._storage.set('id_token', res.token);
+                        _this._userService.setToken(res.token);
                         _this._router.navigate(['Settings']);
                     }, function (err) {
                         console.log('SUBSCRIBE ERROR', err);
