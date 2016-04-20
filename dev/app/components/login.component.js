@@ -57,7 +57,6 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                     this.newAccount = !this.newAccount;
                 };
                 LoginComponent.prototype.signOut = function () {
-                    this.isLogged = false;
                     this._userService.delToken();
                     this.username = "";
                     this.email = "";

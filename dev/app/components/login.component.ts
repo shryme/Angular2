@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
 	}
 
 	signOut() {
-		this.isLogged = false;
 		this._userService.delToken();
 		this.username = "";
 		this.email = "";
