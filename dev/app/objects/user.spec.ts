@@ -2,6 +2,7 @@ import {User} from './user';
 
 describe('User', () => {
 	it('has id given in the constructor', () => {
+		User.setNextId(0);
 		let user = new User('Super Cat', 'email', 1);
 		expect(user.id).toEqual(1);
 	});

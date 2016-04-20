@@ -10,6 +10,7 @@ System.register(['./user'], function(exports_1, context_1) {
         execute: function() {
             describe('User', function () {
                 it('has id given in the constructor', function () {
+                    user_1.User.setNextId(0);
                     var user = new user_1.User('Super Cat', 'email', 1);
                     expect(user.id).toEqual(1);
                 });

@@ -7,7 +7,7 @@ import {MockBackend, MockConnection} from 'angular2/http/testing';
 import {Injectable, Component} from 'angular2/core';
 
 import {UserService} from './user.service';
-import {StorageService, PermanentStorageService} from './storage.service';
+import {StorageService, SessionService} from './storage.service';
 import {HttpService} from './http.service';
 import {User} from '../objects/user';
 
@@ -20,7 +20,7 @@ describe('UserService', () => {
 		UserService,
 		StorageService,
 		HttpService,
-		PermanentStorageService,
+		SessionService,
 		BaseRequestOptions,
 		MockBackend,
 		provide(Http, {

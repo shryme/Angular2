@@ -36,7 +36,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/testing', 'angular2
                     user_service_1.UserService,
                     storage_service_1.StorageService,
                     http_service_1.HttpService,
-                    storage_service_1.PermanentStorageService,
+                    storage_service_1.SessionService,
                     http_1.BaseRequestOptions,
                     testing_2.MockBackend,
                     core_1.provide(http_1.Http, {
