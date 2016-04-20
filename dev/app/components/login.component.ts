@@ -7,7 +7,7 @@ import {NgForm} from 'angular2/common';
 import {User} from '../objects/user';
 import {UserService} from '../services/user.service';
 
-import {StorageService, PermanentStorageService} from '../services/storage.service';
+import {StorageService} from '../services/storage.service';
 
 import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 
@@ -39,8 +39,7 @@ export class LoginComponent implements OnInit {
 		private _userService: UserService,
 		private _routeParams: RouteParams,
 		private _router: Router,
-		private _storage: StorageService,
-		private _local: PermanentStorageService) {
+		private _storage: StorageService) {
 	}
 
 	ngOnInit() {
@@ -59,7 +58,7 @@ export class LoginComponent implements OnInit {
 	signOut() {
 		this.isLogged = false;
 		this._storage.del('user');
-		this._local.del('id_token');
+		this._storage.del('id_token');
 		this.username = "";
 		this.email = "";
 		this.password = "";
@@ -78,7 +77,7 @@ export class LoginComponent implements OnInit {
 		this._userService.authenticate(this.email, this.password, this.newAccount).subscribe(res => {
 
 			this._storage.set('user', res.user);
-			this._local.set('id_token', res.token);
+			this._storage.set('id_token', res.token);
 
 			this._router.navigate(['Settings']);
 

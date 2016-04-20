@@ -31,12 +31,11 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
             }],
         execute: function() {
             LoginComponent = (function () {
-                function LoginComponent(_userService, _routeParams, _router, _storage, _local) {
+                function LoginComponent(_userService, _routeParams, _router, _storage) {
                     this._userService = _userService;
                     this._routeParams = _routeParams;
                     this._router = _router;
                     this._storage = _storage;
-                    this._local = _local;
                     this.submitted = false;
                     this.test = "none";
                     this.email = "";
@@ -60,7 +59,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                 LoginComponent.prototype.signOut = function () {
                     this.isLogged = false;
                     this._storage.del('user');
-                    this._local.del('id_token');
+                    this._storage.del('id_token');
                     this.username = "";
                     this.email = "";
                     this.password = "";
@@ -75,7 +74,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                     }
                     this._userService.authenticate(this.email, this.password, this.newAccount).subscribe(function (res) {
                         _this._storage.set('user', res.user);
-                        _this._local.set('id_token', res.token);
+                        _this._storage.set('id_token', res.token);
                         _this._router.navigate(['Settings']);
                     }, function (err) {
                         console.log('SUBSCRIBE ERROR', err);
@@ -91,7 +90,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                         templateUrl: 'app/components/login.component.html',
                         inputs: ['hero']
                     }), 
-                    __metadata('design:paramtypes', [user_service_1.UserService, router_1.RouteParams, router_1.Router, storage_service_1.StorageService, storage_service_1.PermanentStorageService])
+                    __metadata('design:paramtypes', [user_service_1.UserService, router_1.RouteParams, router_1.Router, storage_service_1.StorageService])
                 ], LoginComponent);
                 return LoginComponent;
             }());

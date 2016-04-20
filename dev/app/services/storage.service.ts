@@ -4,7 +4,7 @@ import {Injectable, Component} from 'angular2/core';
 
 @Injectable()
 
-export class StorageService {
+export class SessionService {
 
 	set(key: string, value: any) {
 		sessionStorage.setItem(key, JSON.stringify(value));
@@ -30,7 +30,7 @@ export class StorageService {
 
 }
 
-export class PermanentStorageService {
+export class StorageService {
 	set(key: string, value: any) {
 		localStorage.setItem(key, JSON.stringify(value));
 	}

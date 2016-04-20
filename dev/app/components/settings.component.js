@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../services/user.service', '../services/http.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../objects/user', '../services/user.service', '../services/http.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, user_service_1, http_service_1, angular2_jwt_1;
+    var core_1, router_1, user_1, user_service_1, http_service_1, angular2_jwt_1;
     var SettingsComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (user_1_1) {
+                user_1 = user_1_1;
             },
             function (user_service_1_1) {
                 user_service_1 = user_service_1_1;
@@ -47,6 +50,8 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
                 }
                 SettingsComponent.prototype.ngOnInit = function () {
                     this.user = this._userService.getUser();
+                    if (this.user === undefined)
+                        this.user = new user_1.User('', '');
                     console.log('test');
                 };
                 SettingsComponent.prototype.goBack = function () {

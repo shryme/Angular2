@@ -4,7 +4,7 @@ import {Http, HTTP_PROVIDERS} from 'angular2/http';
 // import {AuthHttp, AuthConfig} from 'angular2-jwt/angular2-jwt';
 
 import { UserService } from '../services/user.service';
-import { StorageService, PermanentStorageService } from '../services/storage.service';
+import { StorageService, SessionService } from '../services/storage.service';
 import { HttpService } from '../services/http.service';
 import { HeroService }     from '../services/hero.service';
 import { HeroesComponent } from './heroes.component';
@@ -35,7 +35,7 @@ import 'rxjs/add/operator/map';
 		HeroService,
 		UserService,
 		StorageService,
-		PermanentStorageService
+		SessionService
 	]
 })
 

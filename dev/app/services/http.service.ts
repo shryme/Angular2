@@ -3,7 +3,7 @@ import {Injectable, Component} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 import {contentHeaders} from '../objects/headers';
 
-import {StorageService, PermanentStorageService} from './storage.service';
+import {StorageService} from './storage.service';
 
 @Injectable()
 
@@ -11,7 +11,7 @@ export class HttpService {
 
 	constructor(
 		public http: Http,
-		private _local: PermanentStorageService) {
+		private _storage: StorageService) {
 		console.log('constructor');
 
 	}
@@ -36,7 +36,7 @@ export class HttpService {
 		let headers = new Headers();
 		headers.append('Accept', 'application/json');
 		headers.append('Content-Type', 'application/json');
-		headers.append('x-access-token', this._local.get('id_token'));
+		headers.append('x-access-token', this._storage.get('id_token'));
 
 		return headers;
 	}

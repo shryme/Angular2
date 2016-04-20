@@ -11,20 +11,20 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var StorageService, PermanentStorageService;
+    var SessionService, StorageService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            StorageService = (function () {
-                function StorageService() {
+            SessionService = (function () {
+                function SessionService() {
                 }
-                StorageService.prototype.set = function (key, value) {
+                SessionService.prototype.set = function (key, value) {
                     sessionStorage.setItem(key, JSON.stringify(value));
                 };
-                StorageService.prototype.get = function (key) {
+                SessionService.prototype.get = function (key) {
                     var sessionStr = sessionStorage.getItem(key);
                     var sessionObj;
                     try {
@@ -35,23 +35,23 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                         return sessionStr;
                     }
                 };
-                StorageService.prototype.del = function (key) {
+                SessionService.prototype.del = function (key) {
                     sessionStorage.removeItem(key);
                 };
-                StorageService = __decorate([
+                SessionService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])
-                ], StorageService);
-                return StorageService;
+                ], SessionService);
+                return SessionService;
             }());
-            exports_1("StorageService", StorageService);
-            PermanentStorageService = (function () {
-                function PermanentStorageService() {
+            exports_1("SessionService", SessionService);
+            StorageService = (function () {
+                function StorageService() {
                 }
-                PermanentStorageService.prototype.set = function (key, value) {
+                StorageService.prototype.set = function (key, value) {
                     localStorage.setItem(key, JSON.stringify(value));
                 };
-                PermanentStorageService.prototype.get = function (key) {
+                StorageService.prototype.get = function (key) {
                     var localStr = localStorage.getItem(key);
                     var localObj;
                     try {
@@ -62,12 +62,12 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                         return localStr;
                     }
                 };
-                PermanentStorageService.prototype.del = function (key) {
+                StorageService.prototype.del = function (key) {
                     localStorage.removeItem(key);
                 };
-                return PermanentStorageService;
+                return StorageService;
             }());
-            exports_1("PermanentStorageService", PermanentStorageService);
+            exports_1("StorageService", StorageService);
         }
     }
 });

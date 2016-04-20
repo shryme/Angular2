@@ -34,10 +34,9 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', 'angular2-
             }],
         execute: function() {
             UserService = (function () {
-                function UserService(http, _storage, _local) {
+                function UserService(http, _storage) {
                     this.http = http;
                     this._storage = _storage;
-                    this._local = _local;
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
                     console.log('Task Service created.', http);
                     this.headers = new http_1.Headers();
@@ -69,7 +68,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', 'angular2-
                 };
                 UserService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_service_1.HttpService, storage_service_1.StorageService, storage_service_1.PermanentStorageService])
+                    __metadata('design:paramtypes', [http_service_1.HttpService, storage_service_1.StorageService])
                 ], UserService);
                 return UserService;
             }());

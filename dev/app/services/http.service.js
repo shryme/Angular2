@@ -25,9 +25,9 @@ System.register(['angular2/core', 'angular2/http', './storage.service'], functio
             }],
         execute: function() {
             HttpService = (function () {
-                function HttpService(http, _local) {
+                function HttpService(http, _storage) {
                     this.http = http;
-                    this._local = _local;
+                    this._storage = _storage;
                     console.log('constructor');
                 }
                 HttpService.prototype.get = function (address) {
@@ -46,12 +46,12 @@ System.register(['angular2/core', 'angular2/http', './storage.service'], functio
                     var headers = new http_1.Headers();
                     headers.append('Accept', 'application/json');
                     headers.append('Content-Type', 'application/json');
-                    headers.append('x-access-token', this._local.get('id_token'));
+                    headers.append('x-access-token', this._storage.get('id_token'));
                     return headers;
                 };
                 HttpService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_1.Http, storage_service_1.PermanentStorageService])
+                    __metadata('design:paramtypes', [http_1.Http, storage_service_1.StorageService])
                 ], HttpService);
                 return HttpService;
             }());

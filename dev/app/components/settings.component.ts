@@ -43,6 +43,8 @@ export class SettingsComponent implements OnInit {
 
 	ngOnInit() {
 		this.user = this._userService.getUser();
+		if (this.user === undefined)
+			this.user = new User('', '');
 		console.log('test');
 
 	}

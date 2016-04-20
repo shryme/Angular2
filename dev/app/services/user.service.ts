@@ -7,7 +7,7 @@ import {contentHeaders} from '../objects/headers';
 
 import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 
-import {StorageService, PermanentStorageService} from './storage.service';
+import {StorageService} from './storage.service';
 import {HttpService} from './http.service';
 
 @Injectable()
@@ -19,8 +19,7 @@ export class UserService {
 	user: User;
 
 	constructor(public http: HttpService,
-			private _storage: StorageService,
-			private _local: PermanentStorageService) {
+		private _storage: StorageService) {
 		console.log('Task Service created.', http);
 		this.headers = new Headers();
 		this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -59,5 +58,9 @@ export class UserService {
 		}
 
 	}
+
+	// isLogIn() {
+	// 	let sessionUser: string = this._storage.get('id_token');
+	// }
 
 }
