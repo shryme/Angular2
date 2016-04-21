@@ -77,6 +77,17 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', 'angular2-
                 UserService.prototype.loggedIn = function () {
                     return angular2_jwt_1.tokenNotExpired();
                 };
+                UserService.prototype.getSettings = function () {
+                    return this.http.get('http://localhost:3333/user/settings')
+                        .map(function (obj) {
+                        return obj.settings;
+                    });
+                };
+                UserService.prototype.saveSettings = function (phone) {
+                    var json = JSON.stringify({ "phone": phone });
+                    return this.http.post('http://localhost:3333/user/settings', json);
+                    ;
+                };
                 UserService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_service_1.HttpService, storage_service_1.StorageService])

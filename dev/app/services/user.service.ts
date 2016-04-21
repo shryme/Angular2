@@ -75,4 +75,20 @@ export class UserService {
 		return tokenNotExpired();
 	}
 
+	getSettings() {
+
+		return this.http.get('http://localhost:3333/user/settings')
+			.map((obj: any) => {
+
+				return obj.settings;
+
+			});
+	}
+
+	saveSettings(phone) {
+		let json = JSON.stringify({ "phone": phone });
+
+		return this.http.post('http://localhost:3333/user/settings', json));
+	}
+
 }

@@ -42,10 +42,14 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                     this.http = http;
                     this._userService = _userService;
                     this._routeParams = _routeParams;
+                    this.phone = "";
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
                     console.log('constructor');
-                    this.http.get('http://localhost:3333/test').subscribe(function (res) {
-                        _this.message = res.message;
+                    this._userService.getSettings().subscribe(function (res) {
+                        _this.phone = res.phone;
+                    }, function (err) {
+                        console.log('SUBSCRIBE ERROR', err);
+                        _this.phone = err.json().message;
                     });
                 }
                 SettingsComponent.prototype.ngOnInit = function () {
@@ -56,6 +60,14 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                 };
                 SettingsComponent.prototype.goBack = function () {
                     // window.history.back();
+                };
+                SettingsComponent.prototype.onSubmit = function () {
+                    var _this = this;
+                    this._userService.saveSettings(this.phone).subscribe(function (res) {
+                    }, function (err) {
+                        console.log('SUBSCRIBE ERROR', err);
+                        _this.phone = err.json().message;
+                    });
                 };
                 SettingsComponent = __decorate([
                     core_1.Component({

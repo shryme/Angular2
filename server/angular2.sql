@@ -24,12 +24,13 @@ CREATE TABLE `user` (
   `username` varchar(100) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
+  `phone` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`username`,`email`,`password`) values (1,'username','b@b.com','b@b.com'),(2,'username2','a@a.com','a@a.com');
+insert  into `user`(`id`,`username`,`email`,`password`,`phone`) values (1,'b@b.com','b@b.com','b@b.com',NULL),(2,'a@a.com','a@a.com','a@a.com','(418)888-8888'),(18,'z@z.com','z@z.com','z@z.com',NULL),(19,'c@c.om','c@c.om','c@c.om',NULL),(20,'c@c.com','c@c.com','c@c.com',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

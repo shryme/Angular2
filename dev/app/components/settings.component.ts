@@ -26,6 +26,8 @@ export class SettingsComponent implements OnInit {
 	user: User;
 	message: string;
 
+	phone: string = "";
+
 	jwtHelper: JwtHelper = new JwtHelper();
 
 	constructor(
@@ -35,8 +37,12 @@ export class SettingsComponent implements OnInit {
 		private _routeParams: RouteParams) {
 		console.log('constructor');
 
-		this.http.get('http://localhost:3333/test').subscribe(res => {
-			this.message = res.message;
+		this._userService.getSettings().subscribe(res => {
+			this.phone = res.phone;
+		},
+		err => {
+			console.log('SUBSCRIBE ERROR', err);
+			this.phone = err.json().message;
 		});
 
 	}
@@ -51,6 +57,19 @@ export class SettingsComponent implements OnInit {
 
 	goBack() {
 		// window.history.back();
+	}
+
+	onSubmit() {
+
+		this._userService.saveSettings(this.phone).subscribe(res => {
+
+		},
+		err => {
+			console.log('SUBSCRIBE ERROR', err);
+
+			this.phone = err.json().message;
+		});
+
 	}
 
 

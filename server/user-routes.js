@@ -188,3 +188,65 @@ app.get('/test', function(req, res) {
 
 });
 
+app.get('/user/settings', function(req, res) {
+
+	var id = req.decoded.id;
+
+	var promiseSelect = userDao.getById(id);
+
+	promiseSelect.then(function(row) {
+		console.log('SELECT', row);
+
+		resp = {
+			success: true,
+			message: 'Success UPDATE!',
+			settings: {phone: row.phone}
+		};
+
+		res.json(resp);
+		Log.result(req, resp);
+
+	}, function(err) {
+		resp = {
+			success: false,
+			message: err.message,
+			code: err.code
+		};
+		res.status(500).json(resp);
+		console.log(req.url.bgRed.white, err);
+	});
+
+});
+
+app.post('/user/settings', function(req, res) {
+	var id = req.decoded.id;
+	var phone = req.body.phone;
+
+
+
+	var promiseUpdate = userDao.update(id, phone);
+
+	promiseUpdate.then(function(row) {
+		console.log('UPDATE', row);
+
+		resp = {
+			success: true,
+			message: 'Success UPDATE!'
+		};
+
+		res.json(resp);
+		Log.result(req, resp);
+
+	}, function(err) {
+		resp = {
+			success: false,
+			message: err.message,
+			code: err.code
+		};
+		res.status(500).json(resp);
+		console.log(req.url.bgRed.white, err);
+	});
+
+
+
+});
