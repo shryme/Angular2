@@ -29,7 +29,7 @@ export class UserService {
 
 		let json = JSON.stringify({ "email": email, "password": password, "newAccount": newAccount });
 
-		return this.http.post('http://localhost:3333/authenticate', json)
+		return this.http.post('/authenticate', json)
 			.map((obj: any) => {
 
 				let objUser = this.jwtHelper.decodeToken(obj.token);
@@ -77,7 +77,7 @@ export class UserService {
 
 	getSettings() {
 
-		return this.http.get('http://localhost:3333/user/settings')
+		return this.http.get('/user/settings')
 			.map((obj: any) => {
 
 				return obj.settings;
@@ -88,7 +88,7 @@ export class UserService {
 	saveSettings(phone) {
 		let json = JSON.stringify({ "phone": phone });
 
-		return this.http.post('http://localhost:3333/user/settings', json));
+		return this.http.post('/user/settings', json));
 	}
 
 }

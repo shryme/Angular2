@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', './storage.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', '../objects/config', './storage.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', './storage.service'], functio
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, storage_service_1;
+    var core_1, http_1, config_1, storage_service_1;
     var HttpService;
     return {
         setters:[
@@ -20,6 +20,9 @@ System.register(['angular2/core', 'angular2/http', './storage.service'], functio
             function (http_1_1) {
                 http_1 = http_1_1;
             },
+            function (config_1_1) {
+                config_1 = config_1_1;
+            },
             function (storage_service_1_1) {
                 storage_service_1 = storage_service_1_1;
             }],
@@ -28,16 +31,17 @@ System.register(['angular2/core', 'angular2/http', './storage.service'], functio
                 function HttpService(http, _storage) {
                     this.http = http;
                     this._storage = _storage;
+                    this.server = config_1.config.server;
                     console.log('constructor');
                 }
                 HttpService.prototype.get = function (address) {
-                    return this.http.get(address, { headers: this.generateHeaders() })
+                    return this.http.get(this.server + address, { headers: this.generateHeaders() })
                         .map(function (responseData) {
                         return responseData.json();
                     });
                 };
                 HttpService.prototype.post = function (address, json) {
-                    return this.http.post(address, json, { headers: this.generateHeaders() })
+                    return this.http.post(this.server + address, json, { headers: this.generateHeaders() })
                         .map(function (responseData) {
                         return responseData.json();
                     });

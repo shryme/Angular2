@@ -45,7 +45,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', 'angular2-
                 UserService.prototype.authenticate = function (email, password, newAccount) {
                     var _this = this;
                     var json = JSON.stringify({ "email": email, "password": password, "newAccount": newAccount });
-                    return this.http.post('http://localhost:3333/authenticate', json)
+                    return this.http.post('/authenticate', json)
                         .map(function (obj) {
                         var objUser = _this.jwtHelper.decodeToken(obj.token);
                         obj.user = new user_1.User(objUser.username, objUser.email, objUser.id);
@@ -78,14 +78,14 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', 'angular2-
                     return angular2_jwt_1.tokenNotExpired();
                 };
                 UserService.prototype.getSettings = function () {
-                    return this.http.get('http://localhost:3333/user/settings')
+                    return this.http.get('/user/settings')
                         .map(function (obj) {
                         return obj.settings;
                     });
                 };
                 UserService.prototype.saveSettings = function (phone) {
                     var json = JSON.stringify({ "phone": phone });
-                    return this.http.post('http://localhost:3333/user/settings', json);
+                    return this.http.post('/user/settings', json);
                     ;
                 };
                 UserService = __decorate([
