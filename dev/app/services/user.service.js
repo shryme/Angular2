@@ -86,7 +86,6 @@ System.register(['angular2/core', 'angular2/http', '../objects/user', 'angular2-
                 UserService.prototype.saveSettings = function (phone) {
                     var json = JSON.stringify({ "phone": phone });
                     return this.http.post('/user/settings', json);
-                    ;
                 };
                 UserService = __decorate([
                     core_1.Injectable(), 

@@ -1,3 +1,4 @@
 {
-	"secret": "secret"
+	"secret": "secret",
+	"allow_origin": "http://192.168.111.196:3000"
 }

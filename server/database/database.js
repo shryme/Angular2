@@ -28,6 +28,12 @@ var fct = {
 				}
 
 				connection.query(a, b, function(err, result, fields) {
+					if (err) {
+						reject(err);
+						return;
+						// throw err;
+					}
+
 					var log = 'Post ' + result.insertId + ' added';
 					console.log(log);
 

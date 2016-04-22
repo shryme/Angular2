@@ -88,7 +88,7 @@ export class UserService {
 	saveSettings(phone) {
 		let json = JSON.stringify({ "phone": phone });
 
-		return this.http.post('/user/settings', json));
+		return this.http.post('/user/settings', json);
 	}
 
 }
