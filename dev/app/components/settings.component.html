@@ -1,5 +1,5 @@
 
-<div>
+<div [hidden]="!isLoaded">
 	<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
 		<h1>Bonjour {{user.username}}!</h1>
 		<div class="form-group">

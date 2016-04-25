@@ -42,14 +42,17 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                     this.http = http;
                     this._userService = _userService;
                     this._routeParams = _routeParams;
+                    this.isLoaded = false;
                     this.phone = "";
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
                     console.log('constructor');
                     this._userService.getSettings().subscribe(function (res) {
                         _this.phone = res.phone;
+                        _this.isLoaded = true;
                     }, function (err) {
                         console.log('SUBSCRIBE ERROR', err);
                         _this.phone = err.json().message;
+                        _this.isLoaded = true;
                     });
                 }
                 SettingsComponent.prototype.ngOnInit = function () {
