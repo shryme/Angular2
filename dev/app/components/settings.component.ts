@@ -23,8 +23,6 @@ import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 
 export class SettingsComponent implements OnInit {
 
-	isLoaded = false;
-
 	user: User;
 	message: string;
 
@@ -41,12 +39,10 @@ export class SettingsComponent implements OnInit {
 
 		this._userService.getSettings().subscribe(res => {
 			this.phone = res.phone;
-			this.isLoaded = true;
 		},
 		err => {
 			console.log('SUBSCRIBE ERROR', err);
 			this.phone = err.json().message;
-			this.isLoaded = true;
 		});
 
 	}
