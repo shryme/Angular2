@@ -1,6 +1,11 @@
-System.register(['angular2/core', 'angular2/http', '../objects/config', './storage.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', '../objects/config', './storage.service', './loading.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
+    var __extends = (this && this.__extends) || function (d, b) {
+        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,7 +15,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/config', './stora
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, config_1, storage_service_1;
+    var core_1, http_1, Observable_1, config_1, storage_service_1, loading_service_1;
     var HttpService;
     return {
         setters:[
@@ -20,30 +25,50 @@ System.register(['angular2/core', 'angular2/http', '../objects/config', './stora
             function (http_1_1) {
                 http_1 = http_1_1;
             },
+            function (Observable_1_1) {
+                Observable_1 = Observable_1_1;
+            },
             function (config_1_1) {
                 config_1 = config_1_1;
             },
             function (storage_service_1_1) {
                 storage_service_1 = storage_service_1_1;
+            },
+            function (loading_service_1_1) {
+                loading_service_1 = loading_service_1_1;
             }],
         execute: function() {
-            HttpService = (function () {
+            HttpService = (function (_super) {
+                __extends(HttpService, _super);
                 function HttpService(http, _storage) {
+                    _super.call(this);
                     this.http = http;
                     this._storage = _storage;
                     this.server = config_1.config.server;
                     console.log('constructor');
                 }
                 HttpService.prototype.get = function (address) {
+                    var _this = this;
+                    this.showLoading();
                     return this.http.get(this.server + address, { headers: this.generateHeaders() })
                         .map(function (responseData) {
+                        _this.hideLoading();
                         return responseData.json();
+                    }).catch(function (err) {
+                        _this.hideLoading();
+                        return Observable_1.Observable.throw(err);
                     });
                 };
                 HttpService.prototype.post = function (address, json) {
+                    var _this = this;
+                    this.showLoading();
                     return this.http.post(this.server + address, json, { headers: this.generateHeaders() })
                         .map(function (responseData) {
+                        _this.hideLoading();
                         return responseData.json();
+                    }).catch(function (err) {
+                        _this.hideLoading();
+                        return Observable_1.Observable.throw(err);
                     });
                 };
                 HttpService.prototype.generateHeaders = function () {
@@ -58,7 +83,7 @@ System.register(['angular2/core', 'angular2/http', '../objects/config', './stora
                     __metadata('design:paramtypes', [http_1.Http, storage_service_1.StorageService])
                 ], HttpService);
                 return HttpService;
-            }());
+            }(loading_service_1.LoadingPage));
             exports_1("HttpService", HttpService);
         }
     }

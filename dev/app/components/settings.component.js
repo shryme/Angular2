@@ -1,11 +1,6 @@
 System.register(['angular2/core', 'angular2/router', '../services/loading.service', '../objects/user', '../services/user.service', '../services/http.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var __extends = (this && this.__extends) || function (d, b) {
-        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -42,26 +37,23 @@ System.register(['angular2/core', 'angular2/router', '../services/loading.servic
             }],
         execute: function() {
             // import {AuthConfig} from 'angular2-jwt';
-            SettingsComponent = (function (_super) {
-                __extends(SettingsComponent, _super);
+            SettingsComponent = (function () {
                 function SettingsComponent(http, _userService, _routeParams) {
                     var _this = this;
-                    _super.call(this);
                     this.http = http;
                     this._userService = _userService;
                     this._routeParams = _routeParams;
                     this.phone = "";
                     this.jwtHelper = new angular2_jwt_1.JwtHelper();
+                    this.isReady = false;
                     console.log('constructor');
                     this._userService.getSettings().subscribe(function (res) {
                         _this.phone = res.phone;
-                        _this.showPage();
-                        _this.hideLoading();
+                        _this.isReady = true;
                     }, function (err) {
                         console.log('SUBSCRIBE ERROR', err);
                         _this.phone = err.json().message;
-                        _this.showPage();
-                        _this.hideLoading();
+                        _this.isReady = true;
                     });
                 }
                 SettingsComponent.prototype.ngOnInit = function () {
@@ -75,13 +67,10 @@ System.register(['angular2/core', 'angular2/router', '../services/loading.servic
                 };
                 SettingsComponent.prototype.onSubmit = function () {
                     var _this = this;
-                    this.showLoading();
                     this._userService.saveSettings(this.phone).subscribe(function (res) {
-                        _this.hideLoading();
                     }, function (err) {
                         console.log('SUBSCRIBE ERROR', err);
                         _this.phone = err.json().message;
-                        _this.hideLoading();
                     });
                 };
                 SettingsComponent = __decorate([
@@ -95,7 +84,7 @@ System.register(['angular2/core', 'angular2/router', '../services/loading.servic
                     __metadata('design:paramtypes', [http_service_1.HttpService, user_service_1.UserService, router_1.RouteParams])
                 ], SettingsComponent);
                 return SettingsComponent;
-            }(loading_service_1.LoadingPage));
+            }());
             exports_1("SettingsComponent", SettingsComponent);
         }
     }

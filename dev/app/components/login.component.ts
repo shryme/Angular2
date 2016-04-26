@@ -7,6 +7,8 @@ import {NgForm} from 'angular2/common';
 import {User} from '../objects/user';
 import {UserService} from '../services/user.service';
 
+import {HttpService} from '../services/http.service';
+
 import {LoadingIndicator, LoadingPage} from '../services/loading.service';
 
 import {StorageService} from '../services/storage.service';
@@ -20,7 +22,7 @@ import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 	inputs: ['hero']
 })
 
-export class LoginComponent extends LoadingPage implements OnInit {
+export class LoginComponent implements OnInit {
 
 	currentUser: User;
 	submitted: boolean = false;
@@ -37,17 +39,18 @@ export class LoginComponent extends LoadingPage implements OnInit {
 
 	jwtHelper: JwtHelper = new JwtHelper();
 
+	isReady: boolean = false;
+
 	constructor(
+		public http: HttpService,
 		private _userService: UserService,
 		private _routeParams: RouteParams,
 		private _router: Router,
 		private _storage: StorageService) {
-		super();
-		this.showPage();
 	}
 
 	ngOnInit() {
-
+		this.isReady = true;
 	}
 
 	loggedIn() {
@@ -73,7 +76,6 @@ export class LoginComponent extends LoadingPage implements OnInit {
 
 	onSubmit() {
 
-		this.showLoading();
 		if (this.newAccount) {
 			if (this.password !== this.password2)
 				return;
@@ -85,7 +87,6 @@ export class LoginComponent extends LoadingPage implements OnInit {
 
 			this._router.navigate(['Settings']);
 
-			this.hideLoading();
 		},
 		err => {
 			console.log('SUBSCRIBE ERROR', err);
@@ -94,7 +95,6 @@ export class LoginComponent extends LoadingPage implements OnInit {
 			this.email = err.status;
 			this.submitted = true;
 
-			this.hideLoading();
 		});
 	}
 

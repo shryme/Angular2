@@ -23,7 +23,7 @@ import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 
 @CanActivate(() => tokenNotExpired())
 
-export class SettingsComponent extends LoadingPage implements OnInit {
+export class SettingsComponent implements OnInit {
 
 	user: User;
 	message: string;
@@ -32,23 +32,22 @@ export class SettingsComponent extends LoadingPage implements OnInit {
 
 	jwtHelper: JwtHelper = new JwtHelper();
 
+	isReady: boolean = false;
+
 	constructor(
 		public http: HttpService,
 		private _userService: UserService,
 		private _routeParams: RouteParams) {
-		super();
-		console.log('constructor');
 
+		console.log('constructor');
 		this._userService.getSettings().subscribe(res => {
 			this.phone = res.phone;
-			this.showPage();
-			this.hideLoading();
+			this.isReady = true;
 		},
 		err => {
 			console.log('SUBSCRIBE ERROR', err);
 			this.phone = err.json().message;
-			this.showPage();
-			this.hideLoading();
+			this.isReady = true;
 		});
 
 	}
@@ -66,16 +65,13 @@ export class SettingsComponent extends LoadingPage implements OnInit {
 	}
 
 	onSubmit() {
-		this.showLoading();
 		this._userService.saveSettings(this.phone).subscribe(res => {
-			this.hideLoading();
 		},
 		err => {
 			console.log('SUBSCRIBE ERROR', err);
 
 			this.phone = err.json().message;
 
-			this.hideLoading();
 		});
 
 	}

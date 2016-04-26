@@ -1,4 +1,4 @@
-<div *ngIf="isPageLoad" [ngSwitch]="loading">
+<div *ngIf="isReady" [ngSwitch]="http.loading">
 	<div *ngSwitchWhen="true">
 		<loading-indicator></loading-indicator>
 	</div>

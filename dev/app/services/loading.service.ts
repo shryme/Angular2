@@ -9,11 +9,9 @@ import {StorageService} from './storage.service';
 export class LoadingPage {
 
 	public loading: boolean;
-	public isPageLoad: boolean;
 
 	constructor() {
 		this.loading = false;
-		this.isPageLoad = false;
 	}
 
 	showLoading() {
@@ -22,10 +20,6 @@ export class LoadingPage {
 
 	hideLoading() {
 		this.loading = false;
-	}
-
-	showPage() {
-		this.isPageLoad = true;
 	}
 
 }
