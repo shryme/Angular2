@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../services/user.service', '../services/http.service', '../services/loading.service', '../services/storage.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2-jwt/angular2-jwt', '../services/user.service', '../services/http.service', '../services/storage.service', '../services/loading.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, user_service_1, http_service_1, loading_service_1, storage_service_1, angular2_jwt_1;
+    var core_1, router_1, angular2_jwt_1, user_service_1, http_service_1, storage_service_1, loading_service_1;
     var LoginComponent;
     return {
         setters:[
@@ -20,20 +20,20 @@ System.register(['angular2/core', 'angular2/router', '../services/user.service',
             function (router_1_1) {
                 router_1 = router_1_1;
             },
+            function (angular2_jwt_1_1) {
+                angular2_jwt_1 = angular2_jwt_1_1;
+            },
             function (user_service_1_1) {
                 user_service_1 = user_service_1_1;
             },
             function (http_service_1_1) {
                 http_service_1 = http_service_1_1;
             },
-            function (loading_service_1_1) {
-                loading_service_1 = loading_service_1_1;
-            },
             function (storage_service_1_1) {
                 storage_service_1 = storage_service_1_1;
             },
-            function (angular2_jwt_1_1) {
-                angular2_jwt_1 = angular2_jwt_1_1;
+            function (loading_service_1_1) {
+                loading_service_1 = loading_service_1_1;
             }],
         execute: function() {
             LoginComponent = (function () {

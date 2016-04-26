@@ -2,16 +2,14 @@ import {Component, OnInit} from 'angular2/core';
 import {Router, RouteParams, CanActivate} from 'angular2/router';
 import {NgForm} from 'angular2/common';
 
-import {Http, Headers} from 'angular2/http';
-import {contentHeaders} from '../objects/headers';
-
-import {LoadingIndicator, LoadingPage} from '../services/loading.service';
+import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 
 import {User} from '../objects/user';
 import {UserService} from '../services/user.service';
 import {HttpService} from '../services/http.service';
 
-import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
+import {LoadingIndicator} from '../services/loading.service';
+
 // import {AuthConfig} from 'angular2-jwt';
 
 @Component({

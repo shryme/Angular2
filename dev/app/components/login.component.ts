@@ -2,18 +2,18 @@ import {Component, OnInit} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 import {NgForm} from 'angular2/common';
 
+import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
+
 // import {Cookie} from 'ng2-cookies/ng2-cookies';
 
 import {User} from '../objects/user';
+
 import {UserService} from '../services/user.service';
-
 import {HttpService} from '../services/http.service';
-
-import {LoadingIndicator, LoadingPage} from '../services/loading.service';
-
 import {StorageService} from '../services/storage.service';
 
-import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
+import {LoadingIndicator} from '../services/loading.service';
+
 
 @Component({
 	selector: 'my-hero-detail',

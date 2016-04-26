@@ -1,13 +1,11 @@
 import { Component, provide, Injectable }       from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
-// import {AuthHttp, AuthConfig} from 'angular2-jwt/angular2-jwt';
 
 import { UserService } from '../services/user.service';
 import { StorageService, SessionService } from '../services/storage.service';
 import { HttpService } from '../services/http.service';
 import { HeroService }     from '../services/hero.service';
-import { LoadingIndicator, LoadingPage }     from '../services/loading.service';
 import { HeroesComponent } from './heroes.component';
 import { DashboardComponent } from './dashboard.component';
 import { HeroDetailComponent } from './hero-detail.component';
@@ -21,23 +19,15 @@ import 'rxjs/add/operator/map';
 	selector: 'my-app',
 	templateUrl: 'app/components/app.component.html',
 	styleUrls: ['app/components/app.component.css'],
-	directives: [ROUTER_DIRECTIVES, LoadingIndicator],
+	directives: [ROUTER_DIRECTIVES],
 	providers: [
 		ROUTER_PROVIDERS,
 		HTTP_PROVIDERS,
-		// provide(AuthHttp, {
-		// 	useFactory: (http) => {
-		// 		return new AuthHttp(new AuthConfig(), http);
-		// 	},
-		// 	deps: [Http]
-		// }),
-		// AuthConfig,
 		HttpService,
 		HeroService,
 		UserService,
 		StorageService,
-		SessionService,
-		LoadingPage
+		SessionService
 	]
 })
 
