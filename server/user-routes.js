@@ -234,8 +234,18 @@ app.post('/user/settings', function(req, res) {
 			message: 'Success UPDATE!'
 		};
 
-		res.json(resp);
-		Log.result(req, resp);
+		setTimeout(function(){
+			resp = {
+				success: true,
+				message: 'Success UPDATE!'
+			};
+
+			res.json(resp);
+			Log.result(req, resp);
+		}, 0);
+
+		// res.json(resp);
+		// Log.result(req, resp);
 
 	}, function(err) {
 		resp = {
