@@ -7,6 +7,7 @@ import { UserService } from '../services/user.service';
 import { StorageService, SessionService } from '../services/storage.service';
 import { HttpService } from '../services/http.service';
 import { HeroService }     from '../services/hero.service';
+import { LoadingIndicator, LoadingPage }     from '../services/loading.service';
 import { HeroesComponent } from './heroes.component';
 import { DashboardComponent } from './dashboard.component';
 import { HeroDetailComponent } from './hero-detail.component';
@@ -20,7 +21,7 @@ import 'rxjs/add/operator/map';
 	selector: 'my-app',
 	templateUrl: 'app/components/app.component.html',
 	styleUrls: ['app/components/app.component.css'],
-	directives: [ROUTER_DIRECTIVES],
+	directives: [ROUTER_DIRECTIVES, LoadingIndicator],
 	providers: [
 		ROUTER_PROVIDERS,
 		HTTP_PROVIDERS,
@@ -35,7 +36,8 @@ import 'rxjs/add/operator/map';
 		HeroService,
 		UserService,
 		StorageService,
-		SessionService
+		SessionService,
+		LoadingPage
 	]
 })
 

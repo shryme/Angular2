@@ -7,6 +7,8 @@ import {NgForm} from 'angular2/common';
 import {User} from '../objects/user';
 import {UserService} from '../services/user.service';
 
+import {LoadingIndicator, LoadingPage} from '../services/loading.service';
+
 import {StorageService} from '../services/storage.service';
 
 import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
@@ -14,10 +16,11 @@ import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 @Component({
 	selector: 'my-hero-detail',
 	templateUrl: 'app/components/login.component.html',
+	directives: [LoadingIndicator],
 	inputs: ['hero']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent extends LoadingPage implements OnInit {
 
 	currentUser: User;
 	submitted: boolean = false;
@@ -39,6 +42,8 @@ export class LoginComponent implements OnInit {
 		private _routeParams: RouteParams,
 		private _router: Router,
 		private _storage: StorageService) {
+		super();
+		this.showPage();
 	}
 
 	ngOnInit() {
@@ -68,7 +73,7 @@ export class LoginComponent implements OnInit {
 
 	onSubmit() {
 
-
+		this.showLoading();
 		if (this.newAccount) {
 			if (this.password !== this.password2)
 				return;
@@ -80,6 +85,7 @@ export class LoginComponent implements OnInit {
 
 			this._router.navigate(['Settings']);
 
+			this.hideLoading();
 		},
 		err => {
 			console.log('SUBSCRIBE ERROR', err);
@@ -87,6 +93,8 @@ export class LoginComponent implements OnInit {
 			this.username = err.json().message;
 			this.email = err.status;
 			this.submitted = true;
+
+			this.hideLoading();
 		});
 	}
 

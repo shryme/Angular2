@@ -1,6 +1,11 @@
-System.register(['angular2/core', 'angular2/router', '../objects/user', '../services/user.service', '../services/http.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../services/loading.service', '../objects/user', '../services/user.service', '../services/http.service', 'angular2-jwt/angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
+    var __extends = (this && this.__extends) || function (d, b) {
+        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,7 +15,7 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, user_1, user_service_1, http_service_1, angular2_jwt_1;
+    var core_1, router_1, loading_service_1, user_1, user_service_1, http_service_1, angular2_jwt_1;
     var SettingsComponent;
     return {
         setters:[
@@ -19,6 +24,9 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (loading_service_1_1) {
+                loading_service_1 = loading_service_1_1;
             },
             function (user_1_1) {
                 user_1 = user_1_1;
@@ -34,11 +42,11 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
             }],
         execute: function() {
             // import {AuthConfig} from 'angular2-jwt';
-            SettingsComponent = (function () {
-                function SettingsComponent(http, 
-                    // public authHttp: AuthHttp,
-                    _userService, _routeParams) {
+            SettingsComponent = (function (_super) {
+                __extends(SettingsComponent, _super);
+                function SettingsComponent(http, _userService, _routeParams) {
                     var _this = this;
+                    _super.call(this);
                     this.http = http;
                     this._userService = _userService;
                     this._routeParams = _routeParams;
@@ -47,9 +55,13 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                     console.log('constructor');
                     this._userService.getSettings().subscribe(function (res) {
                         _this.phone = res.phone;
+                        _this.showPage();
+                        _this.hideLoading();
                     }, function (err) {
                         console.log('SUBSCRIBE ERROR', err);
                         _this.phone = err.json().message;
+                        _this.showPage();
+                        _this.hideLoading();
                     });
                 }
                 SettingsComponent.prototype.ngOnInit = function () {
@@ -63,23 +75,27 @@ System.register(['angular2/core', 'angular2/router', '../objects/user', '../serv
                 };
                 SettingsComponent.prototype.onSubmit = function () {
                     var _this = this;
+                    this.showLoading();
                     this._userService.saveSettings(this.phone).subscribe(function (res) {
+                        _this.hideLoading();
                     }, function (err) {
                         console.log('SUBSCRIBE ERROR', err);
                         _this.phone = err.json().message;
+                        _this.hideLoading();
                     });
                 };
                 SettingsComponent = __decorate([
                     core_1.Component({
                         selector: 'my-hero-detail',
                         templateUrl: 'app/components/settings.component.html',
+                        directives: [loading_service_1.LoadingIndicator],
                         inputs: ['hero']
                     }),
                     router_1.CanActivate(function () { return angular2_jwt_1.tokenNotExpired(); }), 
                     __metadata('design:paramtypes', [http_service_1.HttpService, user_service_1.UserService, router_1.RouteParams])
                 ], SettingsComponent);
                 return SettingsComponent;
-            }());
+            }(loading_service_1.LoadingPage));
             exports_1("SettingsComponent", SettingsComponent);
         }
     }

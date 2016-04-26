@@ -5,6 +5,7 @@ import {NgForm} from 'angular2/common';
 import {Http, Headers} from 'angular2/http';
 import {contentHeaders} from '../objects/headers';
 
+import {LoadingIndicator, LoadingPage} from '../services/loading.service';
 
 import {User} from '../objects/user';
 import {UserService} from '../services/user.service';
@@ -16,12 +17,13 @@ import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 @Component({
 	selector: 'my-hero-detail',
 	templateUrl: 'app/components/settings.component.html',
+	directives: [LoadingIndicator],
 	inputs: ['hero']
 })
 
 @CanActivate(() => tokenNotExpired())
 
-export class SettingsComponent implements OnInit {
+export class SettingsComponent extends LoadingPage implements OnInit {
 
 	user: User;
 	message: string;
@@ -32,17 +34,21 @@ export class SettingsComponent implements OnInit {
 
 	constructor(
 		public http: HttpService,
-		// public authHttp: AuthHttp,
 		private _userService: UserService,
 		private _routeParams: RouteParams) {
+		super();
 		console.log('constructor');
 
 		this._userService.getSettings().subscribe(res => {
 			this.phone = res.phone;
+			this.showPage();
+			this.hideLoading();
 		},
 		err => {
 			console.log('SUBSCRIBE ERROR', err);
 			this.phone = err.json().message;
+			this.showPage();
+			this.hideLoading();
 		});
 
 	}
@@ -60,14 +66,16 @@ export class SettingsComponent implements OnInit {
 	}
 
 	onSubmit() {
-
+		this.showLoading();
 		this._userService.saveSettings(this.phone).subscribe(res => {
-
+			this.hideLoading();
 		},
 		err => {
 			console.log('SUBSCRIBE ERROR', err);
 
 			this.phone = err.json().message;
+
+			this.hideLoading();
 		});
 
 	}
