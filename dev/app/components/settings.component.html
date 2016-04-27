@@ -4,7 +4,8 @@
 	<div class="form-group">
 		<label for="name">Phone</label>
 		<input type="phone" class="form-control" required
-			[(ngModel)]="phone" ngControl="phone" #name="ngForm">
+			[(ngModel)]="phone" ngControl="phone" #name="ngForm"
+			[mask]="'thisismymask'">
 	</div>
 
 	<button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Submit</button>
