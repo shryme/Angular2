@@ -53,7 +53,7 @@ var fct = {
 
 	},
 
-	insert: function(email, email, password) {
+	insert: function(email, username, password) {
 
 		var promise = new Promise(function(resolve, reject) {
 
