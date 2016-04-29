@@ -75,6 +75,14 @@ var fct = {
 
 		var promise = new Promise(function(resolve, reject) {
 
+
+
+			var message = fct.validatePhone(phone);
+			if (message !== '') {
+				reject({message: message});
+				return;
+			}
+
 			database.transaction('update  `user` SET `phone`=? WHERE `id`=?', [phone, id])
 			.then(function(row) {
 				resolve(row);
@@ -87,11 +95,24 @@ var fct = {
 		return promise;
 
 
+	},
+
+
+	validatePhone: function(phone) {
+		phone = phone.replace(/\D/g, '');
+		if (isNumeric(phone) || phone.length !== 10) {
+			return 'Phone format invalid';
+		}
+
+		return '';
 	}
 
 
 
 }
 
+function isNumeric(n) {
+	return !Number.isNaN(parseFloat(n)) && Number.isFinite(n);
+}
 
 module.exports = fct;
