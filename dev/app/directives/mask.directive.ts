@@ -1,33 +1,23 @@
-import { Directive, AfterViewInit, ApplicationRef, Input, ElementRef, provide, Injectable } from 'angular2/core';
+import { Directive, ApplicationRef, AfterViewInit, Input, ElementRef, provide, Injectable } from 'angular2/core';
 
 @Directive({
 	selector: '[mask]',
 	host: {'(input)': 'onChange()'}
 })
 export class MaskDirective implements AfterViewInit {
-// export class MaskDirective {
 	@Input() mask: string;
 
 	constructor(public el: ElementRef,
-		private appRef: ApplicationRef) {
-		// console.log('MASK');
-		// el.nativeElement.style.backgroundColr = 'yellow';
+		private _applicationRef: ApplicationRef) {
+
 	};
 
 	ngAfterViewInit() {
-		// this.onChange();
-		// console.log('MASK', this.mask);
-		// this.el.nativeElement.type = 'number';
-		this.el.nativeElement.maxLength = 13;
+		this.el.nativeElement.pattern = '^\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}$';
 	}
 
 
 	onChange() {
-		// this.el.nativeElement
-		// console.log('MASK', this.mask);
-		// debugger
-		// console.log(this.el.nativeElement.value);
-		// this.el.nativeElement.type = 'number';
 
 		let v: string = this.el.nativeElement.value;
 
@@ -45,7 +35,6 @@ export class MaskDirective implements AfterViewInit {
 		if (v.length > 13)
 			v = v.substr(0, 13);
 
-		this.el.nativeElement.value = v;
-		this.appRef.tick();
+		this.el.nativeElement.value = v
 	}
 }

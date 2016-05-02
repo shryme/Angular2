@@ -99,10 +99,10 @@ var fct = {
 
 
 	validatePhone: function(phone) {
-		phone = phone.replace(/\D/g, '');
-		if (isNumeric(phone) || phone.length !== 10) {
+
+		console.log('Validating phone', phone);
+		if (!/^\([0-9]{3}\)[0-9]{3}-[0-9]{4}$/.test(phone))
 			return 'Phone format invalid';
-		}
 
 		return '';
 	}
