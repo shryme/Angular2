@@ -38,6 +38,16 @@ export class SettingsComponent implements OnInit {
 		private _userService: UserService,
 		private _routeParams: RouteParams) {
 
+
+
+	}
+
+	ngOnInit() {
+		this.user = this._userService.getUser();
+		if (this.user === undefined)
+			this.user = new User('', '');
+		console.log('test');
+
 		console.log('constructor');
 		this._userService.getSettings().subscribe(res => {
 			this.phone = res.phone;
@@ -48,14 +58,6 @@ export class SettingsComponent implements OnInit {
 			this.phone = err.json().message;
 			this.isReady = true;
 		});
-
-	}
-
-	ngOnInit() {
-		this.user = this._userService.getUser();
-		if (this.user === undefined)
-			this.user = new User('', '');
-		console.log('test');
 
 	}
 
