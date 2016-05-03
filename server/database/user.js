@@ -57,6 +57,22 @@ var fct = {
 
 		var promise = new Promise(function(resolve, reject) {
 
+			var message;
+
+			message = fct.validateEmail(email);
+			if (message !== '') {
+				reject({message: message});
+				return;
+			}
+
+			message = fct.validatePassword(password);
+			if (message !== '') {
+				reject({message: message});
+				return;
+			}
+
+
+
 			database.transaction('insert  into `user`(`username`,`email`,`password`) values (?, ?, ?)', [email, email, password])
 			.then(function(row) {
 				resolve(row.insertId);
@@ -75,9 +91,15 @@ var fct = {
 
 		var promise = new Promise(function(resolve, reject) {
 
+			var message;
 
+			message = fct.validateId(id);
+			if (message !== '') {
+				reject({message: message});
+				return;
+			}
 
-			var message = fct.validatePhone(phone);
+			message = fct.validatePhone(phone);
 			if (message !== '') {
 				reject({message: message});
 				return;
@@ -97,6 +119,32 @@ var fct = {
 
 	},
 
+	validateId: function(id) {
+
+		if (id === undefined)
+			return 'Id invalid';
+
+		return '';
+
+	},
+
+	validateEmail: function(email) {
+
+		console.log('Validating email', email);
+		if (!/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(email))
+			return 'Email format invalid';
+
+		return '';
+	},
+
+	validatePassword: function(pw) {
+
+		console.log('Validating pw');
+		if (pw.length === 0)
+			return 'Password invalid';
+
+		return '';
+	},
 
 	validatePhone: function(phone) {
 
@@ -105,7 +153,9 @@ var fct = {
 			return 'Phone format invalid';
 
 		return '';
-	}
+	},
+
+
 
 
 
