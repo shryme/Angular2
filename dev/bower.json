@@ -1,0 +1,21 @@
+{
+  "name": "angular2",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Sébastien Paquet <shrymex@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/shryme/Angular2",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0"
+  }
+}
