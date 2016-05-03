@@ -6,3 +6,27 @@
 .ng-invalid {
 	border-left: 5px solid #a94442 !important; /* red */
 }
+
+paper-button {
+	padding:0;
+}
+
+paper-button::shadow .button-content {
+	padding:0;
+}
+
+paper-button button {
+	padding: 1em;
+	background-color: transparent;
+	border-color: transparent;
+	outline: 0 !important;
+}
+
+paper-button button::-moz-focus-inner {
+	border: 0;
+}
+
+paper-button.submit {
+	background-color: #4387fd;
+	color: white;
+}

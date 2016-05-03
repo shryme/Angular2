@@ -32,11 +32,16 @@ button:hover {
   background-color: #cfd8dc;
 }
 
+paper-button button:hover {
+  background-color: transparent;
+}
+
 button:disabled {
   background-color: #eee;
   color: #aaa;
   cursor: auto;
 }
+
 
 /* everywhere else */
 * {

@@ -3,14 +3,18 @@
 
 <div [hidden]="!loggedIn()">
 	<h1>Bonjour!</h1>
-	<button type="button" class="btn btn-default" (click)="signOut()">Sign out?</button>
+	<paper-button raised class="submit">
+		<button type="button" class="btn btn-default" (click)="signOut()">Sign out?</button>
+	</paper-button>
 </div>
 
 <div [hidden]="loggedIn()">
 
 <div [hidden]="submitted">
 	<form (ngSubmit)="onSubmit()" #loginForm="ngForm" [hidden]="newAccount">
-		<button type="button" class="btn btn-default" (click)="switchNew()">New?</button>
+		<paper-button raised>
+			<button type="button" class="btn btn-default" (click)="switchNew()">New?</button>
+		</paper-button>
 		<h1>Login - {{loggedIn()}}</h1>
 		<div class="form-group">
 			<label for="name">Courriel</label>
@@ -23,10 +27,14 @@
 				[(ngModel)]="password" ngControl="password" #name="ngForm">
 		</div>
 
-		<button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Submit</button>
+		<paper-button raised class="submit">
+			<button type="submit" class="btn btn-default">Submit</button>
+		</paper-button>
 	</form>
 	<form (ngSubmit)="onSubmit()" #newloginForm="ngForm" [hidden]="!newAccount">
-		<button type="button" class="btn btn-default" (click)="switchNew()">Old?</button>
+		<paper-button raised>
+			<button type="button" class="btn btn-default" (click)="switchNew()">Old?</button>
+		</paper-button>
 		<h1>New Account</h1>
 		<div class="form-group">
 			<label for="name">Courriel</label>
@@ -46,8 +54,9 @@
 		</div>
 
 
-
-		<button type="submit" class="btn btn-default" [disabled]="!newloginForm.form.valid">Submit</button>
+		<paper-button raised class="submit">
+			<button type="submit" class="btn btn-default" [disabled]="!newloginForm.form.valid">Submit</button>
+		</paper-button>
 	</form>
 
 </div>
