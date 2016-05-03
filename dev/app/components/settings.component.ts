@@ -11,8 +11,6 @@ import {HttpService} from '../services/http.service';
 import {LoadingIndicator} from '../services/loading.service';
 import {MaskDirective} from '../directives/mask.directive';
 
-// import {AuthConfig} from 'angular2-jwt';
-
 @Component({
 	selector: 'my-hero-detail',
 	templateUrl: 'app/components/settings.component.html',

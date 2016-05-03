@@ -4,8 +4,6 @@ import {NgForm} from 'angular2/common';
 
 import {tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt/angular2-jwt';
 
-// import {Cookie} from 'ng2-cookies/ng2-cookies';
-
 import {User} from '../objects/user';
 
 import {UserService} from '../services/user.service';
