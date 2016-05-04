@@ -19,8 +19,8 @@ describe('UserService', () => {
 	beforeEachProviders(() => [
 		UserService,
 		StorageService,
-		HttpService,
 		SessionService,
+		HttpService,
 		BaseRequestOptions,
 		MockBackend,
 		provide(Http, {
@@ -31,10 +31,10 @@ describe('UserService', () => {
 		})
 	]);
 
-	beforeEach(inject([MockBackend], (backend: MockBackend) => {
-		// const baseResponse = new Response(new ResponseOptions({ body: { id: 1, email: 'a@a.com', username: 'a@a.com', password: 'a@a.com' } }));
-		// backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
-	}));
+	// beforeEach(inject([MockBackend], (backend: MockBackend) => {
+	// 	const baseResponse = new Response(new ResponseOptions({ body: { id: 1, email: 'a@a.com', username: 'a@a.com', password: 'a@a.com' } }));
+	// 	backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
+	// }));
 
 	it('should return token when authenticate worked',
 		inject([UserService, MockBackend], (userService: UserService, backend: MockBackend) => {
@@ -74,22 +74,6 @@ describe('UserService', () => {
 			});
 		})
 	);
-
-	// it('should return an undefined token when authenticate did not worked',
-	// 	inject([UserService, MockBackend], (userService: UserService, backend: MockBackend) => {
-	// 		let baseResponse = new Response(new ResponseOptions({ body: new Error('this is an error') }));
-	// 		backend.connections.subscribe((c: MockConnection) => c.mockRespond(baseResponse));
-	// 		User.setNextId(0);
-	// 		userService.authenticate('a@a.com', 'a@a.com', false).subscribe((res: any) => {
-
-	// 		},
-	// 		err => {
-	// 			console.log(err);
-	// 			expect(false).toBe(true);
-	// 		});
-	// 	})
-	// );
-
 
 
 });
