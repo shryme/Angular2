@@ -36,6 +36,9 @@
 	<script src="app/services/storage.service.js"></script>
 	<script src="app/services/storage.spec.js"></script>
 
+	<script src="app/services/loading.service.js"></script>
+	<script src="app/services/loading.spec.js"></script>
+
 	<script>
 		// #2. Configure systemjs to use the .js extension
 		//     for imports from the app folder
@@ -64,7 +67,8 @@
 			System.import('app/objects/user.spec'),
 			System.import('app/pipes/init-caps-pipe.spec'),
 			System.import('app/services/user.spec'),
-			System.import('app/services/storage.spec')
+			System.import('app/services/storage.spec'),
+			System.import('app/services/loading.spec')
 		])
 
 			// #4. wait for all imports to load ...
