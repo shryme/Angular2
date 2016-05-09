@@ -26,12 +26,6 @@ describe('LoadingService', () => {
 
 	let tcb;
 
-	// beforeEachProviders(() => [
-	// 	TestComponentBuilder,
-	// 	StorageService,
-	// 	SessionService
-	// ]);
-
 	beforeEach(inject([TestComponentBuilder], _tcb => {
 		tcb = _tcb
 	}));
@@ -42,7 +36,7 @@ describe('LoadingService', () => {
 		return tcb.createAsync(LoadingIndicator).then(fixture => {
 			let element = fixture.nativeElement;
 			fixture.detectChanges(); //trigger change detection
-			// debugger
+
 			expect(element.querySelector('div')).not.toBeNull();
 			expect(element.querySelector('div').className).toBe('loading');
 
